@@ -80,6 +80,8 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 18px;
+      gap: 12px;
+      flex-wrap: wrap;
     }
     .topbar h1 {
       margin: 0;
@@ -96,6 +98,46 @@
       border-radius: 999px;
       font-size: 12px;
       color: #c8dfff;
+    }
+    .topbar-controls {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .role-select {
+      min-height: 32px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: rgba(22, 35, 65, 0.7);
+      color: #c8dfff;
+      padding: 0 10px;
+      font-size: 12px;
+    }
+    .edit-toggle-btn {
+      min-height: 32px;
+      border-radius: 8px;
+      border: 1px solid rgba(83, 120, 170, 0.26);
+      background: #f7fbff;
+      color: #234168;
+      padding: 0 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .edit-toggle-btn[disabled] {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    .edit-status {
+      font-size: 12px;
+      color: #526684;
+    }
+    [contenteditable="true"].is-editing {
+      outline: 2px dashed rgba(43, 168, 255, 0.45);
+      outline-offset: 2px;
+      border-radius: 4px;
+      cursor: text;
     }
 
     .card {
@@ -258,14 +300,17 @@
       gap: 10px;
       margin-bottom: 8px;
     }
-    .abema-icon {
+    .detail-media-icon {
       width: 40px;
       height: 40px;
       border-radius: 10px;
+      font-size: 11px;
+    }
+    .detail-media-icon img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      border: 1px solid rgba(221, 236, 255, 0.28);
-      background: #0a101a;
-      box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.06);
+      display: block;
     }
     .media-title {
       margin: 0;
@@ -728,7 +773,15 @@
     <main class="main">
       <div class="topbar">
         <h1>プロダクトガイド</h1>
-        <div class="chip">2026年1-3月期 / Mock</div>
+        <div class="topbar-controls">
+          <div class="chip">2026年1-3月期 / Mock</div>
+          <select id="roleSelect" class="role-select" aria-label="表示権限">
+            <option value="AJA">AJA（編集可）</option>
+            <option value="Buyer">Buyer（閲覧のみ）</option>
+          </select>
+          <button id="editToggleBtn" class="edit-toggle-btn" type="button">編集モードON</button>
+          <span id="editStatus" class="edit-status">現在: 閲覧モード</span>
+        </div>
       </div>
 
       <section id="listView">
@@ -741,7 +794,7 @@
             <div class="media-tags"><span class="tag">ALLデバイス</span><span class="tag">Linear/VOD</span></div>
             <p class="media-desc">ニュース・恋愛・アニメ・スポーツなど、幅広いユーザーにリーチ可能。</p>
           </article>
-          <article class="card media-card">
+          <article class="card media-card" data-media="TVer">
             <div class="media-logo-row">
               <span class="media-icon tver"><img src="./assets/tver-logo.png" alt="TVerロゴ" /></span>
               <div class="media-logo">TVer</div>
@@ -749,15 +802,15 @@
             <div class="media-tags"><span class="tag">ALLデバイス</span><span class="tag">15〜180秒</span></div>
             <p class="media-desc">民放見逃しを中心に高リーチ。プレロール/ミッドロール配信に強み。</p>
           </article>
-          <article class="card media-card">
+          <article class="card media-card" data-media="DAZN">
             <div class="media-logo-row">
-              <span class="media-icon dazn">DAZN</span>
+              <span class="media-icon dazn"><img src="./assets/dazn-logo.png" alt="DAZNロゴ" /></span>
               <div class="media-logo">DAZN</div>
             </div>
             <div class="media-tags"><span class="tag">SP/CTV</span><span class="tag">スポーツ</span></div>
             <p class="media-desc">スポーツ文脈で高いエンゲージメントを獲得しやすい配信面。</p>
           </article>
-          <article class="card media-card">
+          <article class="card media-card" data-media="Lemino">
             <div class="media-logo-row">
               <span class="media-icon lemino">Le</span>
               <div class="media-logo">Lemino</div>
@@ -765,7 +818,7 @@
             <div class="media-tags"><span class="tag">SP/CTV</span><span class="tag">VOD</span></div>
             <p class="media-desc">注目コンテンツ時にMAUが伸び、可処分時間帯への接触が強い。</p>
           </article>
-          <article class="card media-card">
+          <article class="card media-card" data-media="Rチャンネル">
             <div class="media-logo-row">
               <span class="media-icon rch">R</span>
               <div class="media-logo">Rチャンネル</div>
@@ -773,7 +826,7 @@
             <div class="media-tags"><span class="tag">ALLデバイス</span><span class="tag">リニア配信</span></div>
             <p class="media-desc">24時間無料で視聴可能。高い視聴完了率と長尺配信に対応した在庫が強み。</p>
           </article>
-          <article class="card media-card">
+          <article class="card media-card" data-media="JSPORTS">
             <div class="media-logo-row">
               <span class="media-icon jsp"><img src="./assets/jsports-logo.png" alt="JSPORTSロゴ" /></span>
               <div class="media-logo">JSPORTS</div>
@@ -781,7 +834,7 @@
             <div class="media-tags"><span class="tag">ALLデバイス</span><span class="tag">スポーツ</span></div>
             <p class="media-desc">年間を通じて豊富なスポーツ番組を配信。視聴体験を損なわない広告配信に対応。</p>
           </article>
-          <article class="card media-card">
+          <article class="card media-card" data-media="SPOTV">
             <div class="media-logo-row">
               <span class="media-icon spotv">SP</span>
               <div class="media-logo">SPOTV</div>
@@ -789,7 +842,7 @@
             <div class="media-tags"><span class="tag">SP中心</span><span class="tag">MLB</span></div>
             <p class="media-desc">MLBを中心にしたライブ配信面。スポーツ関心層へ効率的なリーチが可能。</p>
           </article>
-          <article class="card media-card">
+          <article class="card media-card" data-media="ニコニコ動画">
             <div class="media-logo-row">
               <span class="media-icon nico">nico</span>
               <div class="media-logo">ニコニコ動画</div>
@@ -822,17 +875,17 @@
         <div class="card hero">
           <div>
             <div class="media-heading">
-              <img class="abema-icon" src="./assets/abema-logo.png" alt="ABEMAロゴ" />
-              <h2 class="media-title">ABEMA</h2>
+              <span class="media-icon detail-media-icon" id="detailMediaIcon"><img src="./assets/abema-logo.png" alt="ABEMAロゴ" /></span>
+              <h2 class="media-title" id="detailTitle">ABEMA</h2>
             </div>
-            <p>
+            <p id="detailDescription">
               好きな時間に好きな場所で、話題の動画を楽しめる未来のテレビ。
               ニュース・恋愛・アニメ・スポーツまで幅広く、ALLデバイス配信に対応。
             </p>
           </div>
           <div class="hero-actions">
             <button class="btn" id="backBtn">一覧に戻る</button>
-            <span class="chip">ALLデバイス</span>
+            <span class="chip" id="detailChip">ALLデバイス</span>
           </div>
         </div>
 
@@ -843,9 +896,9 @@
             <div class="sub">累計アプリダウンロード</div>
           </article>
           <article class="card kpi">
-            <p class="label">在庫比率</p>
-            <p class="value">2 : 8</p>
-            <div class="sub">リニア : VOD</div>
+            <p class="label">想定月間UU数</p>
+            <p class="value">1,200万</p>
+            <div class="sub">ユニークユーザー数（月間想定）</div>
           </article>
           <article class="card kpi">
             <p class="label">視聴完了率（15秒）</p>
@@ -901,7 +954,7 @@
               <thead>
                 <tr><th>項目</th><th>内容</th></tr>
               </thead>
-              <tbody>
+              <tbody id="specsBody">
                 <tr><td>掲載面</td><td>リニア / VOD</td></tr>
                 <tr><td>視聴完了率</td><td>15秒: 94% / 30秒: 94% / 60秒: 90%</td></tr>
                 <tr><td>スキップ</td><td>VODのみ31秒以上で6秒地点から可</td></tr>
@@ -1019,7 +1072,7 @@
                   <td>6-180秒（局条件あり）</td>
                 </tr>
                 <tr>
-                  <td><span class="media-cell"><span class="media-icon dazn">DAZN</span>DAZN</span></td>
+                  <td><span class="media-cell"><span class="media-icon dazn"><img src="./assets/dazn-logo.png" alt="DAZN" /></span>DAZN</span></td>
                   <td>SP(TAB)/CTV</td>
                   <td>不可</td>
                   <td>不可</td>
@@ -1076,9 +1129,421 @@
     const backFromCrossBtn = document.getElementById("backFromCrossBtn");
     const crossRuleMenuCard = document.querySelector('[data-menu="cross-rule"]');
 
+    const detailTitle = document.getElementById("detailTitle");
+    const detailMediaIcon = document.getElementById("detailMediaIcon");
+    const detailDescription = document.getElementById("detailDescription");
+    const detailChip = document.getElementById("detailChip");
+    const specsBody = document.getElementById("specsBody");
+    const kpiCards = document.querySelectorAll(".kpi-grid .kpi");
+    const roleSelect = document.getElementById("roleSelect");
+    const editToggleBtn = document.getElementById("editToggleBtn");
+    const editStatus = document.getElementById("editStatus");
+
+    const mediaDetails = {
+      ABEMA: {
+        title: "ABEMA",
+        icon: { type: "image", src: "./assets/abema-logo.png", alt: "ABEMAロゴ", className: "" },
+        chip: "ALLデバイス",
+        description: "好きな時間に好きな場所で、話題の動画を楽しめる未来のテレビ。ニュース・恋愛・アニメ・スポーツまで幅広く、ALLデバイス配信に対応。",
+        kpis: [
+          { label: "主要指標（2025年9月時点）", value: "2,771万+", sub: "累計アプリダウンロード" },
+          { label: "想定月間UU数", value: "1,200万", sub: "ユニークユーザー数（月間想定）" },
+          { label: "視聴完了率（15秒）", value: "94%", sub: "30秒:94% / 60秒:90%" },
+          { label: "配信対応", value: "ALL", sub: "リニア / VOD" }
+        ],
+        specs: [
+          ["掲載面", "リニア / VOD"],
+          ["視聴完了率", "15秒: 94% / 30秒: 94% / 60秒: 90%"],
+          ["スキップ", "VODのみ31秒以上で6秒地点から可"],
+          ["再生秒数", "Pre / Mid / Post（6〜60秒）"],
+          ["imp定義", "0%地点再生のみをimpとして計測"]
+        ],
+        inventory: {
+          device: {
+            centerTitle: "100%",
+            centerSub: "デバイス全体",
+            gradient: "conic-gradient(var(--accent) 0 67.3%, var(--accent-2) 67.3% 86.1%, var(--accent-3) 86.1% 100%)",
+            legend: [
+              { name: "スマホ", value: "67.3%", color: "var(--accent)" },
+              { name: "CTV", value: "18.8%", color: "var(--accent-2)" },
+              { name: "PC", value: "13.9%", color: "var(--accent-3)" }
+            ]
+          },
+          surface: {
+            centerTitle: "2 : 8",
+            centerSub: "リニア : VOD",
+            gradient: "conic-gradient(#2ba8ff 0 20%, #7f75ff 20% 100%)",
+            legend: [
+              { name: "リニア", value: "20%", color: "#2ba8ff" },
+              { name: "VOD", value: "80%", color: "#7f75ff" }
+            ]
+          }
+        },
+        attr: {
+          gender: {
+            centerTitle: "性別",
+            centerSub: "男性 / 女性",
+            gradient: "conic-gradient(var(--accent) 0 52%, var(--accent-2) 52% 100%)",
+            legend: [
+              { name: "男性", value: "52%", color: "var(--accent)" },
+              { name: "女性", value: "48%", color: "var(--accent-2)" }
+            ]
+          },
+          age: {
+            centerTitle: "年代",
+            centerSub: "20代〜50代",
+            gradient: "conic-gradient(#2ba8ff 0 17.2%, #7f75ff 17.2% 40.4%, #3de4d8 40.4% 59.6%, #ffc36b 59.6% 76.8%, #5a8df2 76.8% 100%)",
+            legend: [
+              { name: "20代", value: "17.2%", color: "#2ba8ff" },
+              { name: "30代", value: "23.2%", color: "#7f75ff" },
+              { name: "40代", value: "19.2%", color: "#3de4d8" },
+              { name: "50代", value: "17.2%", color: "#ffc36b" },
+              { name: "その他", value: "23.2%", color: "#5a8df2" }
+            ]
+          }
+        }
+      },
+      TVer: {
+        title: "TVer",
+        icon: { type: "image", src: "./assets/tver-logo.png", alt: "TVerロゴ", className: "tver" },
+        chip: "ALLデバイス",
+        description: "民放テレビ局がひとつになったプラットフォーム。ドラマ/バラエティ中心に約800番組以上を無料配信し、AJA SSP経由で準キー5局+キー局本店への配信が可能。",
+        kpis: [
+          { label: "月間ユーザー数（MUB）", value: "4,120万", sub: "2026年1月時点" },
+          { label: "累計アプリDL数", value: "9,000万", sub: "2026年1月時点" },
+          { label: "視聴完了率（15秒）", value: "96%", sub: "30秒:95.2% / 60秒:93.4%" },
+          { label: "配信ポジション比率", value: "2:7:1", sub: "Pre : Mid : Post" }
+        ],
+        specs: [
+          ["掲載面", "リアルタイム配信 / キャッチアップ配信"],
+          ["視聴完了率", "15秒:96% / 30秒:95.2% / 60秒:93.4%"],
+          ["クリック", "キー局+準キー局で可能（単価1.1倍）"],
+          ["スキップ", "不可"],
+          ["再生秒数", "Pre/Mid/Postで6-180秒（31秒以上はプレロール除外）"]
+        ],
+        inventory: {
+          device: {
+            centerTitle: "100%",
+            centerSub: "ALLデバイス",
+            gradient: "conic-gradient(var(--accent) 0 100%)",
+            legend: [{ name: "ALLデバイス", value: "対応", color: "var(--accent)" }]
+          },
+          surface: {
+            centerTitle: "2 : 7 : 1",
+            centerSub: "Pre : Mid : Post",
+            gradient: "conic-gradient(#2ba8ff 0 20%, #7f75ff 20% 90%, #3de4d8 90% 100%)",
+            legend: [
+              { name: "Pre", value: "20%", color: "#2ba8ff" },
+              { name: "Mid", value: "70%", color: "#7f75ff" },
+              { name: "Post", value: "10%", color: "#3de4d8" }
+            ]
+          }
+        },
+        attr: {
+          gender: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent)" }] },
+          age: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent-2) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent-2)" }] }
+        }
+      },
+      DAZN: {
+        title: "DAZN",
+        icon: { type: "image", src: "./assets/dazn-logo.png", alt: "DAZNロゴ", className: "dazn" },
+        chip: "SP/CTV",
+        description: "世界最大級のOTTスポーツストリーミングサービス。運用型広告枠ではSP/CTVのみ配信可能で、Jリーグ・野球シーズンで配信量が大きく変動。",
+        kpis: [
+          { label: "配信対象デバイス", value: "SP/CTV", sub: "運用型広告枠はPC在庫なし" },
+          { label: "LIVE再生秒数", value: "15秒", sub: "Preロール固定" },
+          { label: "キャッチアップ秒数", value: "1-30秒", sub: "半端尺可" },
+          { label: "スキップ / クリック", value: "不可", sub: "LIVE/キャッチアップ共通" }
+        ],
+        specs: [
+          ["掲載面", "LIVE面 / キャッチアップ面"],
+          ["再生秒数", "LIVE:15秒 / キャッチアップ:1秒〜30秒（半端尺可）"],
+          ["クリック", "不可（LIVE/キャッチアップ共通）"],
+          ["スキップ", "不可（LIVE/キャッチアップ共通）"],
+          ["ポジション", "Preロール（LIVE/キャッチアップ共通）"]
+        ],
+        inventory: {
+          device: {
+            centerTitle: "100%",
+            centerSub: "SP(TAB)/CTV",
+            gradient: "conic-gradient(var(--accent-2) 0 100%)",
+            legend: [{ name: "SP(TAB)/CTV", value: "配信可能", color: "var(--accent-2)" }]
+          },
+          surface: {
+            centerTitle: "LIVE / CU",
+            centerSub: "案件・時期で変動",
+            gradient: "conic-gradient(#2ba8ff 0 50%, #3de4d8 50% 100%)",
+            legend: [
+              { name: "LIVE", value: "15秒", color: "#2ba8ff" },
+              { name: "キャッチアップ", value: "1〜30秒", color: "#3de4d8" }
+            ]
+          }
+        },
+        attr: {
+          gender: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent)" }] },
+          age: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent-2) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent-2)" }] }
+        }
+      },
+      Lemino: {
+        title: "Lemino",
+        icon: { type: "badge", label: "Le", alt: "Lemino", className: "lemino" },
+        chip: "SP/CTV",
+        description: "NTTドコモの映像配信サービス。AVODとSVODを提供し、AJA経由では在庫の多いSP/CTVへの配信が可能（PC面は接続テスト中）。",
+        kpis: [
+          { label: "想定MAU", value: "500万", sub: "注目コンテンツ配信時" },
+          { label: "配信デバイス", value: "SP/CTV", sub: "PC面は接続テスト中" },
+          { label: "視聴完了率（15秒）", value: "97.8%", sub: "30秒:95.6%" },
+          { label: "掲載面", value: "VOD", sub: "ハイライト / キャッチアップ / オリジナル" }
+        ],
+        specs: [
+          ["掲載面", "VOD（ハイライト / キャッチアップ / オリジナル）"],
+          ["視聴完了率", "15秒:97.8% / 30秒:95.6%"],
+          ["クリック / スキップ", "クリック不可 / スキップ不可"],
+          ["デバイス", "SP(TAB)/CTV"],
+          ["再生秒数", "Pre:15秒/30秒、Mid:15秒/30秒/60秒"]
+        ],
+        inventory: {
+          device: {
+            centerTitle: "100%",
+            centerSub: "SP(TAB)/CTV",
+            gradient: "conic-gradient(var(--accent-2) 0 100%)",
+            legend: [{ name: "SP(TAB)/CTV", value: "配信可能", color: "var(--accent-2)" }]
+          },
+          surface: {
+            centerTitle: "Pre / Mid",
+            centerSub: "VOD面",
+            gradient: "conic-gradient(#2ba8ff 0 50%, #7f75ff 50% 100%)",
+            legend: [
+              { name: "Pre", value: "15秒/30秒", color: "#2ba8ff" },
+              { name: "Mid", value: "15/30/60秒", color: "#7f75ff" }
+            ]
+          }
+        },
+        attr: {
+          gender: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent)" }] },
+          age: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent-2) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent-2)" }] }
+        }
+      },
+      "Rチャンネル": {
+        title: "Rチャンネル",
+        icon: { type: "badge", label: "R", alt: "Rチャンネル", className: "rch" },
+        chip: "ALLデバイス",
+        description: "楽天が運営する24時間365日視聴可能なリニア型動画配信サービス。無料・会員登録不要で50チャンネルのプロコンテンツを提供。",
+        kpis: [
+          { label: "視聴完了率（15秒）", value: "98.8%", sub: "高完了率" },
+          { label: "配信デバイス", value: "ALL", sub: "ALLデバイス配信可能" },
+          { label: "再生秒数", value: "15-120秒", sub: "半端尺は都度相談" },
+          { label: "配信面", value: "Mid", sub: "LIVE面 / キャッチアップ面" }
+        ],
+        specs: [
+          ["再生秒数", "15秒/30秒/60秒/90秒/120秒（半端尺は都度相談）"],
+          ["クリック / スキップ", "クリック不可 / スキップ不可"],
+          ["デバイス", "ALLデバイス"],
+          ["ポジション", "Mid（LIVE面・キャッチアップ面）"],
+          ["備考", "長尺配信が可能で広告受容度が高い"]
+        ],
+        inventory: {
+          device: {
+            centerTitle: "100%",
+            centerSub: "ALLデバイス",
+            gradient: "conic-gradient(var(--accent) 0 100%)",
+            legend: [{ name: "ALLデバイス", value: "配信可能", color: "var(--accent)" }]
+          },
+          surface: {
+            centerTitle: "Mid",
+            centerSub: "LIVE / CU",
+            gradient: "conic-gradient(#3de4d8 0 100%)",
+            legend: [{ name: "Mid", value: "中心", color: "#3de4d8" }]
+          }
+        },
+        attr: {
+          gender: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent)" }] },
+          age: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent-2) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent-2)" }] }
+        }
+      },
+      JSPORTS: {
+        title: "JSPORTS",
+        icon: { type: "image", src: "./assets/jsports-logo.png", alt: "JSPORTSロゴ", className: "jsp" },
+        chip: "ALLデバイス",
+        description: "年間2,000番組・6,000時間以上のスポーツコンテンツを配信。テレビ放送同様のフォーマットで、プレー中にCM配信しない運用に対応。",
+        kpis: [
+          { label: "年間番組数", value: "2,000+", sub: "年間配信番組" },
+          { label: "年間配信時間", value: "6,000h+", sub: "スポーツコンテンツ" },
+          { label: "配信デバイス", value: "ALL", sub: "ALLデバイス配信可能" },
+          { label: "再生秒数", value: "15/30/60", sub: "長尺・半端尺は都度相談" }
+        ],
+        specs: [
+          ["再生秒数", "15秒/30秒/60秒（長尺・半端尺は都度相談）"],
+          ["クリック / スキップ", "クリック不可 / スキップ不可"],
+          ["デバイス", "ALLデバイス"],
+          ["ポジション", "Mid（LIVE面・キャッチアップ面）"],
+          ["備考", "プレー中のCM配信なし"]
+        ],
+        inventory: {
+          device: {
+            centerTitle: "100%",
+            centerSub: "ALLデバイス",
+            gradient: "conic-gradient(var(--accent) 0 100%)",
+            legend: [{ name: "ALLデバイス", value: "配信可能", color: "var(--accent)" }]
+          },
+          surface: {
+            centerTitle: "Mid",
+            centerSub: "LIVE / CU",
+            gradient: "conic-gradient(#7f75ff 0 100%)",
+            legend: [{ name: "Mid", value: "中心", color: "#7f75ff" }]
+          }
+        },
+        attr: {
+          gender: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent)" }] },
+          age: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent-2) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent-2)" }] }
+        }
+      },
+      SPOTV: {
+        title: "SPOTV",
+        icon: { type: "badge", label: "SP", alt: "SPOTV", className: "spotv" },
+        chip: "SP(TAB)のみ",
+        description: "MLBを中心に世界最高峰スポーツリーグをライブ配信。AJA経由ではSP(TAB)のみ配信可能。",
+        kpis: [
+          { label: "配信デバイス", value: "SPのみ", sub: "SP(TAB)限定" },
+          { label: "再生秒数", value: "15秒", sub: "LIVE / キャッチアップ共通" },
+          { label: "スキップ / クリック", value: "不可", sub: "共通仕様" },
+          { label: "ポジション", value: "Pre", sub: "Preロール" }
+        ],
+        specs: [
+          ["再生秒数", "15秒（LIVE面・キャッチアップ面とも）"],
+          ["クリック / スキップ", "クリック不可 / スキップ不可"],
+          ["デバイス", "SP(TAB)のみ"],
+          ["ポジション", "Preロール"],
+          ["備考", "MLBなどスポーツ文脈に強い"]
+        ],
+        inventory: {
+          device: {
+            centerTitle: "100%",
+            centerSub: "SP(TAB)のみ",
+            gradient: "conic-gradient(var(--accent-3) 0 100%)",
+            legend: [{ name: "SP(TAB)", value: "配信可能", color: "var(--accent-3)" }]
+          },
+          surface: {
+            centerTitle: "Pre",
+            centerSub: "単一ポジション",
+            gradient: "conic-gradient(#3de4d8 0 100%)",
+            legend: [{ name: "Pre", value: "100%", color: "#3de4d8" }]
+          }
+        },
+        attr: {
+          gender: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent)" }] },
+          age: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent-2) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent-2)" }] }
+        }
+      },
+      "ニコニコ動画": {
+        title: "ニコニコ動画",
+        icon: { type: "badge", label: "nico", alt: "ニコニコ動画", className: "nico" },
+        chip: "PC/SP",
+        description: "コメント機能による高いエンゲージメントを持つ国内最大級UGCプラットフォーム。PC/SPブラウザ&アプリで配信可能。",
+        kpis: [
+          { label: "配信デバイス", value: "PC / SP", sub: "ブラウザ&アプリ" },
+          { label: "再生秒数", value: "6秒以上", sub: "制限なし" },
+          { label: "スキップ", value: "1秒〜可", sub: "スキッパブル配信" },
+          { label: "ポジション", value: "Pre / Post", sub: "インストリームPMP" }
+        ],
+        specs: [
+          ["掲載面", "UGC動画インストリームビデオPMP"],
+          ["再生秒数", "6秒以上（制限なし）"],
+          ["クリック", "可能"],
+          ["スキップ", "1秒以上から可能"],
+          ["ポジション", "Pre / Post"]
+        ],
+        inventory: {
+          device: {
+            centerTitle: "100%",
+            centerSub: "PC / SP",
+            gradient: "conic-gradient(#2ba8ff 0 50%, #7f75ff 50% 100%)",
+            legend: [
+              { name: "PC", value: "対応", color: "#2ba8ff" },
+              { name: "SP", value: "対応", color: "#7f75ff" }
+            ]
+          },
+          surface: {
+            centerTitle: "Pre / Post",
+            centerSub: "2ポジション",
+            gradient: "conic-gradient(#3de4d8 0 50%, #5a8df2 50% 100%)",
+            legend: [
+              { name: "Pre", value: "対応", color: "#3de4d8" },
+              { name: "Post", value: "対応", color: "#5a8df2" }
+            ]
+          }
+        },
+        attr: {
+          gender: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent)" }] },
+          age: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent-2) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent-2)" }] }
+        }
+      }
+    };
+
+    let currentMedia = "ABEMA";
+    let currentInventoryTab = "device";
+    let currentAttrTab = "gender";
+    let isEditMode = false;
+
+    function getEditableTargets() {
+      return document.querySelectorAll(
+        "#detailView .media-title, #detailView #detailDescription, #detailView .kpi .label, #detailView .kpi .value, #detailView .kpi .sub, #detailView .panel h3, #detailView .table td, #detailView .table th, #crossRuleView .media-title, #crossRuleView .hero p, #crossRuleView .table td, #crossRuleView .table th"
+      );
+    }
+
+    function applyEditModeState() {
+      const isAja = roleSelect.value === "AJA";
+      const canEdit = isAja && isEditMode;
+      getEditableTargets().forEach((el) => {
+        el.setAttribute("contenteditable", canEdit ? "true" : "false");
+        el.classList.toggle("is-editing", canEdit);
+      });
+      editToggleBtn.disabled = !isAja;
+      editToggleBtn.textContent = canEdit ? "編集モードOFF" : "編集モードON";
+      if (!isAja) {
+        editStatus.textContent = "現在: Buyer権限（閲覧のみ）";
+      } else {
+        editStatus.textContent = canEdit ? "現在: 編集モード（AJA）" : "現在: 閲覧モード";
+      }
+    }
+
+    function applyMediaDetail(mediaKey) {
+      const selectedMedia = mediaDetails[mediaKey];
+      if (!selectedMedia) return;
+      currentMedia = mediaKey;
+      const icon = selectedMedia.icon;
+      detailMediaIcon.className = `media-icon detail-media-icon ${icon.className || ""}`;
+      if (icon.type === "image") {
+        detailMediaIcon.innerHTML = `<img src="${icon.src}" alt="${icon.alt}">`;
+      } else {
+        detailMediaIcon.textContent = icon.label;
+      }
+      detailTitle.textContent = selectedMedia.title;
+      detailDescription.textContent = selectedMedia.description;
+      detailChip.textContent = selectedMedia.chip;
+
+      selectedMedia.kpis.forEach((item, idx) => {
+        const targetCard = kpiCards[idx];
+        if (!targetCard) return;
+        targetCard.querySelector(".label").textContent = item.label;
+        targetCard.querySelector(".value").textContent = item.value;
+        targetCard.querySelector(".sub").textContent = item.sub;
+      });
+
+      specsBody.innerHTML = selectedMedia.specs
+        .map((row) => `<tr><td>${row[0]}</td><td>${row[1]}</td></tr>`)
+        .join("");
+
+      renderInventory(currentInventoryTab);
+      renderAttr(currentAttrTab);
+      applyEditModeState();
+    }
+
     document.querySelectorAll(".media-card").forEach((card) => {
       card.addEventListener("click", () => {
-        if (card.dataset.media === "ABEMA") {
+        const mediaKey = card.dataset.media;
+        if (mediaDetails[mediaKey]) {
+          applyMediaDetail(mediaKey);
           listView.classList.add("hidden");
           crossRuleView.classList.remove("active");
           detailView.classList.add("active");
@@ -1109,30 +1574,8 @@
     const inventoryCenter = document.getElementById("inventoryCenter");
     const inventoryTabs = document.querySelectorAll(".tab-btn[data-inv]");
 
-    const inventoryData = {
-      device: {
-        centerTitle: "100%",
-        centerSub: "デバイス全体",
-        gradient: "conic-gradient(var(--accent) 0 67.3%, var(--accent-2) 67.3% 86.1%, var(--accent-3) 86.1% 100%)",
-        legend: [
-          { name: "スマホ", value: "67.3%", color: "var(--accent)" },
-          { name: "CTV", value: "18.8%", color: "var(--accent-2)" },
-          { name: "PC", value: "13.9%", color: "var(--accent-3)" }
-        ]
-      },
-      surface: {
-        centerTitle: "2 : 8",
-        centerSub: "リニア : VOD",
-        gradient: "conic-gradient(#2ba8ff 0 20%, #7f75ff 20% 100%)",
-        legend: [
-          { name: "リニア", value: "20%", color: "#2ba8ff" },
-          { name: "VOD", value: "80%", color: "#7f75ff" }
-        ]
-      }
-    };
-
     function renderInventory(type) {
-      const selected = inventoryData[type];
+      const selected = mediaDetails[currentMedia].inventory[type];
       inventoryDonut.style.background = selected.gradient;
       inventoryCenter.innerHTML = `<strong>${selected.centerTitle}</strong>${selected.centerSub}`;
       inventoryLegend.innerHTML = selected.legend
@@ -1146,7 +1589,8 @@
       btn.addEventListener("click", () => {
         inventoryTabs.forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
-        renderInventory(btn.dataset.inv);
+        currentInventoryTab = btn.dataset.inv;
+        renderInventory(currentInventoryTab);
       });
     });
 
@@ -1155,32 +1599,8 @@
     const attrCenter = document.getElementById("attrCenter");
     const attrTabs = document.querySelectorAll(".tab-btn[data-attr]");
 
-    const attrData = {
-      gender: {
-        centerTitle: "性別",
-        centerSub: "男性 / 女性",
-        gradient: "conic-gradient(var(--accent) 0 52%, var(--accent-2) 52% 100%)",
-        legend: [
-          { name: "男性", value: "52%", color: "var(--accent)" },
-          { name: "女性", value: "48%", color: "var(--accent-2)" }
-        ]
-      },
-      age: {
-        centerTitle: "年代",
-        centerSub: "20代〜50代",
-        gradient: "conic-gradient(#2ba8ff 0 17.2%, #7f75ff 17.2% 40.4%, #3de4d8 40.4% 59.6%, #ffc36b 59.6% 76.8%, #5a8df2 76.8% 100%)",
-        legend: [
-          { name: "20代", value: "17.2%", color: "#2ba8ff" },
-          { name: "30代", value: "23.2%", color: "#7f75ff" },
-          { name: "40代", value: "19.2%", color: "#3de4d8" },
-          { name: "50代", value: "17.2%", color: "#ffc36b" },
-          { name: "その他", value: "23.2%", color: "#5a8df2" }
-        ]
-      }
-    };
-
     function renderAttr(type) {
-      const selected = attrData[type];
+      const selected = mediaDetails[currentMedia].attr[type];
       attrDonut.style.background = selected.gradient;
       attrCenter.innerHTML = `<strong>${selected.centerTitle}</strong>${selected.centerSub}`;
       attrLegend.innerHTML = selected.legend
@@ -1194,11 +1614,26 @@
       btn.addEventListener("click", () => {
         attrTabs.forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
-        renderAttr(btn.dataset.attr);
+        currentAttrTab = btn.dataset.attr;
+        renderAttr(currentAttrTab);
       });
     });
 
-    renderInventory("device");
+    editToggleBtn.addEventListener("click", () => {
+      if (roleSelect.value !== "AJA") return;
+      isEditMode = !isEditMode;
+      applyEditModeState();
+    });
+
+    roleSelect.addEventListener("change", () => {
+      if (roleSelect.value !== "AJA") {
+        isEditMode = false;
+      }
+      applyEditModeState();
+    });
+
+    applyMediaDetail("ABEMA");
+    applyEditModeState();
   </script>
 </body>
 </html>
