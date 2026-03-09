@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AJA SSP Product Guide | Mock</title>
+  <style>
+    :root {
+      --bg: #050a16;
+      --bg-soft: #0a1327;
+      --card: rgba(14, 25, 49, 0.78);
+      --card-strong: rgba(12, 20, 41, 0.95);
+      --line: rgba(147, 186, 255, 0.2);
+      --text: #e8f0ff;
+      --muted: #8ea5c9;
+      --accent: #2ba8ff;
+      --accent-2: #7f75ff;
+      --accent-3: #3de4d8;
+      --warning: #ffc36b;
+      --radius: 18px;
+      --shadow: 0 16px 40px rgba(6, 11, 24, 0.45);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: #1a2a44;
+      font-family: Inter, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      background: #f5f7fb;
+      min-height: 100vh;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      border-right: 1px solid var(--line);
+      background: rgba(4, 8, 19, 0.86);
+      padding: 22px 16px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
+    .brand {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      color: #cce0ff;
+      margin-bottom: 18px;
+    }
+    .menu {
+      display: grid;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .menu a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      border: 1px solid transparent;
+    }
+    .menu a.active {
+      color: var(--text);
+      border-color: var(--line);
+      background: rgba(43, 168, 255, 0.08);
+    }
+
+    .main {
+      padding: 24px clamp(18px, 4vw, 48px) 42px;
+      width: min(1440px, 100%);
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+    .topbar h1 {
+      margin: 0;
+      font-size: clamp(22px, 2.4vw, 32px);
+      letter-spacing: .01em;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      background: rgba(22, 35, 65, 0.7);
+      border-radius: 999px;
+      font-size: 12px;
+      color: #c8dfff;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+
+    #listView { display: block; }
+    #detailView { display: none; }
+    #detailView.active { display: block; }
+    #crossRuleView { display: none; }
+    #crossRuleView.active { display: block; }
+    #listView.hidden { display: none; }
+
+    .media-grid {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .lower-section {
+      margin-top: 18px;
+      padding: 0;
+      border: none;
+      box-shadow: none;
+      background: transparent;
+      backdrop-filter: none;
+    }
+    .lower-section h3 {
+      margin: 0 0 14px;
+      font-size: clamp(22px, 2.4vw, 32px);
+      color: #0f213f;
+      font-weight: 700;
+      letter-spacing: .01em;
+    }
+    .lower-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .lower-card {
+      grid-column: span 4;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(12, 24, 47, 0.78);
+      min-height: 120px;
+    }
+    .lower-card.clickable {
+      cursor: pointer;
+      transition: transform .18s ease, border-color .18s ease;
+    }
+    .lower-card.clickable:hover {
+      transform: translateY(-2px);
+      border-color: rgba(61, 228, 216, 0.45);
+    }
+    .lower-card h4 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      color: #ecf5ff;
+      letter-spacing: .01em;
+    }
+    .lower-card p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+    .media-card {
+      grid-column: span 3;
+      padding: 14px;
+      cursor: pointer;
+      transition: transform .18s ease, border-color .18s ease;
+    }
+    .media-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(61, 228, 216, 0.45);
+    }
+    .media-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .media-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      border: 1px solid rgba(213, 231, 255, 0.28);
+      background: linear-gradient(145deg, #121a2b, #0a101a);
+      color: #f5f9ff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .01em;
+      flex: 0 0 auto;
+      overflow: hidden;
+    }
+    .media-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .media-icon.netflix { background: #101010; color: #e50914; }
+    .media-icon.tver { background: #eaf6ff; color: #1787c8; }
+    .media-icon.dazn { background: #111; color: #fff; font-size: 8px; }
+    .media-icon.lemino { background: linear-gradient(145deg, #ff7ca8, #ffb15c); color: #fff; }
+    .media-icon.rch { background: #ca1010; color: #fff; }
+    .media-icon.jsp { background: #f5f7ff; color: #163e9e; }
+    .media-icon.spotv { background: linear-gradient(145deg, #4fd9b6, #2d6ed9); color: #fff; font-size: 8px; }
+    .media-icon.nico { background: #181818; color: #fff; font-size: 8px; }
+    .media-logo {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: .01em;
+      color: #e9f3ff;
+    }
+    .media-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .tag {
+      font-size: 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      padding: 4px 8px;
+      color: #cfe2ff;
+      background: rgba(15, 28, 53, .8);
+    }
+    .media-desc {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .hero {
+      padding: 18px;
+      margin-bottom: 14px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: center;
+    }
+    .hero h2 {
+      margin: 0 0 8px;
+      font-size: clamp(20px, 2.1vw, 30px);
+    }
+    .media-heading {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .abema-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1px solid rgba(221, 236, 255, 0.28);
+      background: #0a101a;
+      box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.06);
+    }
+    .media-title {
+      margin: 0;
+      font-size: clamp(20px, 2.1vw, 30px);
+    }
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+      max-width: 720px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .btn {
+      border: 1px solid var(--line);
+      color: #d5e7ff;
+      background: rgba(17, 28, 53, .86);
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .btn:hover { border-color: rgba(43, 168, 255, .55); }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .kpi {
+      grid-column: span 3;
+      padding: 14px;
+    }
+    .kpi .label {
+      margin: 0 0 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .kpi .value {
+      margin: 0;
+      font-size: clamp(22px, 2.5vw, 34px);
+      color: #cfe8ff;
+      font-weight: 800;
+      text-shadow: 0 0 16px rgba(43, 168, 255, 0.25);
+      line-height: 1.1;
+    }
+    .kpi .sub {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #9bb4d9;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .panel {
+      padding: 16px;
+      min-height: 300px;
+    }
+    .panel h3 {
+      margin: 0 0 14px;
+      font-size: 15px;
+      letter-spacing: .01em;
+    }
+    .panel.chart { grid-column: span 4; }
+    .panel.specs { grid-column: span 4; }
+    .panel.genre { grid-column: span 4; }
+
+    .donut-wrap {
+      display: grid;
+      grid-template-columns: 170px minmax(0, 1fr);
+      align-items: center;
+      gap: 14px;
+    }
+    .donut {
+      width: 170px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      position: relative;
+      background: conic-gradient(
+        var(--accent) 0 67.3%,
+        var(--accent-2) 67.3% 86.1%,
+        var(--accent-3) 86.1% 100%
+      );
+      box-shadow: inset 0 0 25px rgba(0, 0, 0, .35), 0 0 22px rgba(43, 168, 255, 0.25);
+    }
+    .donut::before {
+      content: "";
+      position: absolute;
+      inset: 26px;
+      border-radius: 50%;
+      background: #060f22;
+      border: 1px solid var(--line);
+    }
+    .donut-center {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-content: center;
+      text-align: center;
+      z-index: 1;
+      font-size: 12px;
+      color: #9bb4d9;
+      line-height: 1.4;
+    }
+    .donut-center strong {
+      display: block;
+      color: #dbecff;
+      font-size: 20px;
+      letter-spacing: .01em;
+    }
+    .legend {
+      display: grid;
+      gap: 10px;
+    }
+    .legend-item {
+      display: grid;
+      grid-template-columns: 10px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #cbddfb;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .legend-item span:last-child {
+      color: #95afda;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .tab-btn {
+      font-size: 12px;
+      color: #b8cff2;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(14, 25, 49, 0.8);
+      padding: 7px 11px;
+      cursor: pointer;
+    }
+    .tab-btn.active {
+      color: #f6fbff;
+      background: linear-gradient(120deg, rgba(43,168,255,.28), rgba(127,117,255,.35));
+      border-color: rgba(146, 197, 255, .42);
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      color: #cadcf9;
+    }
+    .table th, .table td {
+      border-bottom: 1px solid rgba(147, 186, 255, .14);
+      padding: 9px 6px;
+      text-align: left;
+      vertical-align: top;
+    }
+    .table th {
+      color: #97b4df;
+      font-weight: 600;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chips span {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      font-size: 12px;
+      color: #cae0ff;
+      background: rgba(15, 29, 56, .82);
+    }
+
+    .panel.full {
+      grid-column: span 12;
+      min-height: auto;
+    }
+    .genre-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 420px;
+      gap: 16px;
+      align-items: start;
+    }
+    .abema-ui-capture {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(83, 120, 170, 0.18);
+      background: #ffffff;
+    }
+    .abema-ui-capture img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .genre-tile-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      width: 100%;
+      max-width: 420px;
+      margin-left: auto;
+    }
+    .genre-tile {
+      border-radius: 10px;
+      padding: 12px 10px;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: .01em;
+      color: #f5f7fb;
+      text-align: center;
+      border: 1px solid rgba(118, 137, 166, 0.28);
+      background: linear-gradient(145deg, #48556b, #2f3948);
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+      box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.2);
+    }
+    .hot-program-wrap {
+      margin-top: 16px;
+    }
+    .hot-program-note-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 10px;
+    }
+    .hot-program-note {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.65;
+      color: #526684;
+    }
+    .hot-program-icon-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      border: 1px solid rgba(83, 120, 170, 0.26);
+      background: #f7fbff;
+      flex: 0 0 auto;
+    }
+    .hot-program-icon-link img {
+      width: 16px;
+      height: 16px;
+      display: block;
+      object-fit: contain;
+    }
+    .hot-program-icon-link:hover { background: #eef6ff; }
+    .hot-program-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 380px;
+      gap: 14px;
+      align-items: stretch;
+    }
+    .hot-program-capture {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(83, 120, 170, 0.18);
+      background: #ffffff;
+      max-width: 760px;
+    }
+    .hot-program-capture img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .creative-demo {
+      border: 1px solid rgba(83, 120, 170, 0.18);
+      border-radius: 10px;
+      background: #fff;
+      padding: 10px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .creative-demo h4 {
+      margin: 0 0 8px;
+      font-size: 13px;
+      color: #1a2a44;
+    }
+    .creative-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 8px;
+    }
+    .creative-item {
+      border: 1px solid rgba(83, 120, 170, 0.18);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    .creative-item.sp {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+    }
+    .creative-item.pc {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    .creative-item.ctv {
+      grid-column: 2;
+      grid-row: 2;
+    }
+    .creative-item .label {
+      margin: 0;
+      padding: 6px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #345172;
+      background: #f4f8ff;
+      border-bottom: 1px solid rgba(83, 120, 170, 0.14);
+    }
+    .creative-item img {
+      display: block;
+      width: 100%;
+      object-fit: contain;
+      background: #0a0f18;
+    }
+    .creative-item.sp img {
+      height: 250px;
+    }
+    .creative-item.pc img,
+    .creative-item.ctv img {
+      height: auto;
+      aspect-ratio: 16 / 9;
+    }
+    .cross-rule-wrap {
+      margin-top: 16px;
+    }
+    .cross-rule-note {
+      margin: 0 0 10px;
+      font-size: 13px;
+      line-height: 1.65;
+      color: #526684;
+    }
+    .cross-rule-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .rule-capture {
+      border: 1px solid rgba(83, 120, 170, 0.18);
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .rule-capture img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .media-cell {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .media-cell .media-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      font-size: 8px;
+    }
+
+    @media (max-width: 1279px) {
+      .media-card { grid-column: span 4; }
+      .lower-card { grid-column: span 6; }
+      .kpi { grid-column: span 6; }
+      .panel.chart { grid-column: span 6; }
+      .panel.specs, .panel.genre { grid-column: span 12; }
+      .genre-layout { grid-template-columns: minmax(0, 1fr) 360px; }
+      .genre-tile { font-size: 15px; }
+    }
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .main { width: 100%; }
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .hero-actions { justify-content: flex-start; }
+      .media-card { grid-column: span 6; }
+      .lower-card { grid-column: span 12; }
+      .panel.chart { grid-column: span 12; }
+      .donut-wrap {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+      .hot-program-layout {
+        grid-template-columns: 1fr;
+      }
+      .creative-grid {
+        grid-template-columns: 1fr;
+      }
+      .creative-item.sp,
+      .creative-item.pc,
+      .creative-item.ctv {
+        grid-column: auto;
+        grid-row: auto;
+      }
+      .creative-item.sp img,
+      .creative-item.pc img,
+      .creative-item.ctv img {
+        height: auto;
+      }
+      .cross-rule-layout {
+        grid-template-columns: 1fr;
+      }
+      .genre-layout { grid-template-columns: 1fr; }
+      .genre-tile-grid {
+        max-width: none;
+        margin-left: 0;
+      }
+      .genre-tile { font-size: 14px; }
+    }
+    @media (max-width: 640px) {
+      .media-card { grid-column: span 12; }
+      .kpi { grid-column: span 12; }
+      .genre-tile-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">AJA Video Platform</div>
+      <nav class="menu">
+        <a href="#">ダッシュボード</a>
+        <a href="#" class="active">プロダクトガイド</a>
+        <a href="#">媒体管理</a>
+        <a href="#">配信実績</a>
+        <a href="#">設定</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <h1>プロダクトガイド</h1>
+        <div class="chip">2026年1-3月期 / Mock</div>
+      </div>
+
+      <section id="listView">
+        <div class="media-grid">
+          <article class="card media-card" data-media="ABEMA">
+            <div class="media-logo-row">
+              <span class="media-icon"><img src="./assets/abema-logo.png" alt="ABEMAロゴ" /></span>
+              <div class="media-logo">ABEMA</div>
+            </div>
+            <div class="media-tags"><span class="tag">ALLデバイス</span><span class="tag">Linear/VOD</span></div>
+            <p class="media-desc">ニュース・恋愛・アニメ・スポーツなど、幅広いユーザーにリーチ可能。</p>
+          </article>
+          <article class="card media-card">
+            <div class="media-logo-row">
+              <span class="media-icon tver"><img src="./assets/tver-logo.png" alt="TVerロゴ" /></span>
+              <div class="media-logo">TVer</div>
+            </div>
+            <div class="media-tags"><span class="tag">ALLデバイス</span><span class="tag">15〜180秒</span></div>
+            <p class="media-desc">民放見逃しを中心に高リーチ。プレロール/ミッドロール配信に強み。</p>
+          </article>
+          <article class="card media-card">
+            <div class="media-logo-row">
+              <span class="media-icon dazn">DAZN</span>
+              <div class="media-logo">DAZN</div>
+            </div>
+            <div class="media-tags"><span class="tag">SP/CTV</span><span class="tag">スポーツ</span></div>
+            <p class="media-desc">スポーツ文脈で高いエンゲージメントを獲得しやすい配信面。</p>
+          </article>
+          <article class="card media-card">
+            <div class="media-logo-row">
+              <span class="media-icon lemino">Le</span>
+              <div class="media-logo">Lemino</div>
+            </div>
+            <div class="media-tags"><span class="tag">SP/CTV</span><span class="tag">VOD</span></div>
+            <p class="media-desc">注目コンテンツ時にMAUが伸び、可処分時間帯への接触が強い。</p>
+          </article>
+          <article class="card media-card">
+            <div class="media-logo-row">
+              <span class="media-icon rch">R</span>
+              <div class="media-logo">Rチャンネル</div>
+            </div>
+            <div class="media-tags"><span class="tag">ALLデバイス</span><span class="tag">リニア配信</span></div>
+            <p class="media-desc">24時間無料で視聴可能。高い視聴完了率と長尺配信に対応した在庫が強み。</p>
+          </article>
+          <article class="card media-card">
+            <div class="media-logo-row">
+              <span class="media-icon jsp"><img src="./assets/jsports-logo.png" alt="JSPORTSロゴ" /></span>
+              <div class="media-logo">JSPORTS</div>
+            </div>
+            <div class="media-tags"><span class="tag">ALLデバイス</span><span class="tag">スポーツ</span></div>
+            <p class="media-desc">年間を通じて豊富なスポーツ番組を配信。視聴体験を損なわない広告配信に対応。</p>
+          </article>
+          <article class="card media-card">
+            <div class="media-logo-row">
+              <span class="media-icon spotv">SP</span>
+              <div class="media-logo">SPOTV</div>
+            </div>
+            <div class="media-tags"><span class="tag">SP中心</span><span class="tag">MLB</span></div>
+            <p class="media-desc">MLBを中心にしたライブ配信面。スポーツ関心層へ効率的なリーチが可能。</p>
+          </article>
+          <article class="card media-card">
+            <div class="media-logo-row">
+              <span class="media-icon nico">nico</span>
+              <div class="media-logo">ニコニコ動画</div>
+            </div>
+            <div class="media-tags"><span class="tag">PC/SP</span><span class="tag">UGC</span></div>
+            <p class="media-desc">コメント文化を持つ国内最大級UGCプラットフォーム。高いエンゲージメントが特長。</p>
+          </article>
+        </div>
+
+        <section class="lower-section" aria-label="AJASSP MENU">
+          <h3>AJASSP MENU</h3>
+          <div class="lower-grid">
+            <article class="lower-card">
+              <h4>パッケージ</h4>
+              <p>目的別に媒体と配信条件をまとめた提案セット。短期間で配信設計を開始できます。</p>
+            </article>
+            <article class="lower-card">
+              <h4>アソート</h4>
+              <p>ターゲットやKPIに合わせて、媒体・ジャンル・秒数を組み合わせる柔軟な配信メニューです。</p>
+            </article>
+            <article class="lower-card clickable" data-menu="cross-rule">
+              <h4>横断ルール</h4>
+              <p>媒体横断でのフリークエンシーや除外条件を統一し、重複接触の最適化と運用効率を高めます。</p>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <section id="detailView">
+        <div class="card hero">
+          <div>
+            <div class="media-heading">
+              <img class="abema-icon" src="./assets/abema-logo.png" alt="ABEMAロゴ" />
+              <h2 class="media-title">ABEMA</h2>
+            </div>
+            <p>
+              好きな時間に好きな場所で、話題の動画を楽しめる未来のテレビ。
+              ニュース・恋愛・アニメ・スポーツまで幅広く、ALLデバイス配信に対応。
+            </p>
+          </div>
+          <div class="hero-actions">
+            <button class="btn" id="backBtn">一覧に戻る</button>
+            <span class="chip">ALLデバイス</span>
+          </div>
+        </div>
+
+        <div class="kpi-grid">
+          <article class="card kpi">
+            <p class="label">主要指標（2025年9月時点）</p>
+            <p class="value">2,771万+</p>
+            <div class="sub">累計アプリダウンロード</div>
+          </article>
+          <article class="card kpi">
+            <p class="label">在庫比率</p>
+            <p class="value">2 : 8</p>
+            <div class="sub">リニア : VOD</div>
+          </article>
+          <article class="card kpi">
+            <p class="label">視聴完了率（15秒）</p>
+            <p class="value">94%</p>
+            <div class="sub">VOD / リニア平均</div>
+          </article>
+          <article class="card kpi">
+            <p class="label">広告受容スコア</p>
+            <p class="value">A</p>
+            <div class="sub">スキップ制御 + PGC中心</div>
+          </article>
+        </div>
+
+        <div class="content-grid">
+          <article class="card panel chart">
+            <h3>在庫構成比</h3>
+            <div class="tabs">
+              <button class="tab-btn active" data-inv="device">デバイス</button>
+              <button class="tab-btn" data-inv="surface">配信面</button>
+            </div>
+            <div class="donut-wrap">
+              <div class="donut" id="inventoryDonut">
+                <div class="donut-center" id="inventoryCenter"><strong>100%</strong>デバイス全体</div>
+              </div>
+              <div class="legend" id="inventoryLegend">
+                <div class="legend-item"><span class="dot" style="background:var(--accent)"></span><span>スマホ</span><span>67.3%</span></div>
+                <div class="legend-item"><span class="dot" style="background:var(--accent-2)"></span><span>CTV</span><span>18.8%</span></div>
+                <div class="legend-item"><span class="dot" style="background:var(--accent-3)"></span><span>PC</span><span>13.9%</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card panel chart">
+            <h3>利用者属性</h3>
+            <div class="tabs">
+              <button class="tab-btn active" data-attr="gender">性別</button>
+              <button class="tab-btn" data-attr="age">年代</button>
+            </div>
+            <div class="donut-wrap">
+              <div class="donut" id="attrDonut">
+                <div class="donut-center" id="attrCenter"><strong>性別</strong>男性 / 女性</div>
+              </div>
+              <div class="legend" id="attrLegend">
+                <div class="legend-item"><span class="dot" style="background:var(--accent)"></span><span>男性</span><span>52%</span></div>
+                <div class="legend-item"><span class="dot" style="background:var(--accent-2)"></span><span>女性</span><span>48%</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card panel specs">
+            <h3>広告仕様</h3>
+            <table class="table">
+              <thead>
+                <tr><th>項目</th><th>内容</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>掲載面</td><td>リニア / VOD</td></tr>
+                <tr><td>視聴完了率</td><td>15秒: 94% / 30秒: 94% / 60秒: 90%</td></tr>
+                <tr><td>スキップ</td><td>VODのみ31秒以上で6秒地点から可</td></tr>
+                <tr><td>再生秒数</td><td>Pre / Mid / Post（6〜60秒）</td></tr>
+                <tr><td>imp定義</td><td>0%地点再生のみをimpとして計測</td></tr>
+              </tbody>
+            </table>
+          </article>
+
+          <article class="card panel full">
+            <h3>画面UIとジャンル</h3>
+            <div class="genre-layout">
+              <div class="abema-ui-capture">
+                <img src="./assets/abema-ui-capture.png" alt="ABEMAの画面UIキャプチャ" />
+              </div>
+              <div class="genre-tile-grid">
+                <div class="genre-tile">MUSIC</div>
+                <div class="genre-tile">HIP HOP</div>
+                <div class="genre-tile">ドラマ</div>
+                <div class="genre-tile">SPORTS</div>
+                <div class="genre-tile">映画</div>
+                <div class="genre-tile">アニメ</div>
+                <div class="genre-tile">麻雀</div>
+                <div class="genre-tile">将棋</div>
+                <div class="genre-tile">news</div>
+                <div class="genre-tile">韓国・中国</div>
+                <div class="genre-tile">恋愛・リアリティ</div>
+                <div class="genre-tile">K-POP</div>
+              </div>
+            </div>
+
+            <div class="hot-program-wrap">
+              <h3>Hot Program（TOP10）</h3>
+              <div class="hot-program-note-row">
+                <p class="hot-program-note">
+                  Hot Programとは、先月対比で人気のコンテンツを上位から10件掲載したランキングです。
+                </p>
+                <a class="hot-program-icon-link" href="./assets/hot-program-capture.png" download="ABEMA_HotProgram_TOP10_202602.png" aria-label="Hot Programをダウンロード">
+                  <img src="./assets/download-icon.png" alt="ダウンロード" />
+                </a>
+              </div>
+              <div class="hot-program-layout">
+                <div class="hot-program-capture">
+                  <img src="./assets/hot-program-capture.png" alt="ABEMA 2026年2月 Hot Program ランキング TOP10" />
+                </div>
+                <aside class="creative-demo">
+                  <h4>クリエイティブデモ（ABEMA）</h4>
+                  <div class="creative-grid">
+                    <figure class="creative-item sp">
+                      <p class="label">SP面</p>
+                      <img src="./assets/creative-sp.png" alt="ABEMA SP面 クリエイティブデモ" />
+                    </figure>
+                    <figure class="creative-item pc">
+                      <p class="label">PC面</p>
+                      <img src="./assets/creative-pc.png" alt="ABEMA PC面 クリエイティブデモ" />
+                    </figure>
+                    <figure class="creative-item ctv">
+                      <p class="label">CTV面</p>
+                      <img src="./assets/creative-ctv.png" alt="ABEMA CTV面 クリエイティブデモ" />
+                    </figure>
+                  </div>
+                </aside>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <section id="crossRuleView">
+        <div class="card hero">
+          <div>
+            <h2 class="media-title">媒体横断ルール</h2>
+            <p>媒体ごとの配信条件と単価ルールを、添付キャプチャと比較表で確認できます。</p>
+          </div>
+          <div class="hero-actions">
+            <button class="btn" id="backFromCrossBtn">一覧に戻る</button>
+          </div>
+        </div>
+
+        <article class="card panel full">
+          <div class="cross-rule-wrap">
+            <div class="cross-rule-layout">
+              <div class="rule-capture">
+                <img src="./assets/cross-media-compare.png" alt="媒体別比較のキャプチャ" />
+              </div>
+              <div class="rule-capture">
+                <img src="./assets/cross-media-pricing.png" alt="単価ルールのキャプチャ" />
+              </div>
+            </div>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>メディア</th>
+                  <th>デバイス</th>
+                  <th>クリック</th>
+                  <th>スキップ</th>
+                  <th>主な尺ルール</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="media-cell"><span class="media-icon"><img src="./assets/abema-logo.png" alt="ABEMA" /></span>ABEMA</span></td>
+                  <td>ALLデバイス</td>
+                  <td>不可</td>
+                  <td>VODのみ31秒以上で6秒地点</td>
+                  <td>VOD: 6-60秒 / リニア: Mid・Post</td>
+                </tr>
+                <tr>
+                  <td><span class="media-cell"><span class="media-icon tver"><img src="./assets/tver-logo.png" alt="TVer" /></span>TVer</span></td>
+                  <td>SP(TAB)/PC/CTV</td>
+                  <td>可能</td>
+                  <td>不可</td>
+                  <td>6-180秒（局条件あり）</td>
+                </tr>
+                <tr>
+                  <td><span class="media-cell"><span class="media-icon dazn">DAZN</span>DAZN</span></td>
+                  <td>SP(TAB)/CTV</td>
+                  <td>不可</td>
+                  <td>不可</td>
+                  <td>15秒中心 / 31秒以上不可</td>
+                </tr>
+                <tr>
+                  <td><span class="media-cell"><span class="media-icon spotv">SP</span>SPOTV</span></td>
+                  <td>SP(TAB)のみ</td>
+                  <td>不可</td>
+                  <td>不可</td>
+                  <td>15秒のみ</td>
+                </tr>
+                <tr>
+                  <td><span class="media-cell"><span class="media-icon lemino">Le</span>Lemino</span></td>
+                  <td>SP(TAB)/CTV</td>
+                  <td>不可</td>
+                  <td>不可</td>
+                  <td>6-60秒（61秒以上不可）</td>
+                </tr>
+                <tr>
+                  <td><span class="media-cell"><span class="media-icon rch">R</span>Rチャンネル</span></td>
+                  <td>ALLデバイス</td>
+                  <td>不可</td>
+                  <td>不可</td>
+                  <td>都度相談〜120秒（121秒以上不可）</td>
+                </tr>
+                <tr>
+                  <td><span class="media-cell"><span class="media-icon jsp"><img src="./assets/jsports-logo.png" alt="JSPORTS" /></span>JSPORTS</span></td>
+                  <td>ALLデバイス</td>
+                  <td>不可</td>
+                  <td>不可</td>
+                  <td>都度相談（長尺は要確認）</td>
+                </tr>
+                <tr>
+                  <td><span class="media-cell"><span class="media-icon nico">nico</span>ニコニコ動画</span></td>
+                  <td>PC/SP</td>
+                  <td>可能</td>
+                  <td>1秒以上で可能</td>
+                  <td>6秒以上（制限なし）</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const listView = document.getElementById("listView");
+    const detailView = document.getElementById("detailView");
+    const crossRuleView = document.getElementById("crossRuleView");
+    const backBtn = document.getElementById("backBtn");
+    const backFromCrossBtn = document.getElementById("backFromCrossBtn");
+    const crossRuleMenuCard = document.querySelector('[data-menu="cross-rule"]');
+
+    document.querySelectorAll(".media-card").forEach((card) => {
+      card.addEventListener("click", () => {
+        if (card.dataset.media === "ABEMA") {
+          listView.classList.add("hidden");
+          crossRuleView.classList.remove("active");
+          detailView.classList.add("active");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      });
+    });
+
+    backBtn.addEventListener("click", () => {
+      detailView.classList.remove("active");
+      listView.classList.remove("hidden");
+    });
+
+    crossRuleMenuCard.addEventListener("click", () => {
+      listView.classList.add("hidden");
+      detailView.classList.remove("active");
+      crossRuleView.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    backFromCrossBtn.addEventListener("click", () => {
+      crossRuleView.classList.remove("active");
+      listView.classList.remove("hidden");
+    });
+
+    const inventoryDonut = document.getElementById("inventoryDonut");
+    const inventoryLegend = document.getElementById("inventoryLegend");
+    const inventoryCenter = document.getElementById("inventoryCenter");
+    const inventoryTabs = document.querySelectorAll(".tab-btn[data-inv]");
+
+    const inventoryData = {
+      device: {
+        centerTitle: "100%",
+        centerSub: "デバイス全体",
+        gradient: "conic-gradient(var(--accent) 0 67.3%, var(--accent-2) 67.3% 86.1%, var(--accent-3) 86.1% 100%)",
+        legend: [
+          { name: "スマホ", value: "67.3%", color: "var(--accent)" },
+          { name: "CTV", value: "18.8%", color: "var(--accent-2)" },
+          { name: "PC", value: "13.9%", color: "var(--accent-3)" }
+        ]
+      },
+      surface: {
+        centerTitle: "2 : 8",
+        centerSub: "リニア : VOD",
+        gradient: "conic-gradient(#2ba8ff 0 20%, #7f75ff 20% 100%)",
+        legend: [
+          { name: "リニア", value: "20%", color: "#2ba8ff" },
+          { name: "VOD", value: "80%", color: "#7f75ff" }
+        ]
+      }
+    };
+
+    function renderInventory(type) {
+      const selected = inventoryData[type];
+      inventoryDonut.style.background = selected.gradient;
+      inventoryCenter.innerHTML = `<strong>${selected.centerTitle}</strong>${selected.centerSub}`;
+      inventoryLegend.innerHTML = selected.legend
+        .map((item) =>
+          `<div class="legend-item"><span class="dot" style="background:${item.color}"></span><span>${item.name}</span><span>${item.value}</span></div>`
+        )
+        .join("");
+    }
+
+    inventoryTabs.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        inventoryTabs.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderInventory(btn.dataset.inv);
+      });
+    });
+
+    const attrDonut = document.getElementById("attrDonut");
+    const attrLegend = document.getElementById("attrLegend");
+    const attrCenter = document.getElementById("attrCenter");
+    const attrTabs = document.querySelectorAll(".tab-btn[data-attr]");
+
+    const attrData = {
+      gender: {
+        centerTitle: "性別",
+        centerSub: "男性 / 女性",
+        gradient: "conic-gradient(var(--accent) 0 52%, var(--accent-2) 52% 100%)",
+        legend: [
+          { name: "男性", value: "52%", color: "var(--accent)" },
+          { name: "女性", value: "48%", color: "var(--accent-2)" }
+        ]
+      },
+      age: {
+        centerTitle: "年代",
+        centerSub: "20代〜50代",
+        gradient: "conic-gradient(#2ba8ff 0 17.2%, #7f75ff 17.2% 40.4%, #3de4d8 40.4% 59.6%, #ffc36b 59.6% 76.8%, #5a8df2 76.8% 100%)",
+        legend: [
+          { name: "20代", value: "17.2%", color: "#2ba8ff" },
+          { name: "30代", value: "23.2%", color: "#7f75ff" },
+          { name: "40代", value: "19.2%", color: "#3de4d8" },
+          { name: "50代", value: "17.2%", color: "#ffc36b" },
+          { name: "その他", value: "23.2%", color: "#5a8df2" }
+        ]
+      }
+    };
+
+    function renderAttr(type) {
+      const selected = attrData[type];
+      attrDonut.style.background = selected.gradient;
+      attrCenter.innerHTML = `<strong>${selected.centerTitle}</strong>${selected.centerSub}`;
+      attrLegend.innerHTML = selected.legend
+        .map((item) =>
+          `<div class="legend-item"><span class="dot" style="background:${item.color}"></span><span>${item.name}</span><span>${item.value}</span></div>`
+        )
+        .join("");
+    }
+
+    attrTabs.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        attrTabs.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderAttr(btn.dataset.attr);
+      });
+    });
+
+    renderInventory("device");
+  </script>
+</body>
+</html>
