@@ -6,19 +6,19 @@
   <title>AJA SSP Product Guide | Mock</title>
   <style>
     :root {
-      --bg: #050a16;
-      --bg-soft: #0a1327;
-      --card: rgba(14, 25, 49, 0.78);
-      --card-strong: rgba(12, 20, 41, 0.95);
-      --line: rgba(147, 186, 255, 0.2);
-      --text: #e8f0ff;
-      --muted: #8ea5c9;
+      --bg: #f4f7fc;
+      --bg-soft: #eef3fb;
+      --card: #ffffff;
+      --card-strong: #ffffff;
+      --line: rgba(83, 120, 170, 0.2);
+      --text: #1f3658;
+      --muted: #5f7698;
       --accent: #2ba8ff;
       --accent-2: #7f75ff;
       --accent-3: #3de4d8;
       --warning: #ffc36b;
       --radius: 18px;
-      --shadow: 0 16px 40px rgba(6, 11, 24, 0.45);
+      --shadow: 0 14px 30px rgba(20, 48, 84, 0.08);
     }
 
     * { box-sizing: border-box; }
@@ -38,7 +38,7 @@
 
     .sidebar {
       border-right: 1px solid var(--line);
-      background: rgba(4, 8, 19, 0.86);
+      background: #ffffff;
       padding: 22px 16px;
       position: sticky;
       top: 0;
@@ -48,7 +48,7 @@
       font-size: 14px;
       font-weight: 700;
       letter-spacing: .02em;
-      color: #cce0ff;
+      color: #1e3a60;
       margin-bottom: 18px;
     }
     .menu {
@@ -67,7 +67,7 @@
     .menu a.active {
       color: var(--text);
       border-color: var(--line);
-      background: rgba(43, 168, 255, 0.08);
+      background: #eef5ff;
     }
 
     .main {
@@ -94,10 +94,10 @@
       gap: 8px;
       padding: 8px 12px;
       border: 1px solid var(--line);
-      background: rgba(22, 35, 65, 0.7);
+      background: #ffffff;
       border-radius: 999px;
       font-size: 12px;
-      color: #c8dfff;
+      color: #36527a;
     }
     .topbar-controls {
       display: inline-flex;
@@ -109,8 +109,8 @@
       min-height: 32px;
       border-radius: 8px;
       border: 1px solid var(--line);
-      background: rgba(22, 35, 65, 0.7);
-      color: #c8dfff;
+      background: #ffffff;
+      color: #2f4a71;
       padding: 0 10px;
       font-size: 12px;
     }
@@ -133,6 +133,101 @@
       font-size: 12px;
       color: #526684;
     }
+    .edit-advanced-panel {
+      display: none;
+      border: 1px solid rgba(83, 120, 170, 0.22);
+      border-radius: 10px;
+      background: #fff;
+      padding: 12px;
+      margin-bottom: 14px;
+    }
+    .edit-advanced-panel h3 {
+      margin: 0 0 10px;
+      font-size: 14px;
+      color: #1a2a44;
+    }
+    .edit-advanced-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .edit-block {
+      border: 1px solid rgba(83, 120, 170, 0.2);
+      border-radius: 8px;
+      padding: 10px;
+      background: #f9fbff;
+    }
+    .edit-block h4 {
+      margin: 0 0 8px;
+      font-size: 12px;
+      color: #2d4b74;
+    }
+    .edit-control-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .edit-control-row:last-child { margin-bottom: 0; }
+    .edit-input,
+    .edit-range,
+    .edit-btn {
+      min-height: 30px;
+      border-radius: 7px;
+      border: 1px solid rgba(83, 120, 170, 0.26);
+      background: #fff;
+      color: #2c466e;
+      font-size: 12px;
+    }
+    .edit-range { width: 100%; }
+    .edit-input {
+      width: 72px;
+      padding: 0 8px;
+    }
+    .edit-btn {
+      padding: 0 8px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .edit-btn.secondary {
+      background: #f4f8ff;
+      font-weight: 600;
+    }
+    .toggle-list {
+      display: grid;
+      gap: 6px;
+    }
+    .toggle-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #2f4a71;
+    }
+    .toggle-item input {
+      width: 14px;
+      height: 14px;
+    }
+    .pie-editor-group {
+      display: grid;
+      gap: 8px;
+    }
+    .pie-editor-title {
+      margin: 0;
+      font-size: 12px;
+      color: #2d4b74;
+      font-weight: 700;
+    }
+    .pie-editor-row {
+      display: grid;
+      grid-template-columns: 1fr 74px;
+      gap: 6px;
+      align-items: center;
+    }
+    .pie-editor-row span {
+      font-size: 12px;
+      color: #36527a;
+    }
     [contenteditable="true"].is-editing {
       outline: 2px dashed rgba(43, 168, 255, 0.45);
       outline-offset: 2px;
@@ -145,12 +240,14 @@
       border: 1px solid var(--line);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      backdrop-filter: blur(8px);
+      backdrop-filter: none;
     }
 
     #listView { display: block; }
     #detailView { display: none; }
     #detailView.active { display: block; }
+    #assortView { display: none; }
+    #assortView.active { display: block; }
     #crossRuleView { display: none; }
     #crossRuleView.active { display: block; }
     #listView.hidden { display: none; }
@@ -186,7 +283,7 @@
       padding: 14px;
       border-radius: 12px;
       border: 1px solid var(--line);
-      background: rgba(12, 24, 47, 0.78);
+      background: #ffffff;
       min-height: 120px;
     }
     .lower-card.clickable {
@@ -197,10 +294,121 @@
       transform: translateY(-2px);
       border-color: rgba(61, 228, 216, 0.45);
     }
+    .assort-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .assort-meta-card {
+      grid-column: span 3;
+      border: 1px solid rgba(83, 120, 170, 0.2);
+      border-radius: 10px;
+      background: #fff;
+      padding: 12px;
+    }
+    .assort-meta-card h4 {
+      margin: 0 0 6px;
+      font-size: 12px;
+      color: #5a7092;
+    }
+    .assort-meta-card p {
+      margin: 0;
+      font-size: 14px;
+      color: #1f3658;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+    .segment-section {
+      margin-top: 14px;
+      border: 1px solid rgba(83, 120, 170, 0.2);
+      border-radius: 10px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      padding: 12px;
+      box-shadow: 0 8px 20px rgba(28, 63, 109, 0.08);
+    }
+    .segment-section h4 {
+      margin: 0 0 8px;
+      font-size: 13px;
+      color: #27466f;
+    }
+    .segment-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .segment-option {
+      grid-column: span 3;
+      min-height: 34px;
+      border-radius: 8px;
+      border: 1px solid rgba(83, 120, 170, 0.24);
+      background: #f6faff;
+      color: #2b486f;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .18s ease;
+    }
+    .segment-option.active {
+      background: #2f8fff;
+      border-color: #2f8fff;
+      color: #fff;
+      box-shadow: 0 8px 16px rgba(47, 143, 255, 0.32);
+    }
+    .segment-option:hover {
+      transform: translateY(-1px);
+      border-color: rgba(47, 143, 255, 0.5);
+    }
+    .segment-subtitle {
+      grid-column: span 12;
+      margin: 2px 0 0;
+      font-size: 12px;
+      font-weight: 700;
+      color: #47658c;
+    }
+    .segment-line {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(83, 120, 170, 0.18);
+      background: #fff;
+      margin-bottom: 8px;
+    }
+    .segment-line:last-child { margin-bottom: 0; }
+    .segment-line-title {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 800;
+      color: #2f4f78;
+      padding-top: 8px;
+    }
+    .segment-line-options {
+      display: flex;
+      gap: 8px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+    .segment-line-options .segment-option {
+      grid-column: auto;
+      min-width: 120px;
+      white-space: nowrap;
+      padding: 0 10px;
+    }
+    .segment-actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
     .lower-card h4 {
       margin: 0 0 8px;
       font-size: 16px;
-      color: #ecf5ff;
+      color: #1f3658;
       letter-spacing: .01em;
     }
     .lower-card p {
@@ -230,8 +438,8 @@
       height: 32px;
       border-radius: 6px;
       border: 1px solid rgba(213, 231, 255, 0.28);
-      background: linear-gradient(145deg, #121a2b, #0a101a);
-      color: #f5f9ff;
+      background: #f6f9ff;
+      color: #36527a;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -259,7 +467,7 @@
       font-size: 16px;
       font-weight: 700;
       letter-spacing: .01em;
-      color: #e9f3ff;
+      color: #1f3658;
     }
     .media-tags {
       display: flex;
@@ -272,8 +480,8 @@
       border-radius: 999px;
       border: 1px solid var(--line);
       padding: 4px 8px;
-      color: #cfe2ff;
-      background: rgba(15, 28, 53, .8);
+      color: #36527a;
+      background: #f3f8ff;
     }
     .media-desc {
       margin: 0;
@@ -331,8 +539,8 @@
     }
     .btn {
       border: 1px solid var(--line);
-      color: #d5e7ff;
-      background: rgba(17, 28, 53, .86);
+      color: #2f4a71;
+      background: #ffffff;
       padding: 10px 12px;
       border-radius: 10px;
       font-size: 12px;
@@ -348,25 +556,53 @@
     }
     .kpi {
       grid-column: span 3;
-      padding: 14px;
+      padding: 14px 14px 14px 52px;
+      position: relative;
+    }
+    .kpi-icon {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      width: 28px;
+      height: 28px;
+      color: #89a5c6;
+      pointer-events: none;
+    }
+    .kpi-icon svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
     .kpi .label {
       margin: 0 0 10px;
       font-size: 12px;
       color: var(--muted);
+      padding-right: 0;
     }
     .kpi .value {
       margin: 0;
       font-size: clamp(22px, 2.5vw, 34px);
-      color: #cfe8ff;
+      color: #1f3658;
       font-weight: 800;
-      text-shadow: 0 0 16px rgba(43, 168, 255, 0.25);
+      text-shadow: none;
       line-height: 1.1;
+    }
+    .kpi .value .kpi-unit {
+      font-size: 0.62em;
+      font-weight: 700;
+      color: #5f7698;
+      letter-spacing: 0;
+      vertical-align: baseline;
     }
     .kpi .sub {
       margin-top: 6px;
       font-size: 12px;
-      color: #9bb4d9;
+      color: #5f7698;
     }
 
     .content-grid {
@@ -393,6 +629,12 @@
       align-items: center;
       gap: 14px;
     }
+    .inventory-note {
+      margin: 8px 0 0;
+      font-size: 12px;
+      line-height: 1.45;
+      color: #5f7698;
+    }
     .donut {
       width: 170px;
       aspect-ratio: 1;
@@ -403,14 +645,14 @@
         var(--accent-2) 67.3% 86.1%,
         var(--accent-3) 86.1% 100%
       );
-      box-shadow: inset 0 0 25px rgba(0, 0, 0, .35), 0 0 22px rgba(43, 168, 255, 0.25);
+      box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.6), 0 8px 18px rgba(43, 168, 255, 0.18);
     }
     .donut::before {
       content: "";
       position: absolute;
       inset: 26px;
       border-radius: 50%;
-      background: #060f22;
+      background: #ffffff;
       border: 1px solid var(--line);
     }
     .donut-center {
@@ -421,12 +663,12 @@
       text-align: center;
       z-index: 1;
       font-size: 12px;
-      color: #9bb4d9;
+      color: #6a82a3;
       line-height: 1.4;
     }
     .donut-center strong {
       display: block;
-      color: #dbecff;
+      color: #1f3658;
       font-size: 20px;
       letter-spacing: .01em;
     }
@@ -440,7 +682,7 @@
       align-items: center;
       gap: 8px;
       font-size: 12px;
-      color: #cbddfb;
+      color: #355276;
     }
     .dot {
       width: 10px;
@@ -448,7 +690,7 @@
       border-radius: 50%;
     }
     .legend-item span:last-child {
-      color: #95afda;
+      color: #6b83a5;
       font-variant-numeric: tabular-nums;
     }
 
@@ -459,24 +701,24 @@
     }
     .tab-btn {
       font-size: 12px;
-      color: #b8cff2;
+      color: #47658c;
       border: 1px solid var(--line);
       border-radius: 999px;
-      background: rgba(14, 25, 49, 0.8);
+      background: #ffffff;
       padding: 7px 11px;
       cursor: pointer;
     }
     .tab-btn.active {
-      color: #f6fbff;
-      background: linear-gradient(120deg, rgba(43,168,255,.28), rgba(127,117,255,.35));
-      border-color: rgba(146, 197, 255, .42);
+      color: #114276;
+      background: #eaf4ff;
+      border-color: rgba(83, 120, 170, 0.34);
     }
 
     .table {
       width: 100%;
       border-collapse: collapse;
       font-size: 12px;
-      color: #cadcf9;
+      color: #36527a;
     }
     .table th, .table td {
       border-bottom: 1px solid rgba(147, 186, 255, .14);
@@ -485,8 +727,75 @@
       vertical-align: top;
     }
     .table th {
-      color: #97b4df;
+      color: #5f7698;
       font-weight: 600;
+    }
+    .table.ratio-1-3 {
+      table-layout: fixed;
+    }
+    .table.ratio-1-3 col:first-child {
+      width: 25%;
+    }
+    .table.ratio-1-3 col:last-child {
+      width: 75%;
+    }
+    .table.ratio-1-3 td {
+      word-break: break-word;
+    }
+    #regulationPanel thead th {
+      background: #eaf4ff;
+      color: #2f4f78;
+    }
+    #regulationPanel tbody td {
+      padding-top: 7px;
+      padding-bottom: 7px;
+      line-height: 1.4;
+    }
+    #regulationPanel tbody td:first-child {
+      font-weight: 800;
+      color: #2b486f;
+    }
+    #regulationPanel thead th:first-child,
+    #regulationPanel tbody td:first-child {
+      border-right: 1px solid rgba(83, 120, 170, 0.24);
+    }
+    .regulation-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      margin: 0;
+      font: inherit;
+      color: #1f3658;
+      cursor: pointer;
+      text-align: left;
+    }
+    .regulation-toggle-title {
+      margin: 0;
+      font-size: 15px;
+      letter-spacing: .01em;
+      font-weight: 700;
+    }
+    .regulation-toggle-icon {
+      font-size: 16px;
+      color: #5f7698;
+      line-height: 1;
+      transition: transform .18s ease;
+      flex: 0 0 auto;
+    }
+    #regulationPanel.is-open .regulation-toggle-icon {
+      transform: rotate(180deg);
+    }
+    .regulation-content {
+      display: none;
+      margin-top: 10px;
+    }
+    #regulationPanel.is-open .regulation-content {
+      display: block;
     }
 
     .chips {
@@ -499,8 +808,8 @@
       border-radius: 999px;
       border: 1px solid var(--line);
       font-size: 12px;
-      color: #cae0ff;
-      background: rgba(15, 29, 56, .82);
+      color: #36527a;
+      background: #f3f8ff;
     }
 
     .panel.full {
@@ -513,16 +822,31 @@
       gap: 16px;
       align-items: start;
     }
+    .ui-capture-row {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+    }
     .abema-ui-capture {
       border-radius: 10px;
       overflow: hidden;
       border: 1px solid rgba(83, 120, 170, 0.18);
       background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 8px;
     }
     .abema-ui-capture img {
       display: block;
-      width: 100%;
+      width: min(100%, 220px);
       height: auto;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .abema-ui-capture.secondary img {
+      width: min(100%, 520px);
     }
     .genre-tile-grid {
       display: grid;
@@ -532,18 +856,65 @@
       max-width: 420px;
       margin-left: auto;
     }
+    .genre-bar-chart {
+      width: 100%;
+      max-width: 420px;
+      margin-left: auto;
+      border: 1px solid rgba(83, 120, 170, 0.18);
+      border-radius: 10px;
+      background: #fff;
+      padding: 12px;
+    }
+    .genre-bar-title {
+      margin: 0 0 10px;
+      font-size: 13px;
+      color: #2f4f78;
+      font-weight: 800;
+    }
+    .genre-bar-list {
+      display: grid;
+      gap: 8px;
+    }
+    .genre-bar-row {
+      display: grid;
+      grid-template-columns: 76px minmax(0, 1fr) 44px;
+      gap: 8px;
+      align-items: center;
+    }
+    .genre-bar-label,
+    .genre-bar-value {
+      font-size: 12px;
+      color: #2f4f78;
+      font-weight: 700;
+    }
+    .genre-bar-track {
+      position: relative;
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: #edf4ff;
+      overflow: hidden;
+    }
+    .genre-bar-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #2ba8ff, #7f75ff);
+    }
     .genre-tile {
       border-radius: 10px;
       padding: 12px 10px;
       font-size: 16px;
       font-weight: 800;
       letter-spacing: .01em;
-      color: #f5f7fb;
+      color: #1f3658;
       text-align: center;
       border: 1px solid rgba(118, 137, 166, 0.28);
-      background: linear-gradient(145deg, #48556b, #2f3948);
-      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
-      box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(145deg, #ffffff, #eef4fd);
+      text-shadow: none;
+      box-shadow: inset 0 0 10px rgba(131, 164, 206, 0.18);
     }
     .hot-program-wrap {
       margin-top: 16px;
@@ -650,7 +1021,7 @@
       display: block;
       width: 100%;
       object-fit: contain;
-      background: #0a0f18;
+      background: #f6f9ff;
     }
     .creative-item.sp img {
       height: 250px;
@@ -697,14 +1068,101 @@
       border-radius: 5px;
       font-size: 8px;
     }
+    .ad-detail-wrap {
+      margin-top: 16px;
+      display: grid;
+      gap: 12px;
+    }
+    .ad-detail-note {
+      margin: 0;
+      font-size: 13px;
+      color: #526684;
+      line-height: 1.65;
+    }
+    .ad-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .ad-detail-card {
+      border: 1px solid rgba(83, 120, 170, 0.22);
+      border-radius: 10px;
+      background: #fff;
+      padding: 12px;
+    }
+    .ad-detail-card h4 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: #1a2a44;
+    }
+    .ad-detail-section-title {
+      margin: 0 0 10px;
+      font-size: 13px;
+      color: #2f4f78;
+      font-weight: 800;
+    }
+    .ad-detail-card ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 12px;
+      color: #3b4f6e;
+      line-height: 1.6;
+    }
+    .ad-detail-image {
+      border: 1px solid rgba(83, 120, 170, 0.22);
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fff;
+      margin-top: 10px;
+    }
+    .ad-detail-image img {
+      display: block;
+      width: min(100%, 520px);
+      margin: 0 auto;
+      height: auto;
+    }
+    .ad-position-table {
+      margin-top: 10px;
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: 12px;
+      color: #2f4f78;
+    }
+    .ad-position-table col:first-child { width: 32%; }
+    .ad-position-table col:nth-child(2),
+    .ad-position-table col:nth-child(3) { width: 34%; }
+    .ad-position-table th,
+    .ad-position-table td {
+      border: 1px solid rgba(83, 120, 170, 0.2);
+      padding: 7px 8px;
+      vertical-align: top;
+      line-height: 1.45;
+      background: #fff;
+    }
+    .ad-position-table thead th {
+      background: #eaf4ff;
+      color: #2b486f;
+      font-weight: 800;
+    }
+    .ad-position-table tbody td:first-child {
+      background: #f7fbff;
+      font-weight: 700;
+    }
 
     @media (max-width: 1279px) {
+      .edit-advanced-grid {
+        grid-template-columns: 1fr 1fr;
+      }
       .media-card { grid-column: span 4; }
       .lower-card { grid-column: span 6; }
+      .assort-meta-card { grid-column: span 6; }
+      .segment-option { grid-column: span 4; }
       .kpi { grid-column: span 6; }
       .panel.chart { grid-column: span 6; }
       .panel.specs, .panel.genre { grid-column: span 12; }
       .genre-layout { grid-template-columns: minmax(0, 1fr) 360px; }
+      .ui-capture-row { grid-template-columns: 200px minmax(0, 1fr); }
       .genre-tile { font-size: 15px; }
     }
     @media (max-width: 900px) {
@@ -718,12 +1176,16 @@
       .hero-actions { justify-content: flex-start; }
       .media-card { grid-column: span 6; }
       .lower-card { grid-column: span 12; }
+      .assort-meta-card { grid-column: span 12; }
       .panel.chart { grid-column: span 12; }
       .donut-wrap {
         grid-template-columns: 1fr;
         justify-items: center;
       }
       .hot-program-layout {
+        grid-template-columns: 1fr;
+      }
+      .edit-advanced-grid {
         grid-template-columns: 1fr;
       }
       .creative-grid {
@@ -743,7 +1205,12 @@
       .cross-rule-layout {
         grid-template-columns: 1fr;
       }
+      .segment-option { grid-column: span 6; }
+      .ad-detail-grid {
+        grid-template-columns: 1fr;
+      }
       .genre-layout { grid-template-columns: 1fr; }
+      .ui-capture-row { grid-template-columns: 1fr; }
       .genre-tile-grid {
         max-width: none;
         margin-left: 0;
@@ -753,6 +1220,7 @@
     @media (max-width: 640px) {
       .media-card { grid-column: span 12; }
       .kpi { grid-column: span 12; }
+      .segment-option { grid-column: span 12; }
       .genre-tile-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -783,6 +1251,53 @@
           <span id="editStatus" class="edit-status">現在: 閲覧モード</span>
         </div>
       </div>
+      <section id="editAdvancedPanel" class="edit-advanced-panel" aria-label="AJA編集拡張">
+        <h3>AJA編集拡張（画像・サイズ・ジャンル）</h3>
+        <div class="edit-advanced-grid">
+          <div class="edit-block">
+            <h4>画像差し替え</h4>
+            <div class="edit-control-row"><button class="edit-btn secondary image-replace-btn" data-target-image="abemaUiImage" type="button">ABEMA UI</button></div>
+            <div class="edit-control-row"><button class="edit-btn secondary image-replace-btn" data-target-image="adDetailLinearImage" type="button">リニア面詳細</button></div>
+            <div class="edit-control-row"><button class="edit-btn secondary image-replace-btn" data-target-image="adDetailVodImage" type="button">VOD面詳細</button></div>
+          </div>
+          <div class="edit-block">
+            <h4>サイズ調整</h4>
+            <div class="edit-control-row">
+              <span>ABEMA UI幅(%)</span>
+              <input id="abemaUiWidthInput" class="edit-input" type="number" min="40" max="100" value="100" />
+            </div>
+            <input id="abemaUiWidthRange" class="edit-range" type="range" min="40" max="100" value="100" />
+          </div>
+          <div class="edit-block">
+            <h4>ジャンル編集</h4>
+            <div class="edit-control-row">
+              <button id="addGenreBtn" class="edit-btn" type="button">項目を追加</button>
+              <button id="removeGenreBtn" class="edit-btn secondary" type="button">項目を削除</button>
+            </div>
+            <div class="edit-control-row">
+              <span>項目数</span>
+              <input id="genreCountInput" class="edit-input" type="number" min="1" max="30" value="4" />
+              <button id="applyGenreCountBtn" class="edit-btn secondary" type="button">適用</button>
+            </div>
+            <div class="edit-control-row"><span class="edit-status">ジャンル名はタイルを直接クリックして編集</span></div>
+          </div>
+          <div class="edit-block">
+            <h4>円グラフ数値編集</h4>
+            <div class="pie-editor-group">
+              <p class="pie-editor-title">在庫構成比（現在タブ）</p>
+              <div id="inventoryPieEditor"></div>
+              <p class="pie-editor-title">利用者属性（現在タブ）</p>
+              <div id="attrPieEditor"></div>
+              <div class="edit-control-row"><span class="edit-status">数値変更で円グラフが即時更新されます</span></div>
+            </div>
+          </div>
+          <div class="edit-block">
+            <h4>項目表示切替（媒体別）</h4>
+            <div id="sectionVisibilityControls" class="toggle-list"></div>
+            <div class="edit-control-row"><span class="edit-status">現在表示中の媒体にのみ反映</span></div>
+          </div>
+        </div>
+      </section>
 
       <section id="listView">
         <div class="media-grid">
@@ -812,7 +1327,7 @@
           </article>
           <article class="card media-card" data-media="Lemino">
             <div class="media-logo-row">
-              <span class="media-icon lemino">Le</span>
+              <span class="media-icon lemino"><img src="./assets/lemino-logo.png" alt="Leminoロゴ" /></span>
               <div class="media-logo">Lemino</div>
             </div>
             <div class="media-tags"><span class="tag">SP/CTV</span><span class="tag">VOD</span></div>
@@ -820,7 +1335,7 @@
           </article>
           <article class="card media-card" data-media="Rチャンネル">
             <div class="media-logo-row">
-              <span class="media-icon rch">R</span>
+              <span class="media-icon rch"><img src="./assets/rchannel-logo.png" alt="Rチャンネルロゴ" /></span>
               <div class="media-logo">Rチャンネル</div>
             </div>
             <div class="media-tags"><span class="tag">ALLデバイス</span><span class="tag">リニア配信</span></div>
@@ -836,7 +1351,7 @@
           </article>
           <article class="card media-card" data-media="SPOTV">
             <div class="media-logo-row">
-              <span class="media-icon spotv">SP</span>
+              <span class="media-icon spotv"><img src="./assets/spotv-logo.png" alt="SPOTVロゴ" /></span>
               <div class="media-logo">SPOTV</div>
             </div>
             <div class="media-tags"><span class="tag">SP中心</span><span class="tag">MLB</span></div>
@@ -859,7 +1374,7 @@
               <h4>パッケージ</h4>
               <p>目的別に媒体と配信条件をまとめた提案セット。短期間で配信設計を開始できます。</p>
             </article>
-            <article class="lower-card">
+            <article class="lower-card clickable" data-menu="assort">
               <h4>アソート</h4>
               <p>ターゲットやKPIに合わせて、媒体・ジャンル・秒数を組み合わせる柔軟な配信メニューです。</p>
             </article>
@@ -891,29 +1406,58 @@
 
         <div class="kpi-grid">
           <article class="card kpi">
+            <span class="kpi-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <rect x="7" y="2.5" width="10" height="19" rx="2.2"></rect>
+                <line x1="10" y1="5.5" x2="14" y2="5.5"></line>
+                <circle cx="12" cy="18.5" r="1"></circle>
+              </svg>
+            </span>
             <p class="label">主要指標（2025年9月時点）</p>
             <p class="value">2,771万+</p>
             <div class="sub">累計アプリダウンロード</div>
           </article>
           <article class="card kpi">
+            <span class="kpi-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="7.8" r="2.2"></circle>
+                <circle cx="6.6" cy="9.3" r="1.7"></circle>
+                <circle cx="17.4" cy="9.3" r="1.7"></circle>
+                <path d="M8.8 16.8c.3-1.8 1.6-3.1 3.2-3.1s2.9 1.3 3.2 3.1"></path>
+                <path d="M3.9 17.2c.2-1.2 1-2.1 2-2.1"></path>
+                <path d="M18.1 15.1c1 0 1.8.9 2 2.1"></path>
+              </svg>
+            </span>
             <p class="label">想定月間UU数</p>
             <p class="value">1,200万</p>
             <div class="sub">ユニークユーザー数（月間想定）</div>
           </article>
           <article class="card kpi">
+            <span class="kpi-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M2.5 12s3.8-5.5 9.5-5.5S21.5 12 21.5 12s-3.8 5.5-9.5 5.5S2.5 12 2.5 12z"></path>
+                <circle cx="12" cy="12" r="2.6"></circle>
+              </svg>
+            </span>
             <p class="label">視聴完了率（15秒）</p>
             <p class="value">94%</p>
             <div class="sub">VOD / リニア平均</div>
           </article>
           <article class="card kpi">
-            <p class="label">広告受容スコア</p>
-            <p class="value">A</p>
-            <div class="sub">スキップ制御 + PGC中心</div>
+            <span class="kpi-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="7.8" r="2.4"></circle>
+                <path d="M6.8 18.5c.4-2.4 2.3-4.1 5.2-4.1s4.8 1.7 5.2 4.1"></path>
+              </svg>
+            </span>
+            <p class="label">媒体横断ユーザー重複割合</p>
+            <p class="value">5.6%</p>
+            <div class="sub">YouTubeとの調査 マクロミルで実施</div>
           </article>
         </div>
 
         <div class="content-grid">
-          <article class="card panel chart">
+          <article id="inventoryPanel" class="card panel chart">
             <h3>在庫構成比</h3>
             <div class="tabs">
               <button class="tab-btn active" data-inv="device">デバイス</button>
@@ -929,9 +1473,10 @@
                 <div class="legend-item"><span class="dot" style="background:var(--accent-3)"></span><span>PC</span><span>13.9%</span></div>
               </div>
             </div>
+            <p class="inventory-note" id="inventoryNote"></p>
           </article>
 
-          <article class="card panel chart">
+          <article id="attrPanel" class="card panel chart">
             <h3>利用者属性</h3>
             <div class="tabs">
               <button class="tab-btn active" data-attr="gender">性別</button>
@@ -948,8 +1493,8 @@
             </div>
           </article>
 
-          <article class="card panel specs">
-            <h3>広告仕様</h3>
+          <article id="specOverviewPanel" class="card panel specs">
+            <h3>広告仕様概要</h3>
             <table class="table">
               <thead>
                 <tr><th>項目</th><th>内容</th></tr>
@@ -964,64 +1509,233 @@
             </table>
           </article>
 
-          <article class="card panel full">
-            <h3>画面UIとジャンル</h3>
-            <div class="genre-layout">
-              <div class="abema-ui-capture">
-                <img src="./assets/abema-ui-capture.png" alt="ABEMAの画面UIキャプチャ" />
-              </div>
-              <div class="genre-tile-grid">
-                <div class="genre-tile">MUSIC</div>
-                <div class="genre-tile">HIP HOP</div>
-                <div class="genre-tile">ドラマ</div>
-                <div class="genre-tile">SPORTS</div>
-                <div class="genre-tile">映画</div>
-                <div class="genre-tile">アニメ</div>
-                <div class="genre-tile">麻雀</div>
-                <div class="genre-tile">将棋</div>
-                <div class="genre-tile">news</div>
-                <div class="genre-tile">韓国・中国</div>
-                <div class="genre-tile">恋愛・リアリティ</div>
-                <div class="genre-tile">K-POP</div>
-              </div>
-            </div>
-
-            <div class="hot-program-wrap">
-              <h3>Hot Program（TOP10）</h3>
-              <div class="hot-program-note-row">
-                <p class="hot-program-note">
-                  Hot Programとは、先月対比で人気のコンテンツを上位から10件掲載したランキングです。
-                </p>
-                <a class="hot-program-icon-link" href="./assets/hot-program-capture.png" download="ABEMA_HotProgram_TOP10_202602.png" aria-label="Hot Programをダウンロード">
-                  <img src="./assets/download-icon.png" alt="ダウンロード" />
-                </a>
-              </div>
-              <div class="hot-program-layout">
-                <div class="hot-program-capture">
-                  <img src="./assets/hot-program-capture.png" alt="ABEMA 2026年2月 Hot Program ランキング TOP10" />
-                </div>
-                <aside class="creative-demo">
-                  <h4>クリエイティブデモ（ABEMA）</h4>
-                  <div class="creative-grid">
-                    <figure class="creative-item sp">
-                      <p class="label">SP面</p>
-                      <img src="./assets/creative-sp.png" alt="ABEMA SP面 クリエイティブデモ" />
-                    </figure>
-                    <figure class="creative-item pc">
-                      <p class="label">PC面</p>
-                      <img src="./assets/creative-pc.png" alt="ABEMA PC面 クリエイティブデモ" />
-                    </figure>
-                    <figure class="creative-item ctv">
-                      <p class="label">CTV面</p>
-                      <img src="./assets/creative-ctv.png" alt="ABEMA CTV面 クリエイティブデモ" />
-                    </figure>
+          <article class="card panel full" id="adDetailPanel">
+            <h3>広告仕様詳細</h3>
+            <div class="ad-detail-wrap" id="adDetailSection">
+              <div class="ad-detail-grid">
+                <div class="ad-detail-card">
+                  <h4 class="ad-detail-section-title">リニア面</h4>
+                  <ul>
+                    <li>ABEMAのテレビコンテンツに配信される広告枠（納品番組と生放送コンテンツを含む）</li>
+                    <li>配信ポジションはMidとPostのみ（Preロールなし）</li>
+                    <li>尺は15秒 / 30秒 / 60秒のみ</li>
+                  </ul>
+                  <div class="ad-detail-image">
+                    <img id="adDetailLinearImage" src="./assets/ad-detail-linear-flow.png" alt="リニア面の配信ポジション（Pre/Mid/Post）" />
                   </div>
-                </aside>
+                  <table class="ad-position-table">
+                    <colgroup>
+                      <col />
+                      <col />
+                      <col />
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th>項目</th>
+                        <th>Mid</th>
+                        <th>Post</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>秒数</td>
+                        <td>15秒 / 30秒 / 60秒</td>
+                        <td>15秒 / 30秒 / 60秒</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="ad-detail-card">
+                  <h4 class="ad-detail-section-title">VOD面</h4>
+                  <ul>
+                    <li>ビデオコンテンツに配信される広告枠（一部無料コンテンツのみ）</li>
+                    <li>31秒以上のVOD面クリエイティブは6秒地点でスキップ可能</li>
+                    <li>配信ポジションはPreとMidのみ（Postロールなし）</li>
+                    <li>尺はPre: 6-15秒、Mid: 6-60秒</li>
+                  </ul>
+                  <div class="ad-detail-image">
+                    <img id="adDetailVodImage" src="./assets/ad-detail-vod-flow.png" alt="VOD面の配信ポジション（Pre/Mid/Post）" />
+                  </div>
+                  <table class="ad-position-table">
+                    <colgroup>
+                      <col />
+                      <col />
+                      <col />
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th>項目</th>
+                        <th>Pre</th>
+                        <th>Mid</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>再生秒数</td>
+                        <td>6-15秒</td>
+                        <td>6-60秒</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </article>
 
+          <article id="uiGenrePanel" class="card panel full">
+            <h3>画面UIとジャンル</h3>
+            <div class="genre-layout">
+              <div class="ui-capture-row">
+                <div class="abema-ui-capture primary">
+                  <img id="abemaUiImage" src="./assets/abema-ui-capture.png" alt="ABEMAの画面UIキャプチャ" />
+                </div>
+                <div class="abema-ui-capture secondary" id="secondaryUiCapture" style="display:none;">
+                  <img id="secondaryUiImage" src="./assets/tver-ui-capture-wide.png" alt="TVerの画面UIキャプチャ（ワイド）" />
+                </div>
+              </div>
+              <div id="genreTileGrid" class="genre-tile-grid">
+                <div class="genre-tile">ドラマ</div>
+                <div class="genre-tile">アニメ</div>
+                <div class="genre-tile">バラエティ</div>
+                <div class="genre-tile">スポーツ</div>
+              </div>
+              <div id="genreBarChart" class="genre-bar-chart" style="display:none;">
+                <h4 id="genreBarTitle" class="genre-bar-title">視聴されているコンテンツ（%）</h4>
+                <div id="genreBarList" class="genre-bar-list"></div>
+              </div>
+            </div>
+
+          </article>
+
+          <article id="regulationPanel" class="card panel full">
+            <button id="regulationToggleBtn" class="regulation-toggle" type="button" aria-expanded="false" aria-controls="regulationContent">
+              <h3 class="regulation-toggle-title">配信規定</h3>
+              <span class="regulation-toggle-icon" aria-hidden="true">▼</span>
+            </button>
+            <div id="regulationContent" class="regulation-content">
+              <table class="table ratio-1-3">
+                <colgroup>
+                  <col />
+                  <col />
+                </colgroup>
+                <thead>
+                  <tr><th>項目</th><th>内容</th></tr>
+                </thead>
+                <tbody id="regulationBody">
+                  <tr><td>配信面規定</td><td>リニア / VODの2面で配信。</td></tr>
+                  <tr><td>クリック規定</td><td>クリック不可。</td></tr>
+                  <tr><td>スキップ規定</td><td>VODのみ31秒以上のクリエイティブで6秒地点からスキップ可。</td></tr>
+                  <tr><td>秒数・ポジション規定</td><td>リニア: 15/30/60秒（Mid/Post）。VOD: Pre 6-15秒、Mid 6-60秒。</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
         </div>
+      </section>
+
+      <section id="assortView">
+        <div class="card hero">
+          <div>
+            <h2 class="media-title">アソート</h2>
+            <p>ターゲティングしたいユーザーが集まるコンテンツへの配信が可能なメニューです。将来のDeal作成拡張を見据えて、セグメントを選択できるUIにしています。</p>
+          </div>
+          <div class="hero-actions">
+            <button class="btn" id="backFromAssortBtn">一覧に戻る</button>
+          </div>
+        </div>
+
+        <article class="card panel full">
+          <div class="assort-meta-grid">
+            <div class="assort-meta-card">
+              <h4>単価</h4>
+              <p>変更なし（お問い合わせください）</p>
+            </div>
+            <div class="assort-meta-card">
+              <h4>媒体</h4>
+              <p>ABEMA / TVer / SPOTV / JSPORTS</p>
+            </div>
+            <div class="assort-meta-card">
+              <h4>セグメント種別</h4>
+              <p>デモグラ / アフィニティ</p>
+            </div>
+            <div class="assort-meta-card">
+              <h4>備考</h4>
+              <p>2種の掛け合わせ選択が可能</p>
+            </div>
+          </div>
+
+          <section class="segment-section">
+            <h4>1) デモグラフィック</h4>
+            <div id="demoSegmentGrid">
+              <div class="segment-line">
+                <p class="segment-line-title">10代刻み</p>
+                <div class="segment-line-options">
+                  <button class="segment-option" type="button">MF10s</button>
+                  <button class="segment-option" type="button">MF20s</button>
+                  <button class="segment-option" type="button">MF30s</button>
+                  <button class="segment-option" type="button">MF40s</button>
+                  <button class="segment-option" type="button">MF50s</button>
+                </div>
+              </div>
+              <div class="segment-line">
+                <p class="segment-line-title">マーケティング年齢 + teen</p>
+                <div class="segment-line-options">
+                  <button class="segment-option" type="button">MFteen</button>
+                  <button class="segment-option" type="button">MF1</button>
+                  <button class="segment-option" type="button">MF2</button>
+                  <button class="segment-option" type="button">MF3</button>
+                </div>
+              </div>
+              <div class="segment-line">
+                <p class="segment-line-title">その他区分</p>
+                <div class="segment-line-options">
+                  <button class="segment-option" type="button">18-24歳</button>
+                  <button class="segment-option" type="button">25-34歳</button>
+                  <button class="segment-option" type="button">35-44歳</button>
+                  <button class="segment-option" type="button">45-54歳</button>
+                  <button class="segment-option" type="button">55-64歳</button>
+                  <button class="segment-option" type="button">65歳以上</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="segment-section">
+            <h4>2) アフィニティ</h4>
+            <div class="segment-grid" id="affinitySegmentGrid">
+              <button class="segment-option" type="button">銀行/金融</button>
+              <button class="segment-option" type="button">美容/健康</button>
+              <button class="segment-option" type="button">旅行</button>
+              <button class="segment-option" type="button">ライフスタイル趣味(ファッション)</button>
+              <button class="segment-option" type="button">フード/ダイニング</button>
+              <button class="segment-option" type="button">家庭/園芸</button>
+              <button class="segment-option" type="button">乗り物/交通機関</button>
+              <button class="segment-option" type="button">ライフスタイル趣味(アウトドア)</button>
+              <button class="segment-option" type="button">ニュース/政治</button>
+              <button class="segment-option" type="button">ショッピング</button>
+              <button class="segment-option" type="button">ゲーム</button>
+              <button class="segment-option" type="button">ライフスタイル趣味(ペット)</button>
+              <button class="segment-option" type="button">スポーツ/フィットネス</button>
+              <button class="segment-option" type="button">テクノロジー</button>
+              <button class="segment-option" type="button">ビジネス</button>
+              <button class="segment-option" type="button">メディア/エンターテイメント</button>
+              <p class="segment-subtitle">新規リリース</p>
+              <button class="segment-option" type="button">アルコール</button>
+              <button class="segment-option" type="button">アニメ/漫画</button>
+              <button class="segment-option" type="button">KPOP</button>
+              <button class="segment-option" type="button">既婚/未婚</button>
+              <button class="segment-option" type="button">年収500万円未満</button>
+              <button class="segment-option" type="button">年収500-1000万円</button>
+              <button class="segment-option" type="button">年収1000万円以上</button>
+            </div>
+          </section>
+
+          <div class="segment-actions">
+            <button class="edit-btn" id="clearAssortSelectionBtn" type="button">選択をクリア</button>
+            <span class="edit-status" id="assortSelectionStatus">選択中: 0件</span>
+          </div>
+        </article>
       </section>
 
       <section id="crossRuleView">
@@ -1093,7 +1807,7 @@
                   <td>6-60秒（61秒以上不可）</td>
                 </tr>
                 <tr>
-                  <td><span class="media-cell"><span class="media-icon rch">R</span>Rチャンネル</span></td>
+                  <td><span class="media-cell"><span class="media-icon rch"><img src="./assets/rchannel-logo.png" alt="Rチャンネル" /></span>Rチャンネル</span></td>
                   <td>ALLデバイス</td>
                   <td>不可</td>
                   <td>不可</td>
@@ -1120,36 +1834,74 @@
       </section>
     </main>
   </div>
+  <input id="imageReplaceInput" type="file" accept="image/*" style="display:none" />
 
   <script>
     const listView = document.getElementById("listView");
     const detailView = document.getElementById("detailView");
+    const assortView = document.getElementById("assortView");
     const crossRuleView = document.getElementById("crossRuleView");
     const backBtn = document.getElementById("backBtn");
+    const backFromAssortBtn = document.getElementById("backFromAssortBtn");
     const backFromCrossBtn = document.getElementById("backFromCrossBtn");
+    const assortMenuCard = document.querySelector('[data-menu="assort"]');
     const crossRuleMenuCard = document.querySelector('[data-menu="cross-rule"]');
+    const assortSelectionStatus = document.getElementById("assortSelectionStatus");
+    const clearAssortSelectionBtn = document.getElementById("clearAssortSelectionBtn");
 
     const detailTitle = document.getElementById("detailTitle");
     const detailMediaIcon = document.getElementById("detailMediaIcon");
     const detailDescription = document.getElementById("detailDescription");
     const detailChip = document.getElementById("detailChip");
     const specsBody = document.getElementById("specsBody");
+    const regulationBody = document.getElementById("regulationBody");
+    const regulationToggleBtn = document.getElementById("regulationToggleBtn");
+    const detailUiImage = document.getElementById("abemaUiImage");
+    const secondaryUiCapture = document.getElementById("secondaryUiCapture");
+    const secondaryUiImage = document.getElementById("secondaryUiImage");
+    const adDetailSection = document.getElementById("adDetailSection");
+    const adDetailPanel = document.getElementById("adDetailPanel");
     const kpiCards = document.querySelectorAll(".kpi-grid .kpi");
     const roleSelect = document.getElementById("roleSelect");
     const editToggleBtn = document.getElementById("editToggleBtn");
     const editStatus = document.getElementById("editStatus");
+    const editAdvancedPanel = document.getElementById("editAdvancedPanel");
+    const imageReplaceInput = document.getElementById("imageReplaceInput");
+    const imageReplaceButtons = document.querySelectorAll(".image-replace-btn");
+    const genreTileGrid = document.getElementById("genreTileGrid");
+    const genreBarChart = document.getElementById("genreBarChart");
+    const genreBarTitle = document.getElementById("genreBarTitle");
+    const genreBarList = document.getElementById("genreBarList");
+    const addGenreBtn = document.getElementById("addGenreBtn");
+    const removeGenreBtn = document.getElementById("removeGenreBtn");
+    const genreCountInput = document.getElementById("genreCountInput");
+    const applyGenreCountBtn = document.getElementById("applyGenreCountBtn");
+    const abemaUiWidthRange = document.getElementById("abemaUiWidthRange");
+    const abemaUiWidthInput = document.getElementById("abemaUiWidthInput");
+    const abemaUiCapture = document.querySelector(".abema-ui-capture");
+    const inventoryPieEditor = document.getElementById("inventoryPieEditor");
+    const attrPieEditor = document.getElementById("attrPieEditor");
+    const inventoryNote = document.getElementById("inventoryNote");
+    const sectionVisibilityControls = document.getElementById("sectionVisibilityControls");
+    const inventoryPanel = document.getElementById("inventoryPanel");
+    const attrPanel = document.getElementById("attrPanel");
+    const specOverviewPanel = document.getElementById("specOverviewPanel");
+    const regulationPanel = document.getElementById("regulationPanel");
+    const uiGenrePanel = document.getElementById("uiGenrePanel");
 
     const mediaDetails = {
       ABEMA: {
         title: "ABEMA",
         icon: { type: "image", src: "./assets/abema-logo.png", alt: "ABEMAロゴ", className: "" },
+        uiImage: { src: "./assets/abema-ui-capture.png", alt: "ABEMAの画面UIキャプチャ" },
+        uiImageSecondary: null,
         chip: "ALLデバイス",
         description: "好きな時間に好きな場所で、話題の動画を楽しめる未来のテレビ。ニュース・恋愛・アニメ・スポーツまで幅広く、ALLデバイス配信に対応。",
         kpis: [
           { label: "主要指標（2025年9月時点）", value: "2,771万+", sub: "累計アプリダウンロード" },
           { label: "想定月間UU数", value: "1,200万", sub: "ユニークユーザー数（月間想定）" },
           { label: "視聴完了率（15秒）", value: "94%", sub: "30秒:94% / 60秒:90%" },
-          { label: "配信対応", value: "ALL", sub: "リニア / VOD" }
+          { label: "媒体横断ユーザー重複割合", value: "5.6%", sub: "YouTubeとの調査 マクロミルで実施" }
         ],
         specs: [
           ["掲載面", "リニア / VOD"],
@@ -1206,27 +1958,34 @@
       TVer: {
         title: "TVer",
         icon: { type: "image", src: "./assets/tver-logo.png", alt: "TVerロゴ", className: "tver" },
+        uiImage: { src: "./assets/tver-ui-capture.png", alt: "TVerの画面UIキャプチャ" },
+        uiImageSecondary: { src: "./assets/tver-ui-capture-wide.png", alt: "TVerの画面UIキャプチャ（ワイド）" },
         chip: "ALLデバイス",
         description: "民放テレビ局がひとつになったプラットフォーム。ドラマ/バラエティ中心に約800番組以上を無料配信し、AJA SSP経由で準キー5局+キー局本店への配信が可能。",
         kpis: [
           { label: "月間ユーザー数（MUB）", value: "4,120万", sub: "2026年1月時点" },
           { label: "累計アプリDL数", value: "9,000万", sub: "2026年1月時点" },
           { label: "視聴完了率（15秒）", value: "96%", sub: "30秒:95.2% / 60秒:93.4%" },
-          { label: "配信ポジション比率", value: "2:7:1", sub: "Pre : Mid : Post" }
+          { label: "月間再生数", value: "6億5,000万回再生", sub: "2025年調査" }
         ],
         specs: [
           ["掲載面", "リアルタイム配信 / キャッチアップ配信"],
           ["視聴完了率", "15秒:96% / 30秒:95.2% / 60秒:93.4%"],
-          ["クリック", "キー局+準キー局で可能（単価1.1倍）"],
+          ["クリック", "準キー局のみ（単価1.1倍）"],
           ["スキップ", "不可"],
           ["再生秒数", "Pre/Mid/Postで6-180秒（31秒以上はプレロール除外）"]
         ],
         inventory: {
           device: {
             centerTitle: "100%",
-            centerSub: "ALLデバイス",
-            gradient: "conic-gradient(var(--accent) 0 100%)",
-            legend: [{ name: "ALLデバイス", value: "対応", color: "var(--accent)" }]
+            centerSub: "デバイス構成",
+            note: "※PMP配信ではPCなしでSP/CTVのみ",
+            gradient: "conic-gradient(var(--accent) 0 33%, var(--accent-2) 33% 46%, var(--accent-3) 46% 100%)",
+            legend: [
+              { name: "SP", value: "33%", color: "var(--accent)" },
+              { name: "PC", value: "13%", color: "var(--accent-2)" },
+              { name: "CTV", value: "55%", color: "var(--accent-3)" }
+            ]
           },
           surface: {
             centerTitle: "2 : 7 : 1",
@@ -1240,20 +1999,49 @@
           }
         },
         attr: {
-          gender: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent)" }] },
-          age: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent-2) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent-2)" }] }
+          gender: {
+            centerTitle: "性別",
+            centerSub: "女性 / 男性",
+            gradient: "conic-gradient(var(--accent-2) 0 60%, var(--accent) 60% 100%)",
+            legend: [
+              { name: "女性", value: "60%", color: "var(--accent-2)" },
+              { name: "男性", value: "40%", color: "var(--accent)" }
+            ]
+          },
+          age: {
+            centerTitle: "年代",
+            centerSub: "15-64歳",
+            gradient: "conic-gradient(#2ba8ff 0 9%, #7f75ff 9% 36%, #3de4d8 36% 70%, #ffc36b 70% 100%)",
+            legend: [
+              { name: "15-19歳", value: "9%", color: "#2ba8ff" },
+              { name: "20-34歳", value: "27%", color: "#7f75ff" },
+              { name: "35-49歳", value: "34%", color: "#3de4d8" },
+              { name: "50-64歳", value: "30%", color: "#ffc36b" }
+            ]
+          }
         }
       },
       DAZN: {
         title: "DAZN",
         icon: { type: "image", src: "./assets/dazn-logo.png", alt: "DAZNロゴ", className: "dazn" },
+        uiImage: { src: "./assets/dazn-ui-capture.png", alt: "DAZNの画面UIキャプチャ" },
+        uiImageSecondary: null,
+        genreChartTitle: "視聴されているコンテンツ（%）",
+        genreBars: [
+          { name: "Jリーグ", value: 61 },
+          { name: "野球", value: 49 },
+          { name: "欧州サッカー", value: 33 },
+          { name: "F1", value: 16 },
+          { name: "テニス", value: 11 },
+          { name: "Bリーグ", value: 10 }
+        ],
         chip: "SP/CTV",
         description: "世界最大級のOTTスポーツストリーミングサービス。運用型広告枠ではSP/CTVのみ配信可能で、Jリーグ・野球シーズンで配信量が大きく変動。",
         kpis: [
-          { label: "配信対象デバイス", value: "SP/CTV", sub: "運用型広告枠はPC在庫なし" },
-          { label: "LIVE再生秒数", value: "15秒", sub: "Preロール固定" },
-          { label: "キャッチアップ秒数", value: "1-30秒", sub: "半端尺可" },
-          { label: "スキップ / クリック", value: "不可", sub: "LIVE/キャッチアップ共通" }
+          { label: "サービス認知度", value: "72%", sub: "業界トップ" },
+          { label: "配信コンテンツ数", value: "11,500+", sub: "多彩なスポーツジャンル" },
+          { label: "総配信時間", value: "2億2,000万時間", sub: "2022年調査" },
+          { label: "グローバルサービス展開国", value: "200カ国", sub: "" }
         ],
         specs: [
           ["掲載面", "LIVE面 / キャッチアップ面"],
@@ -1265,9 +2053,13 @@
         inventory: {
           device: {
             centerTitle: "100%",
-            centerSub: "SP(TAB)/CTV",
-            gradient: "conic-gradient(var(--accent-2) 0 100%)",
-            legend: [{ name: "SP(TAB)/CTV", value: "配信可能", color: "var(--accent-2)" }]
+            centerSub: "デバイス構成",
+            gradient: "conic-gradient(var(--accent) 0 54%, var(--accent-2) 54% 64%, var(--accent-3) 64% 100%)",
+            legend: [
+              { name: "SP", value: "54%", color: "var(--accent)" },
+              { name: "PC", value: "10%", color: "var(--accent-2)" },
+              { name: "CTV", value: "36%", color: "var(--accent-3)" }
+            ]
           },
           surface: {
             centerTitle: "LIVE / CU",
@@ -1280,34 +2072,63 @@
           }
         },
         attr: {
-          gender: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent)" }] },
-          age: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent-2) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent-2)" }] }
+          gender: {
+            centerTitle: "性別",
+            centerSub: "男性 / 女性",
+            gradient: "conic-gradient(var(--accent) 0 73%, var(--accent-2) 73% 100%)",
+            legend: [
+              { name: "女性", value: "27%", color: "var(--accent-2)" },
+              { name: "男性", value: "73%", color: "var(--accent)" }
+            ]
+          },
+          age: {
+            centerTitle: "年代",
+            centerSub: "F/M 18-54",
+            gradient: "conic-gradient(#2ba8ff 0 27%, #7f75ff 27% 46%, #3de4d8 46% 52%, #ffc36b 52% 57%, #5a8df2 57% 68%, #3db8ff 68% 79%, #6b5eff 79% 85%, #7adcb6 85% 100%)",
+            legend: [
+              { name: "F18-24", value: "27.0%", color: "#2ba8ff" },
+              { name: "F25-34", value: "19.0%", color: "#7f75ff" },
+              { name: "F35-44", value: "6.0%", color: "#3de4d8" },
+              { name: "F45-54", value: "5.0%", color: "#ffc36b" },
+              { name: "M18-24", value: "11.0%", color: "#5a8df2" },
+              { name: "M25-34", value: "11.0%", color: "#3db8ff" },
+              { name: "M35-44", value: "6.0%", color: "#6b5eff" },
+              { name: "M45-54", value: "7.0%", color: "#7adcb6" }
+            ]
+          }
         }
       },
       Lemino: {
         title: "Lemino",
-        icon: { type: "badge", label: "Le", alt: "Lemino", className: "lemino" },
+        icon: { type: "image", src: "./assets/lemino-logo.png", alt: "Leminoロゴ", className: "lemino" },
+        uiImage: { src: "./assets/lemino-ui-capture.png", alt: "Leminoの画面UIキャプチャ" },
+        uiImageSecondary: null,
         chip: "SP/CTV",
-        description: "NTTドコモの映像配信サービス。AVODとSVODを提供し、AJA経由では在庫の多いSP/CTVへの配信が可能（PC面は接続テスト中）。",
+        description: "NTTドコモの映像配信サービス。AVODとSVODを提供し、AJA経由では在庫の多いSP/CTVへの配信が可能。",
         kpis: [
           { label: "想定MAU", value: "500万", sub: "注目コンテンツ配信時" },
-          { label: "配信デバイス", value: "SP/CTV", sub: "PC面は接続テスト中" },
           { label: "視聴完了率（15秒）", value: "97.8%", sub: "30秒:95.6%" },
-          { label: "掲載面", value: "VOD", sub: "ハイライト / キャッチアップ / オリジナル" }
+          { label: "配信コンテンツ", value: "18万作品", sub: "" },
+          { label: "ドコモユーザー還元率", value: "20%", sub: "最大20%のdポイントとして付与" }
         ],
         specs: [
           ["掲載面", "VOD（ハイライト / キャッチアップ / オリジナル）"],
           ["視聴完了率", "15秒:97.8% / 30秒:95.6%"],
           ["クリック / スキップ", "クリック不可 / スキップ不可"],
-          ["デバイス", "SP(TAB)/CTV"],
+          ["デバイス", "SP/PC/CTV"],
           ["再生秒数", "Pre:15秒/30秒、Mid:15秒/30秒/60秒"]
         ],
         inventory: {
+          showSurface: false,
           device: {
             centerTitle: "100%",
-            centerSub: "SP(TAB)/CTV",
-            gradient: "conic-gradient(var(--accent-2) 0 100%)",
-            legend: [{ name: "SP(TAB)/CTV", value: "配信可能", color: "var(--accent-2)" }]
+            centerSub: "デバイス構成",
+            gradient: "conic-gradient(var(--accent) 0 33%, var(--accent-2) 33% 46%, var(--accent-3) 46% 100%)",
+            legend: [
+              { name: "SP", value: "33%", color: "var(--accent)" },
+              { name: "PC", value: "13%", color: "var(--accent-2)" },
+              { name: "CTV", value: "55%", color: "var(--accent-3)" }
+            ]
           },
           surface: {
             centerTitle: "Pre / Mid",
@@ -1320,13 +2141,35 @@
           }
         },
         attr: {
-          gender: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent)" }] },
-          age: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent-2) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent-2)" }] }
+          gender: {
+            centerTitle: "性別",
+            centerSub: "女性 / 男性",
+            gradient: "conic-gradient(var(--accent-2) 0 64%, var(--accent) 64% 100%)",
+            legend: [
+              { name: "女性", value: "64%", color: "var(--accent-2)" },
+              { name: "男性", value: "36%", color: "var(--accent)" }
+            ]
+          },
+          age: {
+            centerTitle: "年代",
+            centerSub: "F/M 18-54",
+            gradient: "conic-gradient(#2ba8ff 0 27%, #7f75ff 27% 46%, #3de4d8 46% 52%, #ffc36b 52% 57%, #5a8df2 57% 68%, #3db8ff 68% 79%, #6b5eff 79% 85%, #7adcb6 85% 92%)",
+            legend: [
+              { name: "F18-24", value: "27.0%", color: "#2ba8ff" },
+              { name: "F25-34", value: "19.0%", color: "#7f75ff" },
+              { name: "F35-44", value: "6.0%", color: "#3de4d8" },
+              { name: "F45-54", value: "5.0%", color: "#ffc36b" },
+              { name: "M18-24", value: "11.0%", color: "#5a8df2" },
+              { name: "M25-34", value: "11.0%", color: "#3db8ff" },
+              { name: "M35-44", value: "6.0%", color: "#6b5eff" },
+              { name: "M45-54", value: "7.0%", color: "#7adcb6" }
+            ]
+          }
         }
       },
       "Rチャンネル": {
         title: "Rチャンネル",
-        icon: { type: "badge", label: "R", alt: "Rチャンネル", className: "rch" },
+        icon: { type: "image", src: "./assets/rchannel-logo.png", alt: "Rチャンネルロゴ", className: "rch" },
         chip: "ALLデバイス",
         description: "楽天が運営する24時間365日視聴可能なリニア型動画配信サービス。無料・会員登録不要で50チャンネルのプロコンテンツを提供。",
         kpis: [
@@ -1357,8 +2200,27 @@
           }
         },
         attr: {
-          gender: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent)" }] },
-          age: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent-2) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent-2)" }] }
+          gender: {
+            centerTitle: "性別",
+            centerSub: "男性 / 女性",
+            gradient: "conic-gradient(var(--accent) 0 64%, var(--accent-2) 64% 100%)",
+            legend: [
+              { name: "男性", value: "64%", color: "var(--accent)" },
+              { name: "女性", value: "36%", color: "var(--accent-2)" }
+            ]
+          },
+          age: {
+            centerTitle: "年代",
+            centerSub: "20代以下〜60代以上",
+            gradient: "conic-gradient(#2ba8ff 0 6%, #7f75ff 6% 22%, #3de4d8 22% 49%, #ffc36b 49% 78%, #5a8df2 78% 99%)",
+            legend: [
+              { name: "20代以下", value: "6%", color: "#2ba8ff" },
+              { name: "30代", value: "16%", color: "#7f75ff" },
+              { name: "40代", value: "27%", color: "#3de4d8" },
+              { name: "50代", value: "29%", color: "#ffc36b" },
+              { name: "60代以上", value: "21%", color: "#5a8df2" }
+            ]
+          }
         }
       },
       JSPORTS: {
@@ -1400,7 +2262,7 @@
       },
       SPOTV: {
         title: "SPOTV",
-        icon: { type: "badge", label: "SP", alt: "SPOTV", className: "spotv" },
+        icon: { type: "image", src: "./assets/spotv-logo.png", alt: "SPOTVロゴ", className: "spotv" },
         chip: "SP(TAB)のみ",
         description: "MLBを中心に世界最高峰スポーツリーグをライブ配信。AJA経由ではSP(TAB)のみ配信可能。",
         kpis: [
@@ -1480,15 +2342,261 @@
       }
     };
 
+    const premiumRateCommonRows = [
+      ["コンテナフォーマット", "MP4（moov atom / 先頭必須）"],
+      ["フレームサイズ", "(W) 1920 x (H) 1080"],
+      ["アスペクト比", "16:9"],
+      ["映像ビットレート（ターゲット平均）", "2,500kbps〜4,000kbps"],
+      ["エンコードモード", "可変 もしくは 固定（固定推奨）"],
+      ["コーデック", "H.264（MPEG4）High Profile Level 4"],
+      ["フレームレート", "29.97fps"],
+      ["プロファイル", "プログレッシブ"],
+      ["音声チャンネルタイプ", "4以下"],
+      ["音声コーデック", "AAC-LC"],
+      ["音声ビットレート", "128kbps または 192kbps（192kbps推奨）"],
+      ["音声サンプリング周波数", "44.1kHz または 48kHz（48kHz推奨）"],
+      ["音声平均ラウドネス値", "-3dBFS 以下（民放連技術規準T-032準拠）"],
+      ["ファイル名", "18MB以内（15秒素材: 9MB推奨）"],
+      ["入稿クリエイティブについて", "前後に0.5秒の無音部分を挿入。映像編集時も音声編集アプリにて、必ず音声波形を確認してください。"],
+      ["ブランド（ftyp）", "mp42 または M4V"],
+      ["映像フォーマット", "YUV420"],
+      ["映像参照フレーム", "4以下"],
+      ["連続Bフレーム数", "3以下"],
+      ["連続タイムコード不連続数", "10以下"],
+      ["音声タイムコード不連続数", "0"]
+    ];
+
+    function buildPremiumRateRegulationRows(cmRule) {
+      return [
+        ["CM尺", cmRule],
+        ...premiumRateCommonRows,
+        ["留意事項", "TTD接続経由では、プレミアムレートのみで記載の全メディア配信が可能です（ハルモニのみご手配の場合はSP・PCのみ配信可能、CTV面はプレミアムレート必須）。"],
+        ["※", "Lemino・Rチャンネルは半端尺は都度お問い合わせ必須。JSPORTS・Rチャンネルは長尺は都度お問い合わせ必須。"]
+      ];
+    }
+
+    const mediaRegulationRowsByKey = {
+      ABEMA: [
+        ["CM尺", "VOD: 6秒以上60秒未満（秒刻みで入稿可） / リニア: 15秒・30秒・60秒"],
+        ["コンテナフォーマット", "MP4"],
+        ["フレームサイズ", "FULLHD（1920x1080）"],
+        ["アスペクト比", "16:9"],
+        ["映像ビットレート", "20 Mbps（ターゲット平均）"],
+        ["エンコードモード", "2Pass VBR（VBR上限 30Mbps）"],
+        ["コーデック", "H.264"],
+        ["フレームレート", "29.97fps"],
+        ["音声コーデック", "AAC-LC"],
+        ["音声ビットレート", "320kbps"],
+        ["音声サンプル", "16bit / 48kHz"],
+        ["音声ラウドネス", "-18.0 LUFS ±1LU"],
+        ["音声ピーク値", "-1dBTP（もしくは -3dBFS）以下"],
+        ["総ファイルサイズ", "容量制限なし"],
+        ["ファイル名", "半角英数字・記号（全角文字NG）"],
+        ["入稿本数目安", "4本まで（素材差し替え時は媒体個別ルールに準拠）"],
+        ["留意事項", "上記はPMP規定。純広とは仕様が異なる場合があります。"]
+      ],
+      TVer: buildPremiumRateRegulationRows("6-180秒"),
+      DAZN: buildPremiumRateRegulationRows("6-30秒"),
+      "Rチャンネル": buildPremiumRateRegulationRows("15-120秒"),
+      Lemino: buildPremiumRateRegulationRows("15-60秒"),
+      SPOTV: buildPremiumRateRegulationRows("15秒のみ"),
+      JSPORTS: buildPremiumRateRegulationRows("15-60秒"),
+      "ニコニコ動画": buildPremiumRateRegulationRows("6秒以上（※1）")
+    };
+
     let currentMedia = "ABEMA";
     let currentInventoryTab = "device";
     let currentAttrTab = "gender";
+    let isRegulationOpen = false;
     let isEditMode = false;
+    const mediaSectionVisibility = {};
+    const defaultSectionVisibility = {
+      inventory: true,
+      attr: true,
+      specOverview: true,
+      adDetail: true,
+      uiGenre: true
+    };
+    const sectionDefs = {
+      inventory: { label: "在庫構成比", getEl: () => inventoryPanel },
+      attr: { label: "利用者属性", getEl: () => attrPanel },
+      specOverview: { label: "広告仕様概要", getEl: () => specOverviewPanel },
+      adDetail: { label: "広告仕様詳細", getEl: () => adDetailPanel },
+      uiGenre: { label: "画面UIとジャンル", getEl: () => uiGenrePanel }
+    };
 
     function getEditableTargets() {
       return document.querySelectorAll(
-        "#detailView .media-title, #detailView #detailDescription, #detailView .kpi .label, #detailView .kpi .value, #detailView .kpi .sub, #detailView .panel h3, #detailView .table td, #detailView .table th, #crossRuleView .media-title, #crossRuleView .hero p, #crossRuleView .table td, #crossRuleView .table th"
+        "#detailView .media-title, #detailView #detailDescription, #detailView .kpi .label, #detailView .kpi .value, #detailView .kpi .sub, #detailView .panel h3, #detailView .table td, #detailView .table th, #detailView .genre-tile, #crossRuleView .media-title, #crossRuleView .hero p, #crossRuleView .table td, #crossRuleView .table th"
       );
+    }
+
+    function getCanAdvancedEdit() {
+      return roleSelect.value === "AJA" && isEditMode;
+    }
+
+    function ensureSectionVisibility(mediaKey) {
+      if (!mediaSectionVisibility[mediaKey]) {
+        mediaSectionVisibility[mediaKey] = { ...defaultSectionVisibility };
+      } else {
+        // 既存状態に新規セクションキーが無い場合でも、デフォルト値を補完する
+        mediaSectionVisibility[mediaKey] = {
+          ...defaultSectionVisibility,
+          ...mediaSectionVisibility[mediaKey]
+        };
+      }
+      return mediaSectionVisibility[mediaKey];
+    }
+
+    function renderSectionVisibilityControls() {
+      const vis = ensureSectionVisibility(currentMedia);
+      const canEdit = getCanAdvancedEdit();
+      sectionVisibilityControls.innerHTML = Object.entries(sectionDefs)
+        .map(([key, def]) =>
+          `<label class="toggle-item"><input type="checkbox" data-section-key="${key}" ${vis[key] ? "checked" : ""} ${canEdit ? "" : "disabled"} /><span>${def.label}</span></label>`
+        )
+        .join("");
+    }
+
+    function setDisplayByFlag(el, shouldShow) {
+      if (!el) return;
+      el.style.display = shouldShow ? "" : "none";
+    }
+
+    function applySectionVisibility() {
+      const vis = ensureSectionVisibility(currentMedia);
+      setDisplayByFlag(inventoryPanel, vis.inventory);
+      setDisplayByFlag(attrPanel, vis.attr);
+      setDisplayByFlag(specOverviewPanel, vis.specOverview);
+      const showAdDetailBase = currentMedia === "ABEMA";
+      setDisplayByFlag(adDetailPanel, showAdDetailBase && vis.adDetail);
+      setDisplayByFlag(uiGenrePanel, vis.uiGenre);
+      setDisplayByFlag(regulationPanel, vis.uiGenre);
+    }
+
+    function applyRegulationOpenState() {
+      regulationPanel.classList.toggle("is-open", isRegulationOpen);
+      regulationToggleBtn.setAttribute("aria-expanded", String(isRegulationOpen));
+    }
+
+    function buildRegulations(mediaKey, selectedMedia) {
+      if (Array.isArray(selectedMedia.regulations) && selectedMedia.regulations.length > 0) {
+        return selectedMedia.regulations;
+      }
+      if (mediaRegulationRowsByKey[mediaKey]) {
+        return mediaRegulationRowsByKey[mediaKey];
+      }
+      const specMap = Object.fromEntries(selectedMedia.specs || []);
+      const placement = specMap["掲載面"] || specMap["ポジション"] || "媒体仕様に準拠";
+      const seconds = specMap["再生秒数"] || "媒体仕様に準拠";
+      const clickSkip = specMap["クリック / スキップ"]
+        || `クリック: ${specMap["クリック"] || "媒体仕様に準拠"} / スキップ: ${specMap["スキップ"] || "媒体仕様に準拠"}`;
+      return [
+        ["審査基準", "各媒体の広告掲載基準に準拠し、表現内容・遷移先・クリエイティブ仕様を事前確認します。"],
+        ["配信面規定", placement],
+        ["秒数規定", seconds],
+        ["クリック/スキップ規定", clickSkip]
+      ];
+    }
+
+    function parsePercent(value) {
+      const n = parseFloat(String(value).replace(/[^0-9.]/g, ""));
+      return Number.isFinite(n) ? n : NaN;
+    }
+
+    function syncGenderFromAgeAggregates(mediaKey) {
+      const media = mediaDetails[mediaKey];
+      if (!media?.attr?.age?.legend || !media?.attr?.gender?.legend) return;
+      const ageLegend = media.attr.age.legend;
+      let female = 0;
+      let male = 0;
+      ageLegend.forEach((item) => {
+        const v = parsePercent(item.value);
+        if (!Number.isFinite(v)) return;
+        if (/^F/i.test(item.name)) female += v;
+        if (/^M/i.test(item.name)) male += v;
+      });
+      const total = female + male;
+      if (female <= 0 || male <= 0 || total <= 0) return;
+
+      const femaleRate = (female / total) * 100;
+      const maleRate = (male / total) * 100;
+      const femaleColor = media.attr.gender.legend.find((x) => x.name === "女性")?.color || "var(--accent-2)";
+      const maleColor = media.attr.gender.legend.find((x) => x.name === "男性")?.color || "var(--accent)";
+
+      media.attr.gender.centerTitle = "性別";
+      media.attr.gender.centerSub = "女性 / 男性";
+      media.attr.gender.gradient = `conic-gradient(${femaleColor} 0 ${femaleRate.toFixed(2)}%, ${maleColor} ${femaleRate.toFixed(2)}% 100%)`;
+      media.attr.gender.legend = [
+        { name: "女性", value: `${femaleRate.toFixed(1)}%`, color: femaleColor },
+        { name: "男性", value: `${maleRate.toFixed(1)}%`, color: maleColor }
+      ];
+    }
+
+    function buildGradientFromLegend(legend, fallbackGradient) {
+      const nums = legend.map((item) => parsePercent(item.value));
+      if (nums.some((n) => Number.isNaN(n))) return fallbackGradient;
+      const total = nums.reduce((a, b) => a + b, 0);
+      if (total <= 0) return fallbackGradient;
+      let cursor = 0;
+      const segments = legend.map((item, idx) => {
+        const ratio = (nums[idx] / total) * 100;
+        const start = cursor;
+        const end = cursor + ratio;
+        cursor = end;
+        return `${item.color} ${start.toFixed(2)}% ${end.toFixed(2)}%`;
+      });
+      return `conic-gradient(${segments.join(", ")})`;
+    }
+
+    function renderPieEditor(container, dataType, tabKey, legend) {
+      if (!container) return;
+      const canEdit = getCanAdvancedEdit();
+      const hasNumeric = legend.every((item) => !Number.isNaN(parsePercent(item.value)));
+      if (!hasNumeric) {
+        container.innerHTML = `<div class="edit-control-row"><span class="edit-status">${tabKey} は数値編集対象外です</span></div>`;
+        return;
+      }
+      container.innerHTML = legend
+        .map((item, idx) => {
+          const v = parsePercent(item.value);
+          return `<label class="pie-editor-row"><span>${item.name}</span><input class="edit-input pie-value-input" type="number" min="0" step="0.1" value="${v}" data-type="${dataType}" data-tab="${tabKey}" data-index="${idx}" ${canEdit ? "" : "disabled"} /></label>`;
+        })
+        .join("");
+    }
+
+    function renderPieEditors() {
+      const invLegend = mediaDetails[currentMedia].inventory[currentInventoryTab].legend;
+      const attrLegendData = mediaDetails[currentMedia].attr[currentAttrTab].legend;
+      renderPieEditor(inventoryPieEditor, "inventory", currentInventoryTab, invLegend);
+      renderPieEditor(attrPieEditor, "attr", currentAttrTab, attrLegendData);
+    }
+
+    function syncGenreCount() {
+      genreCountInput.value = genreTileGrid.querySelectorAll(".genre-tile").length;
+    }
+
+    function createGenreTile(label = "新規ジャンル") {
+      const tile = document.createElement("div");
+      tile.className = "genre-tile";
+      tile.textContent = label;
+      return tile;
+    }
+
+    function setGenreCount(targetCount) {
+      const safeCount = Math.max(1, Math.min(30, targetCount));
+      const current = genreTileGrid.querySelectorAll(".genre-tile").length;
+      if (safeCount > current) {
+        for (let i = current; i < safeCount; i += 1) {
+          genreTileGrid.appendChild(createGenreTile());
+        }
+      } else if (safeCount < current) {
+        for (let i = current; i > safeCount; i -= 1) {
+          genreTileGrid.lastElementChild?.remove();
+        }
+      }
+      syncGenreCount();
+      applyEditModeState();
     }
 
     function applyEditModeState() {
@@ -1500,6 +2608,9 @@
       });
       editToggleBtn.disabled = !isAja;
       editToggleBtn.textContent = canEdit ? "編集モードOFF" : "編集モードON";
+      editAdvancedPanel.style.display = canEdit ? "block" : "none";
+      renderPieEditors();
+      renderSectionVisibilityControls();
       if (!isAja) {
         editStatus.textContent = "現在: Buyer権限（閲覧のみ）";
       } else {
@@ -1507,10 +2618,51 @@
       }
     }
 
+    function escapeHtml(text) {
+      return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function formatKpiValue(value) {
+      const raw = String(value);
+      if (!/[0-9０-９]/.test(raw)) return escapeHtml(raw);
+      const chars = Array.from(raw);
+      let html = "";
+      let inUnit = false;
+      const numericLike = /[0-9０-９,，.．:：\-ー\/]/;
+      chars.forEach((ch) => {
+        const isNumeric = numericLike.test(ch);
+        if (!isNumeric && !inUnit) {
+          html += `<span class="kpi-unit">`;
+          inUnit = true;
+        }
+        if (isNumeric && inUnit) {
+          html += `</span>`;
+          inUnit = false;
+        }
+        html += escapeHtml(ch);
+      });
+      if (inUnit) html += `</span>`;
+      return html;
+    }
+
     function applyMediaDetail(mediaKey) {
       const selectedMedia = mediaDetails[mediaKey];
       if (!selectedMedia) return;
       currentMedia = mediaKey;
+      syncGenderFromAgeAggregates(mediaKey);
+      const hasSurface = Boolean(selectedMedia.inventory?.surface) && selectedMedia.inventory?.showSurface !== false;
+      inventorySurfaceTab.style.display = hasSurface ? "" : "none";
+      if (!hasSurface) {
+        currentInventoryTab = "device";
+      }
+      inventoryTabs.forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.inv === currentInventoryTab);
+      });
       const icon = selectedMedia.icon;
       detailMediaIcon.className = `media-icon detail-media-icon ${icon.className || ""}`;
       if (icon.type === "image") {
@@ -1521,21 +2673,54 @@
       detailTitle.textContent = selectedMedia.title;
       detailDescription.textContent = selectedMedia.description;
       detailChip.textContent = selectedMedia.chip;
+      const uiImage = selectedMedia.uiImage || mediaDetails.ABEMA.uiImage;
+      detailUiImage.src = uiImage.src;
+      detailUiImage.alt = uiImage.alt;
+      detailUiImage.style.width = mediaKey === "DAZN" ? "min(100%, 620px)" : "min(100%, 220px)";
+      const uiImageSecondary = selectedMedia.uiImageSecondary;
+      if (uiImageSecondary) {
+        secondaryUiImage.src = uiImageSecondary.src;
+        secondaryUiImage.alt = uiImageSecondary.alt;
+        secondaryUiCapture.style.display = "flex";
+      } else {
+        secondaryUiCapture.style.display = "none";
+      }
+      if (Array.isArray(selectedMedia.genreBars) && selectedMedia.genreBars.length > 0) {
+        genreTileGrid.style.display = "none";
+        genreBarChart.style.display = "block";
+        genreBarTitle.textContent = selectedMedia.genreChartTitle || "視聴されているコンテンツ（%）";
+        genreBarList.innerHTML = selectedMedia.genreBars
+          .map((item) => {
+            const safe = Math.max(0, Math.min(100, Number(item.value) || 0));
+            return `<div class="genre-bar-row"><span class="genre-bar-label">${item.name}</span><div class="genre-bar-track"><span class="genre-bar-fill" style="width:${safe}%;"></span></div><span class="genre-bar-value">${safe}%</span></div>`;
+          })
+          .join("");
+      } else {
+        genreTileGrid.style.display = "grid";
+        genreBarChart.style.display = "none";
+        genreBarList.innerHTML = "";
+      }
 
       selectedMedia.kpis.forEach((item, idx) => {
         const targetCard = kpiCards[idx];
         if (!targetCard) return;
         targetCard.querySelector(".label").textContent = item.label;
-        targetCard.querySelector(".value").textContent = item.value;
+        targetCard.querySelector(".value").innerHTML = formatKpiValue(item.value);
         targetCard.querySelector(".sub").textContent = item.sub;
       });
 
       specsBody.innerHTML = selectedMedia.specs
         .map((row) => `<tr><td>${row[0]}</td><td>${row[1]}</td></tr>`)
         .join("");
+      regulationBody.innerHTML = buildRegulations(mediaKey, selectedMedia)
+        .map((row) => `<tr><td>${row[0]}</td><td>${row[1]}</td></tr>`)
+        .join("");
+      isRegulationOpen = false;
+      applyRegulationOpenState();
 
       renderInventory(currentInventoryTab);
       renderAttr(currentAttrTab);
+      applySectionVisibility();
       applyEditModeState();
     }
 
@@ -1545,6 +2730,7 @@
         if (mediaDetails[mediaKey]) {
           applyMediaDetail(mediaKey);
           listView.classList.add("hidden");
+          assortView.classList.remove("active");
           crossRuleView.classList.remove("active");
           detailView.classList.add("active");
           window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1557,9 +2743,23 @@
       listView.classList.remove("hidden");
     });
 
+    assortMenuCard.addEventListener("click", () => {
+      listView.classList.add("hidden");
+      detailView.classList.remove("active");
+      crossRuleView.classList.remove("active");
+      assortView.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    backFromAssortBtn.addEventListener("click", () => {
+      assortView.classList.remove("active");
+      listView.classList.remove("hidden");
+    });
+
     crossRuleMenuCard.addEventListener("click", () => {
       listView.classList.add("hidden");
       detailView.classList.remove("active");
+      assortView.classList.remove("active");
       crossRuleView.classList.add("active");
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
@@ -1573,11 +2773,16 @@
     const inventoryLegend = document.getElementById("inventoryLegend");
     const inventoryCenter = document.getElementById("inventoryCenter");
     const inventoryTabs = document.querySelectorAll(".tab-btn[data-inv]");
+    const inventorySurfaceTab = document.querySelector('.tab-btn[data-inv="surface"]');
 
     function renderInventory(type) {
       const selected = mediaDetails[currentMedia].inventory[type];
-      inventoryDonut.style.background = selected.gradient;
+      if (!selected) return;
+      const dynamicGradient = buildGradientFromLegend(selected.legend, selected.gradient);
+      inventoryDonut.style.background = dynamicGradient;
       inventoryCenter.innerHTML = `<strong>${selected.centerTitle}</strong>${selected.centerSub}`;
+      inventoryNote.textContent = selected.note || "";
+      inventoryNote.style.display = selected.note ? "block" : "none";
       inventoryLegend.innerHTML = selected.legend
         .map((item) =>
           `<div class="legend-item"><span class="dot" style="background:${item.color}"></span><span>${item.name}</span><span>${item.value}</span></div>`
@@ -1591,6 +2796,7 @@
         btn.classList.add("active");
         currentInventoryTab = btn.dataset.inv;
         renderInventory(currentInventoryTab);
+        renderPieEditors();
       });
     });
 
@@ -1601,7 +2807,8 @@
 
     function renderAttr(type) {
       const selected = mediaDetails[currentMedia].attr[type];
-      attrDonut.style.background = selected.gradient;
+      const dynamicGradient = buildGradientFromLegend(selected.legend, selected.gradient);
+      attrDonut.style.background = dynamicGradient;
       attrCenter.innerHTML = `<strong>${selected.centerTitle}</strong>${selected.centerSub}`;
       attrLegend.innerHTML = selected.legend
         .map((item) =>
@@ -1616,6 +2823,7 @@
         btn.classList.add("active");
         currentAttrTab = btn.dataset.attr;
         renderAttr(currentAttrTab);
+        renderPieEditors();
       });
     });
 
@@ -1632,7 +2840,121 @@
       applyEditModeState();
     });
 
+    let pendingImageTargetId = "";
+    imageReplaceButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (!getCanAdvancedEdit()) return;
+        pendingImageTargetId = btn.dataset.targetImage || "";
+        imageReplaceInput.click();
+      });
+    });
+    imageReplaceInput.addEventListener("change", (e) => {
+      if (!getCanAdvancedEdit() || !pendingImageTargetId) return;
+      const file = e.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        const target = document.getElementById(pendingImageTargetId);
+        if (target && typeof reader.result === "string") {
+          target.src = reader.result;
+        }
+      };
+      reader.readAsDataURL(file);
+      imageReplaceInput.value = "";
+      pendingImageTargetId = "";
+    });
+
+    function applyAbemaUiWidth(value) {
+      const v = Math.max(40, Math.min(100, Number(value)));
+      abemaUiWidthRange.value = String(v);
+      abemaUiWidthInput.value = String(v);
+      abemaUiCapture.style.maxWidth = `${v}%`;
+    }
+    abemaUiWidthRange.addEventListener("input", () => { if (getCanAdvancedEdit()) applyAbemaUiWidth(abemaUiWidthRange.value); });
+    abemaUiWidthInput.addEventListener("change", () => { if (getCanAdvancedEdit()) applyAbemaUiWidth(abemaUiWidthInput.value); });
+
+    addGenreBtn.addEventListener("click", () => {
+      if (!getCanAdvancedEdit()) return;
+      genreTileGrid.appendChild(createGenreTile());
+      syncGenreCount();
+      applyEditModeState();
+    });
+    removeGenreBtn.addEventListener("click", () => {
+      if (!getCanAdvancedEdit()) return;
+      if (genreTileGrid.querySelectorAll(".genre-tile").length <= 1) return;
+      genreTileGrid.lastElementChild?.remove();
+      syncGenreCount();
+    });
+    applyGenreCountBtn.addEventListener("click", () => {
+      if (!getCanAdvancedEdit()) return;
+      setGenreCount(Number(genreCountInput.value));
+    });
+
+    function updateAssortSelectionStatus() {
+      const count = document.querySelectorAll("#assortView .segment-option.active").length;
+      assortSelectionStatus.textContent = `選択中: ${count}件`;
+    }
+    document.querySelectorAll("#assortView .segment-option").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        btn.classList.toggle("active");
+        updateAssortSelectionStatus();
+      });
+    });
+    clearAssortSelectionBtn.addEventListener("click", () => {
+      document.querySelectorAll("#assortView .segment-option.active").forEach((btn) => btn.classList.remove("active"));
+      updateAssortSelectionStatus();
+    });
+    regulationToggleBtn.addEventListener("click", () => {
+      isRegulationOpen = !isRegulationOpen;
+      applyRegulationOpenState();
+    });
+
+    sectionVisibilityControls.addEventListener("change", (e) => {
+      const target = e.target;
+      if (!(target instanceof HTMLInputElement)) return;
+      if (target.type !== "checkbox") return;
+      if (!getCanAdvancedEdit()) return;
+      const key = target.dataset.sectionKey;
+      if (!key || !sectionDefs[key]) return;
+      const vis = ensureSectionVisibility(currentMedia);
+      vis[key] = target.checked;
+      applySectionVisibility();
+    });
+
+    document.addEventListener("input", (e) => {
+      const target = e.target;
+      if (!(target instanceof HTMLInputElement)) return;
+      if (!target.classList.contains("pie-value-input")) return;
+      if (!getCanAdvancedEdit()) return;
+      const dataType = target.dataset.type;
+      const tab = target.dataset.tab;
+      const idx = Number(target.dataset.index);
+      const val = Number(target.value);
+      if (!Number.isFinite(val) || val < 0) return;
+
+      if (dataType === "inventory") {
+        const legend = mediaDetails[currentMedia].inventory[tab].legend;
+        if (!legend[idx]) return;
+        legend[idx].value = `${val}%`;
+        if (tab === currentInventoryTab) renderInventory(currentInventoryTab);
+      }
+      if (dataType === "attr") {
+        const legend = mediaDetails[currentMedia].attr[tab].legend;
+        if (!legend[idx]) return;
+        legend[idx].value = `${val}%`;
+        if (tab === "age") {
+          syncGenderFromAgeAggregates(currentMedia);
+        }
+        if (tab === currentAttrTab) renderAttr(currentAttrTab);
+        if (tab === "age" && currentAttrTab === "gender") renderAttr("gender");
+      }
+    });
+
     applyMediaDetail("ABEMA");
+    applyRegulationOpenState();
+    updateAssortSelectionStatus();
+    applyAbemaUiWidth(100);
+    syncGenreCount();
     applyEditModeState();
   </script>
 </body>
