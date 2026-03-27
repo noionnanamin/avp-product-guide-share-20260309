@@ -250,6 +250,10 @@
     #assortView.active { display: block; }
     #crossRuleView { display: none; }
     #crossRuleView.active { display: block; }
+    #rateCardView { display: none; }
+    #rateCardView.active { display: block; }
+    #dramaInfoView { display: none; }
+    #dramaInfoView.active { display: block; }
     #listView.hidden { display: none; }
 
     .media-grid {
@@ -299,6 +303,111 @@
       grid-template-columns: repeat(12, minmax(0, 1fr));
       gap: 12px;
       margin-bottom: 12px;
+    }
+    .rate-note {
+      margin: 8px 0 0;
+      font-size: 12px;
+      line-height: 1.6;
+      color: #5d7394;
+    }
+    .rate-section {
+      margin-top: 14px;
+      border: 2px solid rgba(112, 146, 188, 0.55);
+      border-radius: 10px;
+      background: #fff;
+      padding: 12px;
+      box-shadow: 0 6px 18px rgba(31, 54, 88, 0.08);
+    }
+    .rate-section h4 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: #1f3658;
+    }
+    .rate-subtitle {
+      margin: 12px 0 6px;
+      font-size: 13px;
+      color: #32557f;
+      font-weight: 800;
+    }
+    .rate-bullets {
+      margin: 8px 0 0 18px;
+      color: #355679;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .drama-doc-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 10px;
+    }
+    .drama-doc-card {
+      border: 2px solid rgba(112, 146, 188, 0.45);
+      border-radius: 12px;
+      background: #fff;
+      padding: 10px;
+      box-shadow: 0 6px 16px rgba(31, 54, 88, 0.08);
+    }
+    .drama-doc-card h4 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: #27466f;
+    }
+    .drama-shot {
+      width: 100%;
+      border: 1px solid rgba(112, 146, 188, 0.4);
+      border-radius: 8px;
+      background: #fff;
+      display: block;
+      height: auto;
+    }
+    .doc-download-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(83, 120, 170, 0.25);
+      border-radius: 10px;
+      background: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease;
+    }
+    .doc-download-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(43, 168, 255, 0.5);
+      box-shadow: 0 6px 14px rgba(43, 168, 255, 0.2);
+    }
+    .doc-download-btn img {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      display: block;
+    }
+    .rate-table {
+      margin-top: 8px;
+      border: 2px solid rgba(112, 146, 188, 0.65);
+      border-radius: 8px;
+      overflow: hidden;
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+    .rate-table th,
+    .rate-table td {
+      border: 1px solid rgba(112, 146, 188, 0.45);
+      padding: 10px 8px;
+      font-size: 12px;
+      line-height: 1.6;
+      vertical-align: middle;
+    }
+    .rate-table th {
+      background: #edf4ff;
+      color: #1f3658;
+      font-weight: 800;
+    }
+    .rate-table td:first-child {
+      font-weight: 800;
+      background: #f8fbff;
     }
     .assort-meta-card {
       grid-column: span 3;
@@ -822,6 +931,9 @@
       gap: 16px;
       align-items: start;
     }
+    .genre-layout.has-wide-table {
+      grid-template-columns: minmax(0, 1fr) 560px;
+    }
     .ui-capture-row {
       display: grid;
       grid-template-columns: 220px minmax(0, 1fr);
@@ -865,6 +977,13 @@
       background: #fff;
       padding: 12px;
     }
+    .genre-bar-chart.is-table-mode {
+      max-width: 640px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      margin-left: 0;
+    }
     .genre-bar-title {
       margin: 0 0 10px;
       font-size: 13px;
@@ -903,6 +1022,63 @@
       border-radius: 999px;
       background: linear-gradient(90deg, #2ba8ff, #7f75ff);
     }
+    .genre-info-table-wrap {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(106, 158, 212, 0.42);
+      background: #fff;
+    }
+    .genre-info-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: 12px;
+      color: #1f3658;
+    }
+    .genre-info-table th,
+    .genre-info-table td {
+      border: 1px solid rgba(106, 158, 212, 0.42);
+      padding: 12px 10px;
+      vertical-align: middle;
+      line-height: 1.55;
+      text-align: center;
+      font-weight: 700;
+    }
+    .genre-info-table th {
+      background: #4f97c2;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .genre-info-table td:first-child {
+      width: 28.57%;
+      background: #f4f7fb;
+      font-size: 13px;
+    }
+    .genre-info-table td:nth-child(2) {
+      width: 71.43%;
+      background: #f9fcff;
+      text-align: center;
+      font-weight: 700;
+    }
+    .genre-image-panel {
+      width: 100%;
+      max-width: 640px;
+      margin-left: 0;
+      border: 1px solid rgba(83, 120, 170, 0.18);
+      border-radius: 10px;
+      background: #fff;
+      padding: 8px;
+      display: none;
+    }
+    .genre-image-panel img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      object-fit: contain;
+    }
     .genre-tile {
       border-radius: 10px;
       padding: 12px 10px;
@@ -915,6 +1091,20 @@
       background: linear-gradient(145deg, #ffffff, #eef4fd);
       text-shadow: none;
       box-shadow: inset 0 0 10px rgba(131, 164, 206, 0.18);
+    }
+    .genre-tile-grid.is-compact {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      max-width: 520px;
+    }
+    .genre-tile-grid.is-compact .genre-tile {
+      font-size: 12px;
+      padding: 8px 6px;
+      border-radius: 8px;
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .hot-program-wrap {
       margin-top: 16px;
@@ -1306,7 +1496,7 @@
               <span class="media-icon"><img src="./assets/abema-logo.png" alt="ABEMAロゴ" /></span>
               <div class="media-logo">ABEMA</div>
             </div>
-            <div class="media-tags"><span class="tag">ALLデバイス</span><span class="tag">Linear/VOD</span></div>
+            <div class="media-tags"><span class="tag">SP/PC/CTV</span></div>
             <p class="media-desc">ニュース・恋愛・アニメ・スポーツなど、幅広いユーザーにリーチ可能。</p>
           </article>
           <article class="card media-card" data-media="TVer">
@@ -1314,7 +1504,7 @@
               <span class="media-icon tver"><img src="./assets/tver-logo.png" alt="TVerロゴ" /></span>
               <div class="media-logo">TVer</div>
             </div>
-            <div class="media-tags"><span class="tag">ALLデバイス</span><span class="tag">15〜180秒</span></div>
+            <div class="media-tags"><span class="tag">SP/PC/CTV</span></div>
             <p class="media-desc">民放見逃しを中心に高リーチ。プレロール/ミッドロール配信に強み。</p>
           </article>
           <article class="card media-card" data-media="DAZN">
@@ -1322,7 +1512,7 @@
               <span class="media-icon dazn"><img src="./assets/dazn-logo.png" alt="DAZNロゴ" /></span>
               <div class="media-logo">DAZN</div>
             </div>
-            <div class="media-tags"><span class="tag">SP/CTV</span><span class="tag">スポーツ</span></div>
+            <div class="media-tags"><span class="tag">SP/CTV</span></div>
             <p class="media-desc">スポーツ文脈で高いエンゲージメントを獲得しやすい配信面。</p>
           </article>
           <article class="card media-card" data-media="Lemino">
@@ -1330,7 +1520,7 @@
               <span class="media-icon lemino"><img src="./assets/lemino-logo.png" alt="Leminoロゴ" /></span>
               <div class="media-logo">Lemino</div>
             </div>
-            <div class="media-tags"><span class="tag">SP/CTV</span><span class="tag">VOD</span></div>
+            <div class="media-tags"><span class="tag">SP/PC/CTV</span></div>
             <p class="media-desc">注目コンテンツ時にMAUが伸び、可処分時間帯への接触が強い。</p>
           </article>
           <article class="card media-card" data-media="Rチャンネル">
@@ -1338,7 +1528,7 @@
               <span class="media-icon rch"><img src="./assets/rchannel-logo.png" alt="Rチャンネルロゴ" /></span>
               <div class="media-logo">Rチャンネル</div>
             </div>
-            <div class="media-tags"><span class="tag">ALLデバイス</span><span class="tag">リニア配信</span></div>
+            <div class="media-tags"><span class="tag">SP/PC/CTV</span></div>
             <p class="media-desc">24時間無料で視聴可能。高い視聴完了率と長尺配信に対応した在庫が強み。</p>
           </article>
           <article class="card media-card" data-media="JSPORTS">
@@ -1346,7 +1536,7 @@
               <span class="media-icon jsp"><img src="./assets/jsports-logo.png" alt="JSPORTSロゴ" /></span>
               <div class="media-logo">JSPORTS</div>
             </div>
-            <div class="media-tags"><span class="tag">ALLデバイス</span><span class="tag">スポーツ</span></div>
+            <div class="media-tags"><span class="tag">SP/PC/CTV</span></div>
             <p class="media-desc">年間を通じて豊富なスポーツ番組を配信。視聴体験を損なわない広告配信に対応。</p>
           </article>
           <article class="card media-card" data-media="SPOTV">
@@ -1354,7 +1544,7 @@
               <span class="media-icon spotv"><img src="./assets/spotv-logo.png" alt="SPOTVロゴ" /></span>
               <div class="media-logo">SPOTV</div>
             </div>
-            <div class="media-tags"><span class="tag">SP中心</span><span class="tag">MLB</span></div>
+            <div class="media-tags"><span class="tag">SP</span></div>
             <p class="media-desc">MLBを中心にしたライブ配信面。スポーツ関心層へ効率的なリーチが可能。</p>
           </article>
           <article class="card media-card" data-media="ニコニコ動画">
@@ -1362,7 +1552,7 @@
               <span class="media-icon nico">nico</span>
               <div class="media-logo">ニコニコ動画</div>
             </div>
-            <div class="media-tags"><span class="tag">PC/SP</span><span class="tag">UGC</span></div>
+            <div class="media-tags"><span class="tag">PC/SP</span></div>
             <p class="media-desc">コメント文化を持つ国内最大級UGCプラットフォーム。高いエンゲージメントが特長。</p>
           </article>
         </div>
@@ -1370,13 +1560,17 @@
         <section class="lower-section" aria-label="AJASSP MENU">
           <h3>AJASSP MENU</h3>
           <div class="lower-grid">
-            <article class="lower-card">
-              <h4>パッケージ</h4>
-              <p>目的別に媒体と配信条件をまとめた提案セット。短期間で配信設計を開始できます。</p>
+            <article class="lower-card clickable" data-menu="rate-card">
+              <h4>単価表</h4>
+              <p>通常単価と特別単価ルールをまとめた一覧です。媒体別の秒数単価を確認できます。</p>
+            </article>
+            <article class="lower-card clickable" data-menu="drama-info">
+              <h4>ドラマ情報</h4>
+              <p>TVer 26年春クールドラマ資料をページごとに確認できる参照ビューです。</p>
             </article>
             <article class="lower-card clickable" data-menu="assort">
               <h4>アソート</h4>
-              <p>ターゲットやKPIに合わせて、媒体・ジャンル・秒数を組み合わせる柔軟な配信メニューです。</p>
+              <p>独自データを活用してコンテンツベースでのターゲティングが可能なメニューです。</p>
             </article>
             <article class="lower-card clickable" data-menu="cross-rule">
               <h4>横断ルール</h4>
@@ -1603,6 +1797,9 @@
                 <h4 id="genreBarTitle" class="genre-bar-title">視聴されているコンテンツ（%）</h4>
                 <div id="genreBarList" class="genre-bar-list"></div>
               </div>
+              <div id="genreImagePanel" class="genre-image-panel">
+                <img id="genreImage" src="./assets/tver-ui-capture-wide.png" alt="ジャンル関連キャプチャ" />
+              </div>
             </div>
 
           </article>
@@ -1634,11 +1831,141 @@
         </div>
       </section>
 
+      <section id="rateCardView">
+        <div class="card hero">
+          <div>
+            <h2 class="media-title">単価表</h2>
+            <p>通常単価とTTD特別単価ルールの概要です。実際の単価・適用条件は変動するため、正式な発注・見積もり時はAJAまでご確認ください。</p>
+          </div>
+          <div class="hero-actions">
+            <button class="btn" id="backFromRateCardBtn">一覧に戻る</button>
+          </div>
+        </div>
+
+        <article class="card panel full">
+          <section class="rate-section">
+            <h4>通常単価（一覧）</h4>
+            <p class="rate-subtitle">通常単価（SSPグロス）</p>
+            <table class="table rate-table">
+              <thead>
+                <tr><th>メディア</th><th>6秒</th><th>15秒</th><th>30秒</th><th>60秒</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>TVer</td><td>1,500</td><td>2,350</td><td>3,550</td><td>4,700</td></tr>
+                <tr><td>ABEMA</td><td>1,000</td><td>2,000</td><td>2,500</td><td>5,000</td></tr>
+                <tr><td>DAZN</td><td>2,500</td><td>2,500</td><td>3,750</td><td>-</td></tr>
+                <tr><td>SPOTV NOW</td><td>-</td><td>2,118</td><td>-</td><td>-</td></tr>
+                <tr><td>Lemino</td><td>2,350</td><td>2,350</td><td>3,550</td><td>4,700</td></tr>
+                <tr><td>JSPORTS</td><td>1,300</td><td>2,100</td><td>3,100</td><td>4,150</td></tr>
+                <tr><td>Rチャンネル</td><td>700</td><td>1,000</td><td>1,300</td><td>1,690</td></tr>
+              </tbody>
+            </table>
+            <p class="rate-note">※代理店やDSPごとの詳細な単価に関しては、AJAにお問い合わせください。</p>
+          </section>
+
+          <section class="rate-section">
+            <h4>ABEMA/TVer単価詳細</h4>
+
+            <p class="rate-subtitle">ABEMA / TVer（通常単価と特別単価の比較）</p>
+            <table class="table rate-table">
+              <thead>
+                <tr><th>メディア</th><th>区分</th><th>6秒</th><th>15秒</th><th>30秒</th><th>60秒</th><th>適用条件</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ABEMA</td>
+                  <td>通常</td>
+                  <td>1,000</td>
+                  <td>2,000</td>
+                  <td>2,500</td>
+                  <td>5,000</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>ABEMA</td>
+                  <td>特別（1.2倍）</td>
+                  <td>1,200</td>
+                  <td>2,400</td>
+                  <td>3,000</td>
+                  <td>6,000</td>
+                  <td>ジャンル指定は事前相談→ABEMA決済必須</td>
+                </tr>
+                <tr>
+                  <td>TVer</td>
+                  <td>通常</td>
+                  <td>1,500</td>
+                  <td>2,350</td>
+                  <td>3,550</td>
+                  <td>4,700</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>TVer</td>
+                  <td>特別（1.1倍）</td>
+                  <td>1,650</td>
+                  <td>2,585</td>
+                  <td>3,905</td>
+                  <td>5,170</td>
+                  <td>ポジション指定（除外）／番組ジャンル指定（ドラマ・バラエティ）／クリッカブル配信</td>
+                </tr>
+                <tr>
+                  <td>TVer</td>
+                  <td>IDレス</td>
+                  <td>1,200</td>
+                  <td>1,500</td>
+                  <td>2,250</td>
+                  <td>3,000</td>
+                  <td>IDFAレス在庫</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="rate-section">
+            <h4>特別単価について</h4>
+            <p class="rate-subtitle">特別単価の種類</p>
+            <ul class="rate-bullets">
+              <li>条件付き単価（ABEMAジャンル指定1.2倍 / TVerポジション指定1.1倍 / TVer IDFAレス在庫）</li>
+              <li>DSP別特別単価（一部DSPでの特別料金設定、ボリューム割引の可能性）</li>
+              <li>案件規模・期間による特別単価（大型案件向け特別料金、長期配信割引）</li>
+            </ul>
+            <p class="rate-subtitle">特別単価の確認方法</p>
+            <p class="rate-note">案件の規模・内容、配信期間・予算、DSP・代理店情報をお知らせいただくことで、最適な単価をご提案いたします。</p>
+          </section>
+        </article>
+      </section>
+
+      <section id="dramaInfoView">
+        <div class="card hero">
+          <div>
+            <h2 class="media-title">ドラマ情報</h2>
+            <p>TVer 26年春クールドラマ資料をページごとに掲載しています。必要なページをそのまま確認できるよう、1ページずつ分けて表示しています。</p>
+          </div>
+          <div class="hero-actions">
+            <a class="doc-download-btn" href="./assets/tver-2026-spring-drama.pdf" download="TVer26年春クールドラマ.pdf" aria-label="ドラマ資料PDFをダウンロード">
+              <img src="./assets/download-icon.png" alt="ダウンロード" />
+            </a>
+            <button class="btn" id="backFromDramaInfoBtn">一覧に戻る</button>
+          </div>
+        </div>
+
+        <article class="card panel full">
+          <div class="drama-doc-grid">
+            <section class="drama-doc-card">
+              <img class="drama-shot" src="./assets/tver-2026-spring-drama-page-1.png" alt="TVer 26年春クールドラマ 資料ページ1" />
+            </section>
+            <section class="drama-doc-card">
+              <img class="drama-shot" src="./assets/tver-2026-spring-drama-page-2.png" alt="TVer 26年春クールドラマ 資料ページ2" />
+            </section>
+          </div>
+        </article>
+      </section>
+
       <section id="assortView">
         <div class="card hero">
           <div>
             <h2 class="media-title">アソート</h2>
-            <p>ターゲティングしたいユーザーが集まるコンテンツへの配信が可能なメニューです。将来のDeal作成拡張を見据えて、セグメントを選択できるUIにしています。</p>
+            <p>独自データを活用してコンテンツベースでのターゲティングが可能なメニューです。利用可能メディアは、TVer/ABEMA/JSPORTS/SPOTV NOWの4メディアとなっております。単価のアップチャージはいただいておりませんので、ご活用くださいませ。</p>
           </div>
           <div class="hero-actions">
             <button class="btn" id="backFromAssortBtn">一覧に戻る</button>
@@ -1839,11 +2166,17 @@
   <script>
     const listView = document.getElementById("listView");
     const detailView = document.getElementById("detailView");
+    const rateCardView = document.getElementById("rateCardView");
+    const dramaInfoView = document.getElementById("dramaInfoView");
     const assortView = document.getElementById("assortView");
     const crossRuleView = document.getElementById("crossRuleView");
     const backBtn = document.getElementById("backBtn");
+    const backFromRateCardBtn = document.getElementById("backFromRateCardBtn");
+    const backFromDramaInfoBtn = document.getElementById("backFromDramaInfoBtn");
     const backFromAssortBtn = document.getElementById("backFromAssortBtn");
     const backFromCrossBtn = document.getElementById("backFromCrossBtn");
+    const rateCardMenuCard = document.querySelector('[data-menu="rate-card"]');
+    const dramaInfoMenuCard = document.querySelector('[data-menu="drama-info"]');
     const assortMenuCard = document.querySelector('[data-menu="assort"]');
     const crossRuleMenuCard = document.querySelector('[data-menu="cross-rule"]');
     const assortSelectionStatus = document.getElementById("assortSelectionStatus");
@@ -1872,6 +2205,9 @@
     const genreBarChart = document.getElementById("genreBarChart");
     const genreBarTitle = document.getElementById("genreBarTitle");
     const genreBarList = document.getElementById("genreBarList");
+    const genreImagePanel = document.getElementById("genreImagePanel");
+    const genreImage = document.getElementById("genreImage");
+    const defaultGenreTiles = Array.from(genreTileGrid.querySelectorAll(".genre-tile")).map((el) => el.textContent.trim()).filter(Boolean);
     const addGenreBtn = document.getElementById("addGenreBtn");
     const removeGenreBtn = document.getElementById("removeGenreBtn");
     const genreCountInput = document.getElementById("genreCountInput");
@@ -1888,6 +2224,7 @@
     const specOverviewPanel = document.getElementById("specOverviewPanel");
     const regulationPanel = document.getElementById("regulationPanel");
     const uiGenrePanel = document.getElementById("uiGenrePanel");
+    const genreLayout = uiGenrePanel.querySelector(".genre-layout");
 
     const mediaDetails = {
       ABEMA: {
@@ -1895,7 +2232,25 @@
         icon: { type: "image", src: "./assets/abema-logo.png", alt: "ABEMAロゴ", className: "" },
         uiImage: { src: "./assets/abema-ui-capture.png", alt: "ABEMAの画面UIキャプチャ" },
         uiImageSecondary: null,
-        chip: "ALLデバイス",
+        genreTiles: [
+          "アニメ",
+          "ドラマ",
+          "スポーツ",
+          "バラエティ",
+          "HIPHOP",
+          "リアリティショー",
+          "麻雀",
+          "将棋",
+          "音楽",
+          "格闘",
+          "ニュース",
+          "K-POP",
+          "映画",
+          "韓国・中国ドラマ",
+          "ドキュメンタリー"
+        ],
+        compactGenres: true,
+        chip: "SP/PC/CTV",
         description: "好きな時間に好きな場所で、話題の動画を楽しめる未来のテレビ。ニュース・恋愛・アニメ・スポーツまで幅広く、ALLデバイス配信に対応。",
         kpis: [
           { label: "主要指標（2025年9月時点）", value: "2,771万+", sub: "累計アプリダウンロード" },
@@ -1960,7 +2315,7 @@
         icon: { type: "image", src: "./assets/tver-logo.png", alt: "TVerロゴ", className: "tver" },
         uiImage: { src: "./assets/tver-ui-capture.png", alt: "TVerの画面UIキャプチャ" },
         uiImageSecondary: { src: "./assets/tver-ui-capture-wide.png", alt: "TVerの画面UIキャプチャ（ワイド）" },
-        chip: "ALLデバイス",
+        chip: "SP/PC/CTV",
         description: "民放テレビ局がひとつになったプラットフォーム。ドラマ/バラエティ中心に約800番組以上を無料配信し、AJA SSP経由で準キー5局+キー局本店への配信が可能。",
         kpis: [
           { label: "月間ユーザー数（MUB）", value: "4,120万", sub: "2026年1月時点" },
@@ -2103,7 +2458,21 @@
         icon: { type: "image", src: "./assets/lemino-logo.png", alt: "Leminoロゴ", className: "lemino" },
         uiImage: { src: "./assets/lemino-ui-capture.png", alt: "Leminoの画面UIキャプチャ" },
         uiImageSecondary: null,
-        chip: "SP/CTV",
+        genreTiles: [
+          "LAPONE",
+          "音楽",
+          "国内ドラマ",
+          "K-POP",
+          "韓流・アジア",
+          "アニメ",
+          "邦画",
+          "洋画",
+          "スポーツ",
+          "エンタメ",
+          "ライブ"
+        ],
+        compactGenres: true,
+        chip: "SP/PC/CTV",
         description: "NTTドコモの映像配信サービス。AVODとSVODを提供し、AJA経由では在庫の多いSP/CTVへの配信が可能。",
         kpis: [
           { label: "想定MAU", value: "500万", sub: "注目コンテンツ配信時" },
@@ -2170,12 +2539,28 @@
       "Rチャンネル": {
         title: "Rチャンネル",
         icon: { type: "image", src: "./assets/rchannel-logo.png", alt: "Rチャンネルロゴ", className: "rch" },
-        chip: "ALLデバイス",
+        uiImage: { src: "./assets/rchannel-ui-capture.png", alt: "Rチャンネルの画面UIキャプチャ" },
+        genreTiles: [
+          "スポーツ",
+          "ニュース",
+          "ワイドショー",
+          "ドラマ",
+          "音楽",
+          "バラエティ",
+          "映画",
+          "アニメ",
+          "ドキュメンタリー",
+          "劇場",
+          "趣味/教養",
+          "キッズ"
+        ],
+        compactGenres: true,
+        chip: "SP/PC/CTV",
         description: "楽天が運営する24時間365日視聴可能なリニア型動画配信サービス。無料・会員登録不要で50チャンネルのプロコンテンツを提供。",
         kpis: [
           { label: "視聴完了率（15秒）", value: "98.8%", sub: "高完了率" },
           { label: "配信デバイス", value: "ALL", sub: "ALLデバイス配信可能" },
-          { label: "再生秒数", value: "15-120秒", sub: "半端尺は都度相談" },
+          { label: "チャンネル数", value: "50", sub: "全てプロコンテンツ" },
           { label: "配信面", value: "Mid", sub: "LIVE面 / キャッチアップ面" }
         ],
         specs: [
@@ -2188,9 +2573,13 @@
         inventory: {
           device: {
             centerTitle: "100%",
-            centerSub: "ALLデバイス",
-            gradient: "conic-gradient(var(--accent) 0 100%)",
-            legend: [{ name: "ALLデバイス", value: "配信可能", color: "var(--accent)" }]
+            centerSub: "デバイス構成",
+            gradient: "conic-gradient(var(--accent) 0 45%, var(--accent-3) 45% 72%, var(--accent-2) 72% 100%)",
+            legend: [
+              { name: "SP", value: "45%", color: "var(--accent)" },
+              { name: "CTV", value: "27%", color: "var(--accent-3)" },
+              { name: "PC", value: "28%", color: "var(--accent-2)" }
+            ]
           },
           surface: {
             centerTitle: "Mid",
@@ -2226,13 +2615,26 @@
       JSPORTS: {
         title: "JSPORTS",
         icon: { type: "image", src: "./assets/jsports-logo.png", alt: "JSPORTSロゴ", className: "jsp" },
-        chip: "ALLデバイス",
+        uiImage: { src: "./assets/jsports-ui-capture.png", alt: "JSPORTSの画面UIキャプチャ" },
+        genreTiles: [
+          "ラグビー",
+          "野球",
+          "モータースポーツ",
+          "サイクルコードレース",
+          "サッカー/フットサル",
+          "バスケットボール",
+          "ウィンタースポーツ",
+          "バトミントン",
+          "スポーツクライミング"
+        ],
+        compactGenres: true,
+        chip: "SP/PC/CTV",
         description: "年間2,000番組・6,000時間以上のスポーツコンテンツを配信。テレビ放送同様のフォーマットで、プレー中にCM配信しない運用に対応。",
         kpis: [
           { label: "年間番組数", value: "2,000+", sub: "年間配信番組" },
           { label: "年間配信時間", value: "6,000h+", sub: "スポーツコンテンツ" },
           { label: "配信デバイス", value: "ALL", sub: "ALLデバイス配信可能" },
-          { label: "再生秒数", value: "15/30/60", sub: "長尺・半端尺は都度相談" }
+          { label: "配信ポジション", value: "Mid", sub: "" }
         ],
         specs: [
           ["再生秒数", "15秒/30秒/60秒（長尺・半端尺は都度相談）"],
@@ -2242,6 +2644,7 @@
           ["備考", "プレー中のCM配信なし"]
         ],
         inventory: {
+          showDevice: false,
           device: {
             centerTitle: "100%",
             centerSub: "ALLデバイス",
@@ -2256,19 +2659,46 @@
           }
         },
         attr: {
-          gender: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent)" }] },
-          age: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent-2) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent-2)" }] }
+          gender: {
+            centerTitle: "性別",
+            centerSub: "男性 / 女性",
+            gradient: "conic-gradient(var(--accent) 0 67%, var(--accent-2) 67% 100%)",
+            legend: [
+              { name: "男性", value: "67%", color: "var(--accent)" },
+              { name: "女性", value: "33%", color: "var(--accent-2)" }
+            ]
+          },
+          age: {
+            centerTitle: "年代",
+            centerSub: "20代以下〜50代以上",
+            gradient: "conic-gradient(#2ba8ff 0 39%, #7f75ff 39% 55%, #3de4d8 55% 72%, #ffc36b 72% 100%)",
+            legend: [
+              { name: "20代以下", value: "39%", color: "#2ba8ff" },
+              { name: "30代", value: "16%", color: "#7f75ff" },
+              { name: "40代", value: "17%", color: "#3de4d8" },
+              { name: "50代以上", value: "28%", color: "#ffc36b" }
+            ]
+          }
         }
       },
       SPOTV: {
         title: "SPOTV",
         icon: { type: "image", src: "./assets/spotv-logo.png", alt: "SPOTVロゴ", className: "spotv" },
-        chip: "SP(TAB)のみ",
-        description: "MLBを中心に世界最高峰スポーツリーグをライブ配信。AJA経由ではSP(TAB)のみ配信可能。",
+        uiImage: { src: "./assets/spotv-ui-capture.png", alt: "SPOTVの画面UIキャプチャ" },
+        genreTable: {
+          headers: ["配信コンテンツ", "見どころ"],
+          rows: [
+            ["MLB", "2026シーズンは村上、岡本など注目度の高いMLB日本人選手も増加\nレギュラーシーズンは日本人選手所属球団を中心に毎日最大8試合"],
+            ["Aリーグメン", "酒井宏樹、水沼宏太、金森健心が所属する、スーパースターの活躍"],
+            ["サウジリーグ", "クリスティアーノ・ロナウド・ベンゼマ・J・フェリックスなど\nレジェンド級の選手が多数在籍するリーグ"]
+          ]
+        },
+        chip: "SP",
+        description: "MLBを中心に世界最高峰スポーツリーグをライブ配信。AJA経由ではSP(TAB)のみ配信可能。スポーツファン×若年M層に対しての集中した露出が可能。",
         kpis: [
           { label: "配信デバイス", value: "SPのみ", sub: "SP(TAB)限定" },
           { label: "再生秒数", value: "15秒", sub: "LIVE / キャッチアップ共通" },
-          { label: "スキップ / クリック", value: "不可", sub: "共通仕様" },
+          { label: "2026年MLBコンテンツ", value: "350試合", sub: "" },
           { label: "ポジション", value: "Pre", sub: "Preロール" }
         ],
         specs: [
@@ -2293,19 +2723,42 @@
           }
         },
         attr: {
-          gender: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent)" }] },
-          age: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent-2) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent-2)" }] }
+          gender: {
+            centerTitle: "性別",
+            centerSub: "男性 / 女性",
+            gradient: "conic-gradient(var(--accent) 0 85%, var(--accent-2) 85% 100%)",
+            legend: [
+              { name: "女性", value: "15%", color: "var(--accent-2)" },
+              { name: "男性", value: "85%", color: "var(--accent)" }
+            ]
+          },
+          age: {
+            centerTitle: "年代",
+            centerSub: "18歳未満〜66歳以上",
+            gradient: "conic-gradient(#2ba8ff 0 6%, #7f75ff 6% 21%, #3de4d8 21% 38%, #ffc36b 38% 56%, #5a8df2 56% 75%, #3db8ff 75% 92%, #6b5eff 92% 100%)",
+            legend: [
+              { name: "18歳未満", value: "6%", color: "#2ba8ff" },
+              { name: "18-25歳", value: "15%", color: "#7f75ff" },
+              { name: "26-35歳", value: "17%", color: "#3de4d8" },
+              { name: "36-45歳", value: "18%", color: "#ffc36b" },
+              { name: "46-55歳", value: "19%", color: "#5a8df2" },
+              { name: "56-65歳", value: "17%", color: "#3db8ff" },
+              { name: "66歳以上", value: "8%", color: "#6b5eff" }
+            ]
+          }
         }
       },
       "ニコニコ動画": {
         title: "ニコニコ動画",
         icon: { type: "badge", label: "nico", alt: "ニコニコ動画", className: "nico" },
+        uiImage: { src: "./assets/niconico-ui-capture.png", alt: "ニコニコ動画の画面UIキャプチャ" },
+        genreImage: { src: "./assets/niconico-genre-capture.png", alt: "ニコニコ動画のジャンル関連キャプチャ" },
         chip: "PC/SP",
-        description: "コメント機能による高いエンゲージメントを持つ国内最大級UGCプラットフォーム。PC/SPブラウザ&アプリで配信可能。",
+        description: "国内最大級の熱量あるUGCプラットフォーム。コメント機能による高いエンゲージメントと、独自のクリエイター文化が特徴。",
         kpis: [
           { label: "配信デバイス", value: "PC / SP", sub: "ブラウザ&アプリ" },
           { label: "再生秒数", value: "6秒以上", sub: "制限なし" },
-          { label: "スキップ", value: "1秒〜可", sub: "スキッパブル配信" },
+          { label: "登録会員数", value: "約2700万人", sub: "国外含む" },
           { label: "ポジション", value: "Pre / Post", sub: "インストリームPMP" }
         ],
         specs: [
@@ -2336,8 +2789,26 @@
           }
         },
         attr: {
-          gender: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent)" }] },
-          age: { centerTitle: "属性", centerSub: "公開データ準備中", gradient: "conic-gradient(var(--accent-2) 0 100%)", legend: [{ name: "公開データ", value: "準備中", color: "var(--accent-2)" }] }
+          gender: {
+            centerTitle: "性別",
+            centerSub: "男性 / 女性",
+            gradient: "conic-gradient(var(--accent) 0 68%, var(--accent-2) 68% 100%)",
+            legend: [
+              { name: "女性", value: "32%", color: "var(--accent-2)" },
+              { name: "男性", value: "68%", color: "var(--accent)" }
+            ]
+          },
+          age: {
+            centerTitle: "年代",
+            centerSub: "20代以下〜50代以上",
+            gradient: "conic-gradient(#2ba8ff 0 29%, #7f75ff 29% 64%, #3de4d8 64% 84%, #ffc36b 84% 100%)",
+            legend: [
+              { name: "20代以下", value: "29%", color: "#2ba8ff" },
+              { name: "30代", value: "35%", color: "#7f75ff" },
+              { name: "40代", value: "20%", color: "#3de4d8" },
+              { name: "50代以上", value: "20%", color: "#ffc36b" }
+            ]
+          }
         }
       }
     };
@@ -2566,9 +3037,13 @@
     }
 
     function renderPieEditors() {
-      const invLegend = mediaDetails[currentMedia].inventory[currentInventoryTab].legend;
+      const invLegend = mediaDetails[currentMedia].inventory?.[currentInventoryTab]?.legend;
       const attrLegendData = mediaDetails[currentMedia].attr[currentAttrTab].legend;
-      renderPieEditor(inventoryPieEditor, "inventory", currentInventoryTab, invLegend);
+      if (invLegend) {
+        renderPieEditor(inventoryPieEditor, "inventory", currentInventoryTab, invLegend);
+      } else {
+        inventoryPieEditor.innerHTML = `<div class="edit-control-row"><span class="edit-status">${currentInventoryTab} は表示対象外です</span></div>`;
+      }
       renderPieEditor(attrPieEditor, "attr", currentAttrTab, attrLegendData);
     }
 
@@ -2655,10 +3130,16 @@
       if (!selectedMedia) return;
       currentMedia = mediaKey;
       syncGenderFromAgeAggregates(mediaKey);
+      const hasDevice = Boolean(selectedMedia.inventory?.device) && selectedMedia.inventory?.showDevice !== false;
       const hasSurface = Boolean(selectedMedia.inventory?.surface) && selectedMedia.inventory?.showSurface !== false;
+      inventoryDeviceTab.style.display = hasDevice ? "" : "none";
       inventorySurfaceTab.style.display = hasSurface ? "" : "none";
-      if (!hasSurface) {
+      if ((currentInventoryTab === "device" && !hasDevice) || (currentInventoryTab === "surface" && !hasSurface)) {
+        currentInventoryTab = hasDevice ? "device" : hasSurface ? "surface" : "device";
+      } else if (!hasSurface && hasDevice) {
         currentInventoryTab = "device";
+      } else if (!hasDevice && hasSurface) {
+        currentInventoryTab = "surface";
       }
       inventoryTabs.forEach((btn) => {
         btn.classList.toggle("active", btn.dataset.inv === currentInventoryTab);
@@ -2678,6 +3159,8 @@
       detailUiImage.alt = uiImage.alt;
       detailUiImage.style.width = mediaKey === "DAZN" ? "min(100%, 620px)" : "min(100%, 220px)";
       const uiImageSecondary = selectedMedia.uiImageSecondary;
+      const isCompactGenre = selectedMedia.compactGenres === true;
+      genreTileGrid.classList.toggle("is-compact", isCompactGenre);
       if (uiImageSecondary) {
         secondaryUiImage.src = uiImageSecondary.src;
         secondaryUiImage.alt = uiImageSecondary.alt;
@@ -2685,9 +3168,38 @@
       } else {
         secondaryUiCapture.style.display = "none";
       }
-      if (Array.isArray(selectedMedia.genreBars) && selectedMedia.genreBars.length > 0) {
+      if (selectedMedia.genreImage?.src) {
+        genreTileGrid.style.display = "none";
+        genreBarChart.style.display = "none";
+        genreImagePanel.style.display = "block";
+        genreLayout.classList.add("has-wide-table");
+        genreBarChart.classList.remove("is-table-mode");
+        genreBarTitle.style.display = "block";
+        genreImage.src = selectedMedia.genreImage.src;
+        genreImage.alt = selectedMedia.genreImage.alt || "ジャンル関連キャプチャ";
+      } else if (selectedMedia.genreTable && Array.isArray(selectedMedia.genreTable.rows) && selectedMedia.genreTable.rows.length > 0) {
         genreTileGrid.style.display = "none";
         genreBarChart.style.display = "block";
+        genreImagePanel.style.display = "none";
+        genreLayout.classList.add("has-wide-table");
+        genreBarChart.classList.add("is-table-mode");
+        genreBarTitle.style.display = "none";
+        const headers = selectedMedia.genreTable.headers || ["項目", "内容"];
+        const rowsHtml = selectedMedia.genreTable.rows
+          .map((row) => {
+            const left = escapeHtml(String(row?.[0] ?? ""));
+            const right = escapeHtml(String(row?.[1] ?? "")).replace(/\n/g, "<br>");
+            return `<tr><td>${left}</td><td>${right}</td></tr>`;
+          })
+          .join("");
+        genreBarList.innerHTML = `<div class="genre-info-table-wrap"><table class="genre-info-table"><thead><tr><th>${escapeHtml(String(headers[0] ?? "項目"))}</th><th>${escapeHtml(String(headers[1] ?? "内容"))}</th></tr></thead><tbody>${rowsHtml}</tbody></table></div>`;
+      } else if (Array.isArray(selectedMedia.genreBars) && selectedMedia.genreBars.length > 0) {
+        genreTileGrid.style.display = "none";
+        genreBarChart.style.display = "block";
+        genreImagePanel.style.display = "none";
+        genreLayout.classList.remove("has-wide-table");
+        genreBarChart.classList.remove("is-table-mode");
+        genreBarTitle.style.display = "block";
         genreBarTitle.textContent = selectedMedia.genreChartTitle || "視聴されているコンテンツ（%）";
         genreBarList.innerHTML = selectedMedia.genreBars
           .map((item) => {
@@ -2698,7 +3210,18 @@
       } else {
         genreTileGrid.style.display = "grid";
         genreBarChart.style.display = "none";
+        genreImagePanel.style.display = "none";
+        genreLayout.classList.remove("has-wide-table");
+        genreBarChart.classList.remove("is-table-mode");
+        genreBarTitle.style.display = "block";
         genreBarList.innerHTML = "";
+        const tiles = Array.isArray(selectedMedia.genreTiles) && selectedMedia.genreTiles.length > 0
+          ? selectedMedia.genreTiles
+          : defaultGenreTiles;
+        genreTileGrid.innerHTML = tiles
+          .map((label) => `<div class="genre-tile">${escapeHtml(label)}</div>`)
+          .join("");
+        syncGenreCount();
       }
 
       selectedMedia.kpis.forEach((item, idx) => {
@@ -2730,6 +3253,8 @@
         if (mediaDetails[mediaKey]) {
           applyMediaDetail(mediaKey);
           listView.classList.add("hidden");
+          rateCardView.classList.remove("active");
+          dramaInfoView.classList.remove("active");
           assortView.classList.remove("active");
           crossRuleView.classList.remove("active");
           detailView.classList.add("active");
@@ -2743,9 +3268,41 @@
       listView.classList.remove("hidden");
     });
 
+    rateCardMenuCard.addEventListener("click", () => {
+      listView.classList.add("hidden");
+      detailView.classList.remove("active");
+      dramaInfoView.classList.remove("active");
+      assortView.classList.remove("active");
+      crossRuleView.classList.remove("active");
+      rateCardView.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    backFromRateCardBtn.addEventListener("click", () => {
+      rateCardView.classList.remove("active");
+      listView.classList.remove("hidden");
+    });
+
+    dramaInfoMenuCard.addEventListener("click", () => {
+      listView.classList.add("hidden");
+      detailView.classList.remove("active");
+      rateCardView.classList.remove("active");
+      assortView.classList.remove("active");
+      crossRuleView.classList.remove("active");
+      dramaInfoView.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    backFromDramaInfoBtn.addEventListener("click", () => {
+      dramaInfoView.classList.remove("active");
+      listView.classList.remove("hidden");
+    });
+
     assortMenuCard.addEventListener("click", () => {
       listView.classList.add("hidden");
       detailView.classList.remove("active");
+      rateCardView.classList.remove("active");
+      dramaInfoView.classList.remove("active");
       crossRuleView.classList.remove("active");
       assortView.classList.add("active");
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -2759,6 +3316,8 @@
     crossRuleMenuCard.addEventListener("click", () => {
       listView.classList.add("hidden");
       detailView.classList.remove("active");
+      rateCardView.classList.remove("active");
+      dramaInfoView.classList.remove("active");
       assortView.classList.remove("active");
       crossRuleView.classList.add("active");
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -2773,6 +3332,7 @@
     const inventoryLegend = document.getElementById("inventoryLegend");
     const inventoryCenter = document.getElementById("inventoryCenter");
     const inventoryTabs = document.querySelectorAll(".tab-btn[data-inv]");
+    const inventoryDeviceTab = document.querySelector('.tab-btn[data-inv="device"]');
     const inventorySurfaceTab = document.querySelector('.tab-btn[data-inv="surface"]');
 
     function renderInventory(type) {
@@ -2792,6 +3352,7 @@
 
     inventoryTabs.forEach((btn) => {
       btn.addEventListener("click", () => {
+        if (btn.style.display === "none") return;
         inventoryTabs.forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
         currentInventoryTab = btn.dataset.inv;
