@@ -395,9 +395,9 @@
     .rate-table th,
     .rate-table td {
       border: 1px solid rgba(112, 146, 188, 0.45);
-      padding: 10px 8px;
-      font-size: 12px;
-      line-height: 1.6;
+      padding: 7px 6px;
+      font-size: 11px;
+      line-height: 1.45;
       vertical-align: middle;
     }
     .rate-table th {
@@ -826,14 +826,15 @@
     .table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 12px;
+      font-size: 11px;
       color: #36527a;
     }
     .table th, .table td {
       border-bottom: 1px solid rgba(147, 186, 255, .14);
-      padding: 9px 6px;
+      padding: 6px 5px;
       text-align: left;
       vertical-align: top;
+      line-height: 1.4;
     }
     .table th {
       color: #5f7698;
@@ -1311,23 +1312,35 @@
       margin: 0 auto;
       height: auto;
     }
+    .ad-detail-mini-note {
+      margin: 8px 0 0;
+      font-size: 11px;
+      color: #607897;
+      line-height: 1.55;
+    }
     .ad-position-table {
       margin-top: 10px;
-      width: 100%;
+      width: min(100%, 520px);
+      margin-left: auto;
       border-collapse: collapse;
       table-layout: fixed;
-      font-size: 12px;
+      font-size: 11px;
       color: #2f4f78;
     }
     .ad-position-table col:first-child { width: 32%; }
     .ad-position-table col:nth-child(2),
     .ad-position-table col:nth-child(3) { width: 34%; }
+    .ad-position-table-4col col:first-child { width: 28%; }
+    .ad-position-table-4col col:nth-child(2),
+    .ad-position-table-4col col:nth-child(3),
+    .ad-position-table-4col col:nth-child(4) { width: 24%; }
+    .ad-position-table-4col { width: min(100%, 620px); }
     .ad-position-table th,
     .ad-position-table td {
       border: 1px solid rgba(83, 120, 170, 0.2);
-      padding: 7px 8px;
+      padding: 5px 6px;
       vertical-align: top;
-      line-height: 1.45;
+      line-height: 1.35;
       background: #fff;
     }
     .ad-position-table thead th {
@@ -1704,7 +1717,7 @@
           </article>
 
           <article class="card panel full" id="adDetailPanel">
-            <h3>広告仕様詳細</h3>
+            <h3>ポジション別広告再生秒数</h3>
             <div class="ad-detail-wrap" id="adDetailSection">
               <div class="ad-detail-grid">
                 <div class="ad-detail-card">
@@ -2892,7 +2905,7 @@
       inventory: { label: "在庫構成比", getEl: () => inventoryPanel },
       attr: { label: "利用者属性", getEl: () => attrPanel },
       specOverview: { label: "広告仕様概要", getEl: () => specOverviewPanel },
-      adDetail: { label: "広告仕様詳細", getEl: () => adDetailPanel },
+      adDetail: { label: "ポジション別広告再生秒数", getEl: () => adDetailPanel },
       uiGenre: { label: "画面UIとジャンル", getEl: () => uiGenrePanel }
     };
 
@@ -2939,10 +2952,307 @@
       setDisplayByFlag(inventoryPanel, vis.inventory);
       setDisplayByFlag(attrPanel, vis.attr);
       setDisplayByFlag(specOverviewPanel, vis.specOverview);
-      const showAdDetailBase = currentMedia === "ABEMA";
+      const showAdDetailBase = currentMedia === "ABEMA" || currentMedia === "TVer" || currentMedia === "DAZN" || currentMedia === "Lemino" || currentMedia === "Rチャンネル" || currentMedia === "JSPORTS";
       setDisplayByFlag(adDetailPanel, showAdDetailBase && vis.adDetail);
       setDisplayByFlag(uiGenrePanel, vis.uiGenre);
       setDisplayByFlag(regulationPanel, vis.uiGenre);
+    }
+
+    function renderAdDetail(mediaKey) {
+      if (mediaKey === "TVer") {
+        adDetailSection.innerHTML = `
+          <div class="ad-detail-grid" style="grid-template-columns: 1fr;">
+            <div class="ad-detail-card">
+              <h4 class="ad-detail-section-title">配信ポジション</h4>
+              <ul>
+                <li>TVerの動画コンテンツに配信される広告枠</li>
+                <li>Pre / Mid / Post 全ポジションで配信可能</li>
+                <li>再生秒数はPre / Mid / Postすべて6-180秒</li>
+                <li>※31秒以上の尺はプレロール除外が必要</li>
+                <li>※ポジションごとの在庫割合は、プレロール：ミッドロール：ポストロール＝約2：7：1</li>
+              </ul>
+              <div class="ad-detail-image" style="border:none;background:transparent;display:flex;justify-content:flex-end;margin-top:8px;">
+                <img id="adDetailLinearImage" src="./assets/tver-ad-position-flow.png" alt="TVerの配信ポジション（Pre/Mid/Post）" style="width:min(100%, 340px);" />
+              </div>
+              <table class="ad-position-table ad-position-table-4col">
+                <colgroup>
+                  <col />
+                  <col />
+                  <col />
+                  <col />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>項目</th>
+                    <th>Pre</th>
+                    <th>Mid</th>
+                    <th>Post</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>再生秒数</td>
+                    <td colspan="3">Pre / Mid / Post すべて 6-180秒</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="ad-detail-mini-note">※局によって配信可能なポジションが異なる</p>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      if (mediaKey === "Lemino") {
+        adDetailSection.innerHTML = `
+          <div class="ad-detail-grid" style="grid-template-columns: 1fr;">
+            <div class="ad-detail-card">
+              <h4 class="ad-detail-section-title">VOD面</h4>
+              <ul>
+                <li>Leminoのビデオコンテンツに配信される広告枠</li>
+                <li>現状はVOD面のみ対応</li>
+              </ul>
+              <div class="ad-detail-image" style="border:none;background:transparent;display:flex;justify-content:flex-end;margin-top:8px;">
+                <img id="adDetailVodImage" src="./assets/ad-detail-vod-flow.png" alt="Leminoの配信ポジション（VOD）" style="width:min(100%, 320px);" />
+              </div>
+              <table class="ad-position-table ad-position-table-4col">
+                <colgroup>
+                  <col />
+                  <col />
+                  <col />
+                  <col />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>項目</th>
+                    <th>Pre</th>
+                    <th>Mid</th>
+                    <th>Post</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>再生秒数</td>
+                    <td>15秒 / 30秒</td>
+                    <td>15秒 / 30秒 / 60秒</td>
+                    <td>なし</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      if (mediaKey === "DAZN") {
+        adDetailSection.innerHTML = `
+          <div class="ad-detail-grid" style="grid-template-columns: 1fr;">
+            <div class="ad-detail-card">
+              <h4 class="ad-detail-section-title">配信ポジション</h4>
+              <ul>
+                <li>DAZNの動画コンテンツに配信される広告枠</li>
+                <li>Preロールのみで配信可能</li>
+                <li>再生秒数はLIVE15秒、キャッチアップ1-30秒</li>
+              </ul>
+              <div class="ad-detail-image" style="border:none;background:transparent;display:flex;justify-content:flex-end;margin-top:8px;">
+                <img id="adDetailLinearImage" src="./assets/dazn-ad-position-flow.png" alt="DAZNの配信ポジション（Pre）" style="width:min(100%, 340px);" />
+              </div>
+              <table class="ad-position-table">
+                <colgroup>
+                  <col />
+                  <col />
+                  <col />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>項目</th>
+                    <th>LIVE面</th>
+                    <th>キャッチアップ面</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>ポジション</td>
+                    <td>Pre</td>
+                    <td>Pre</td>
+                  </tr>
+                  <tr>
+                    <td>再生秒数</td>
+                    <td>15秒</td>
+                    <td>1-30秒</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      if (mediaKey === "Rチャンネル") {
+        adDetailSection.innerHTML = `
+          <div class="ad-detail-grid" style="grid-template-columns: 1fr;">
+            <div class="ad-detail-card">
+              <h4 class="ad-detail-section-title">配信ポジション</h4>
+              <ul>
+                <li>LIVE面 / キャッチアップ面のどちらも対応</li>
+                <li>配信ポジションはMidのみ</li>
+                <li>再生秒数は15秒 / 30秒 / 60秒 / 90秒 / 120秒</li>
+                <li>半端尺は都度相談</li>
+              </ul>
+              <div class="ad-detail-image" style="border:none;background:transparent;display:flex;justify-content:flex-end;margin-top:8px;">
+                <img id="adDetailLinearImage" src="./assets/rchannel-ad-position-flow.png" alt="Rチャンネルの配信ポジション（Mid）" style="width:min(100%, 360px);" />
+              </div>
+              <table class="ad-position-table">
+                <colgroup>
+                  <col />
+                  <col />
+                  <col />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>項目</th>
+                    <th>LIVE面</th>
+                    <th>キャッチアップ面</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>ポジション</td>
+                    <td>Mid</td>
+                    <td>Mid</td>
+                  </tr>
+                  <tr>
+                    <td>再生秒数</td>
+                    <td>15 / 30 / 60 / 90 / 120秒</td>
+                    <td>15 / 30 / 60 / 90 / 120秒</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="ad-detail-mini-note">※半端尺は都度相談</p>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      if (mediaKey === "JSPORTS") {
+        adDetailSection.innerHTML = `
+          <div class="ad-detail-grid" style="grid-template-columns: 1fr;">
+            <div class="ad-detail-card">
+              <h4 class="ad-detail-section-title">配信ポジション</h4>
+              <ul>
+                <li>LIVE面 / キャッチアップ面のどちらも対応</li>
+                <li>配信ポジションはMidのみ</li>
+                <li>再生秒数は15秒 / 30秒 / 60秒</li>
+                <li>長尺と半端尺は都度相談</li>
+              </ul>
+              <div class="ad-detail-image" style="border:none;background:transparent;display:flex;justify-content:flex-end;margin-top:8px;">
+                <img id="adDetailLinearImage" src="./assets/jsports-ad-position-flow.png" alt="JSPORTSの配信ポジション（Mid）" style="width:min(100%, 360px);" />
+              </div>
+              <table class="ad-position-table">
+                <colgroup>
+                  <col />
+                  <col />
+                  <col />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>項目</th>
+                    <th>LIVE面</th>
+                    <th>キャッチアップ面</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>ポジション</td>
+                    <td>Mid</td>
+                    <td>Mid</td>
+                  </tr>
+                  <tr>
+                    <td>再生秒数</td>
+                    <td>15 / 30 / 60秒</td>
+                    <td>15 / 30 / 60秒</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="ad-detail-mini-note">※長尺と半端尺は都度相談</p>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      adDetailSection.innerHTML = `
+        <div class="ad-detail-grid">
+          <div class="ad-detail-card">
+            <h4 class="ad-detail-section-title">リニア面</h4>
+            <ul>
+              <li>ABEMAのテレビコンテンツに配信される広告枠（納品番組と生放送コンテンツを含む）</li>
+              <li>配信ポジションはMidとPostのみ（Preロールなし）</li>
+              <li>尺は15秒 / 30秒 / 60秒のみ</li>
+            </ul>
+            <div class="ad-detail-image">
+              <img id="adDetailLinearImage" src="./assets/ad-detail-linear-flow.png" alt="リニア面の配信ポジション（Pre/Mid/Post）" />
+            </div>
+            <table class="ad-position-table">
+              <colgroup>
+                <col />
+                <col />
+                <col />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>項目</th>
+                  <th>Mid</th>
+                  <th>Post</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>秒数</td>
+                  <td>15秒 / 30秒 / 60秒</td>
+                  <td>15秒 / 30秒 / 60秒</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="ad-detail-card">
+            <h4 class="ad-detail-section-title">VOD面</h4>
+            <ul>
+              <li>ビデオコンテンツに配信される広告枠（一部無料コンテンツのみ）</li>
+              <li>31秒以上のVOD面クリエイティブは6秒地点でスキップ可能</li>
+              <li>配信ポジションはPreとMidのみ（Postロールなし）</li>
+              <li>尺はPre: 6-15秒、Mid: 6-60秒</li>
+            </ul>
+            <div class="ad-detail-image">
+              <img id="adDetailVodImage" src="./assets/ad-detail-vod-flow.png" alt="VOD面の配信ポジション（Pre/Mid/Post）" />
+            </div>
+            <table class="ad-position-table">
+              <colgroup>
+                <col />
+                <col />
+                <col />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>項目</th>
+                  <th>Pre</th>
+                  <th>Mid</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>再生秒数</td>
+                  <td>6-15秒</td>
+                  <td>6-60秒</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
     }
 
     function applyRegulationOpenState() {
@@ -3238,6 +3548,7 @@
       regulationBody.innerHTML = buildRegulations(mediaKey, selectedMedia)
         .map((row) => `<tr><td>${row[0]}</td><td>${row[1]}</td></tr>`)
         .join("");
+      renderAdDetail(mediaKey);
       isRegulationOpen = false;
       applyRegulationOpenState();
 
