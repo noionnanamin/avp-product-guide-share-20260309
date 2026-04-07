@@ -1554,8 +1554,8 @@
           </article>
           <article class="card media-card" data-media="SPOTV">
             <div class="media-logo-row">
-              <span class="media-icon spotv"><img src="./assets/spotv-logo.png" alt="SPOTVロゴ" /></span>
-              <div class="media-logo">SPOTV</div>
+              <span class="media-icon spotv"><img src="./assets/spotv-logo.png" alt="SPOTV NOWロゴ" /></span>
+              <div class="media-logo">SPOTV NOW</div>
             </div>
             <div class="media-tags"><span class="tag">SP</span></div>
             <p class="media-desc">MLBを中心にしたライブ配信面。スポーツ関心層へ効率的なリーチが可能。</p>
@@ -1573,10 +1573,6 @@
         <section class="lower-section" aria-label="AJASSP MENU">
           <h3>AJASSP MENU</h3>
           <div class="lower-grid">
-            <article class="lower-card clickable" data-menu="rate-card">
-              <h4>単価表</h4>
-              <p>通常単価と特別単価ルールをまとめた一覧です。媒体別の秒数単価を確認できます。</p>
-            </article>
             <article class="lower-card clickable" data-menu="drama-info">
               <h4>ドラマ情報</h4>
               <p>TVer 26年春クールドラマ資料をページごとに確認できる参照ビューです。</p>
@@ -1993,7 +1989,7 @@
             </div>
             <div class="assort-meta-card">
               <h4>媒体</h4>
-              <p>ABEMA / TVer / SPOTV / JSPORTS</p>
+              <p>ABEMA / TVer / SPOTV NOW / JSPORTS</p>
             </div>
             <div class="assort-meta-card">
               <h4>セグメント種別</h4>
@@ -2133,7 +2129,7 @@
                   <td>15秒中心 / 31秒以上不可</td>
                 </tr>
                 <tr>
-                  <td><span class="media-cell"><span class="media-icon spotv">SP</span>SPOTV</span></td>
+                  <td><span class="media-cell"><span class="media-icon spotv">SP</span>SPOTV NOW</span></td>
                   <td>SP(TAB)のみ</td>
                   <td>不可</td>
                   <td>不可</td>
@@ -2695,9 +2691,9 @@
         }
       },
       SPOTV: {
-        title: "SPOTV",
-        icon: { type: "image", src: "./assets/spotv-logo.png", alt: "SPOTVロゴ", className: "spotv" },
-        uiImage: { src: "./assets/spotv-ui-capture.png", alt: "SPOTVの画面UIキャプチャ" },
+        title: "SPOTV NOW",
+        icon: { type: "image", src: "./assets/spotv-logo.png", alt: "SPOTV NOWロゴ", className: "spotv" },
+        uiImage: { src: "./assets/spotv-ui-capture.png", alt: "SPOTV NOWの画面UIキャプチャ" },
         genreTable: {
           headers: ["配信コンテンツ", "見どころ"],
           rows: [
@@ -3579,15 +3575,17 @@
       listView.classList.remove("hidden");
     });
 
-    rateCardMenuCard.addEventListener("click", () => {
-      listView.classList.add("hidden");
-      detailView.classList.remove("active");
-      dramaInfoView.classList.remove("active");
-      assortView.classList.remove("active");
-      crossRuleView.classList.remove("active");
-      rateCardView.classList.add("active");
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+    if (rateCardMenuCard) {
+      rateCardMenuCard.addEventListener("click", () => {
+        listView.classList.add("hidden");
+        detailView.classList.remove("active");
+        dramaInfoView.classList.remove("active");
+        assortView.classList.remove("active");
+        crossRuleView.classList.remove("active");
+        rateCardView.classList.add("active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
 
     backFromRateCardBtn.addEventListener("click", () => {
       rateCardView.classList.remove("active");
